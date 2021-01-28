@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,height=device-height, initial-scale=1.0" />
+    <title>Tooqing-phaser3</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body div.container {
+            text-align: center;
+        }
+
+        body div.container div#game {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <input type="file" id="files" name="files[]" /> -->
+    <!-- <div class="container"> -->
+    <div id="game"></div>
+    <script src="./dist/main.js"></script>
+    <!-- </div> -->
+    <!-- <script>
+        let fileBin;
+        function handleFileSelect(evt) {
+            var file = evt.target.files[0]; // FileList object
+            console.log("handleFileSelect -> files", files);
+            const fileReader = new FileReader();
+
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = (event) => {
+                console.log("fileReader.onload -> event.target.result", event.target.result);
+                fileBin = new Uint8Array(event.target.result);
+                console.log("fileReader.onload -> fileBin", fileBin);
+
+                const capsule = TooqingCore.Launcher.DeserializeNode(fileBin);
+
+                TooqingCore.Launcher.startElementEditor({
+                    width: 1600,
+                    height: 900,
+                    parent: "game",
+                    node: capsule.root.children.filter((node) => node.type === 3).pop(),
+                    LOCAL_HOME_PATH: "/Users/wannatwo"
+                });
+            };
+        }
+
+        document.getElementById("files").addEventListener("change", handleFileSelect, false);
+
+        window.addEventListener("load", (event) => {
+            console.log("TooqingCore", TooqingCore);
+        });
+    </script> -->
+</body>
+
+</html>

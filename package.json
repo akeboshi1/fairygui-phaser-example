@@ -1,0 +1,21 @@
+{
+  "name": "PhaserParticlesEditor",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "author": "gxm",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development"
+  },
+  "dependencies": {
+    "expose-loader": "^0.7.5",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^4.5.1",
+    "path": "^0.12.7",
+    "tooqinggamephaser": "^0.3.0",
+    "ts-loader": "^6.0.2",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
