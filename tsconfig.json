@@ -1,0 +1,23 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "ES6",
+        "lib": [
+            "es2015",
+            "webworker",
+            "dom"
+        ],
+        "types": ["webpack-env"],
+        "declaration": false,
+        "outDir": "types",
+        "baseUrl": ".",
+        // "skipLibCheck": false,
+        "typeRoots": [
+            "node_modules/@types",
+        ]
+    },
+    "strict": false
+}

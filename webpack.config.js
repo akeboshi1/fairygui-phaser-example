@@ -7,6 +7,11 @@ const config = {
     path: path.join(__dirname, '/dist'), //打包后的文件存放的地方
     filename: 'main.js' //打包后输出文件的文件名
   },
+  module: {
+    rules: [
+      { test: /\.ts$/, loader: "ts-loader", options: { allowTsInNodeModules: false }, exclude: "/node_modules/" },
+    ],
+  },
   resolve: {
     extensions: [".ts", ".js"],
   },
@@ -31,7 +36,6 @@ const config = {
     publicPath: "/dist",
     host: "0.0.0.0",
     port: 8088,
-    open: true,
   }
 };
 module.exports = (env, argv) => {

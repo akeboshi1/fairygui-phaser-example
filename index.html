@@ -24,42 +24,7 @@
 </head>
 
 <body>
-    <!-- <input type="file" id="files" name="files[]" /> -->
-    <!-- <div class="container"> -->
-    <div id="game"></div>
     <script src="./dist/main.js"></script>
-    <!-- </div> -->
-    <!-- <script>
-        let fileBin;
-        function handleFileSelect(evt) {
-            var file = evt.target.files[0]; // FileList object
-            console.log("handleFileSelect -> files", files);
-            const fileReader = new FileReader();
-
-            fileReader.readAsArrayBuffer(file);
-            fileReader.onload = (event) => {
-                console.log("fileReader.onload -> event.target.result", event.target.result);
-                fileBin = new Uint8Array(event.target.result);
-                console.log("fileReader.onload -> fileBin", fileBin);
-
-                const capsule = TooqingCore.Launcher.DeserializeNode(fileBin);
-
-                TooqingCore.Launcher.startElementEditor({
-                    width: 1600,
-                    height: 900,
-                    parent: "game",
-                    node: capsule.root.children.filter((node) => node.type === 3).pop(),
-                    LOCAL_HOME_PATH: "/Users/wannatwo"
-                });
-            };
-        }
-
-        document.getElementById("files").addEventListener("change", handleFileSelect, false);
-
-        window.addEventListener("load", (event) => {
-            console.log("TooqingCore", TooqingCore);
-        });
-    </script> -->
 </body>
 
 </html>

@@ -8,14 +8,20 @@
     "dev": "webpack-dev-server --mode development"
   },
   "dependencies": {
+    "@types/webpack-env": "^1.16.0",
+    "assemblyscript": "^0.19.5",
     "expose-loader": "^0.7.5",
+    "fairygui-phaser": "git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#dev",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^4.5.1",
     "path": "^0.12.7",
-    "tooqinggamephaser": "^0.3.0",
-    "ts-loader": "^6.0.2",
+    "tooqingphaser": "git+ssh://git@code.apowo.com:opensource/phaser.git",
+    "ts-loader": "7.0.5",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.6"
   }
 }
