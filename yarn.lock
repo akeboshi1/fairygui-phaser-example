@@ -25,6 +25,11 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
 
+"@types/json-schema@^7.0.8":
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
+  integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -256,7 +261,7 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   resolved "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==
 
-ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.4:
+ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.6"
   resolved "https://registry.npmjs.org/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -1413,6 +1418,15 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+exports-loader@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/exports-loader/-/exports-loader-1.1.1.tgz#88c9a6877ee6a5519d7c41a016bdd99148421e69"
+  integrity sha512-CmyhIR2sJ3KOfVsHjsR0Yvo+0lhRhRMAevCbB8dhTVLHsZPs0lCQTvRmR9YNvBXDBxUuhmCE2f54KqEjZUaFrg==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+    source-map "^0.6.1"
+
 expose-loader@^0.7.5:
   version "0.7.5"
   resolved "https://registry.npmjs.org/expose-loader/-/expose-loader-0.7.5.tgz#e29ea2d9aeeed3254a3faa1b35f502db9f9c3f6f"
@@ -1485,7 +1499,7 @@ extglob@^2.0.4:
 
 "fairygui-phaser@git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#dev":
   version "0.0.2"
-  resolved "git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#c662a8a12902831ab7963f52ee263253d3e4f000"
+  resolved "git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#8008a4fa1c7104e6e2d6c08ca135c8f9d2e2b4a6"
 
 fast-deep-equal@^3.1.1:
   version "3.1.3"
@@ -1996,6 +2010,16 @@ import-local@^2.0.0:
     pkg-dir "^3.0.0"
     resolve-cwd "^2.0.0"
 
+imports-loader@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/imports-loader/-/imports-loader-1.2.0.tgz#b06823d0bb42e6f5ff89bc893829000eda46693f"
+  integrity sha512-zPvangKEgrrPeqeUqH0Uhc59YqK07JqZBi9a9cQ3v/EKUIqrbJHY4CvUrDus2lgQa5AmPyXuGrWP8JJTqzE5RQ==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+    source-map "^0.6.1"
+    strip-comments "^2.0.1"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
@@ -2301,6 +2325,13 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
+json5@^2.1.2:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.0.tgz#2dfefe720c6ba525d9ebd909950f0515316c89a3"
+  integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
+  dependencies:
+    minimist "^1.2.5"
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -2343,6 +2374,15 @@ loader-utils@^1.0.2, loader-utils@^1.2.3, loader-utils@^1.4.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^1.0.1"
+
+loader-utils@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.0.tgz#e4cace5b816d425a166b5f097e10cd12b36064b0"
+  integrity sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ==
+  dependencies:
+    big.js "^5.2.2"
+    emojis-list "^3.0.0"
+    json5 "^2.1.2"
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -2955,12 +2995,13 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-phaser@^3.55.2:
-  version "3.55.2"
-  resolved "https://registry.yarnpkg.com/phaser/-/phaser-3.55.2.tgz#c1e2e9e70de7085502885e06f46b7eb4bd95e29a"
-  integrity sha512-amKXsbb2Ht29dGPKvt1edq3yGGYKtq8373GpJYGKPNPnneYY6MtVTOgjHDuZwtmUyK4v86FugkT3hzW/N4tjxQ==
+"phaser3@git+ssh://git@code.apowo.com:opensource/phaser.git":
+  version "0.4.8"
+  resolved "git+ssh://git@code.apowo.com:opensource/phaser.git#060c51872b7afbb105c7ffe64406aee7f1524d85"
   dependencies:
     eventemitter3 "^4.0.7"
+    exports-loader "^1.1.1"
+    imports-loader "^1.2.0"
     path "^0.12.7"
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
@@ -3346,6 +3387,15 @@ schema-utils@^2.5.0:
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
 
+schema-utils@^3.0.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-3.1.1.tgz#bc74c4b6b6995c1d88f76a8b77bea7219e0c8281"
+  integrity sha512-Y5PQxS4ITlC+EahLuXaY86TXfR7Dc5lw294alXOq86JAHCihAIZfqv8nNCWvaEJvaC51uN9hbLGeV0cFBdH+Fw==
+  dependencies:
+    "@types/json-schema" "^7.0.8"
+    ajv "^6.12.5"
+    ajv-keywords "^3.5.2"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -3701,6 +3751,11 @@ strip-ansi@^5.0.0, strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   integrity sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==
   dependencies:
     ansi-regex "^4.1.0"
+
+strip-comments@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/strip-comments/-/strip-comments-2.0.1.tgz#4ad11c3fbcac177a67a40ac224ca339ca1c1ba9b"
+  integrity sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw==
 
 strip-eof@^1.0.0:
   version "1.0.0"
