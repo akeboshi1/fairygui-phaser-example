@@ -1,5 +1,5 @@
 import { GRoot, UIPackage, Handler, GButton, GComponent, GList, GObject, InteractiveEvent } from "fairygui-phaser";
-import "tooqingphaser";
+import "phaser";
 // import dat from "./dat.gui";
 class MyScene extends Phaser.Scene {
     private _view: GComponent;

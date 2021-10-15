@@ -15,7 +15,7 @@
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^4.5.1",
     "path": "^0.12.7",
-    "tooqingphaser": "git+ssh://git@code.apowo.com:opensource/phaser.git",
+    "phaser": "^3.55.2",
     "ts-loader": "7.0.5",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
