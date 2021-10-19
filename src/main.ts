@@ -1,8 +1,10 @@
-import { GRoot, UIPackage, Handler, GButton, GComponent, GList, GObject, InteractiveEvent } from "fairygui-phaser";
+import { Handler, GRoot, UIPackage, Window, GButton, GComponent, GList, GObject, InteractiveEvent } from "fairygui-phaser";
 import "phaser3";
+import { Events } from "phaser3";
 // import dat from "./dat.gui";
 class MyScene extends Phaser.Scene {
     private _view: GComponent;
+    private _bagWindow: BagWindow;
     private _list: GList;
     private _btn0;
     private _btn1;
@@ -11,11 +13,11 @@ class MyScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.binary("scrollPane", "assets/ScrollPane.fui");
+        // this.load.binary("scrollPane", "assets/ScrollPane.fui");
         // this.load.binary("Package1", "assets/Package1.fui");
-        // this.load.binary("Bag", "assets/Bag.fui");
+        this.load.binary("Bag", "assets/Bag.fui");
         // this.load.binary("Chat", "assets/Chat.fui");
-        this.load.binary("MainMenu", "assets/MainMenu.fui");
+        // this.load.binary("MainMenu", "assets/MainMenu.fui");
         // const resList = [
         //     "https://osd-alpha.tooqing.com/a0826f9a84f54006aeb6ab08d92fcb63.png",
         //     "https://osd-alpha.tooqing.com/309a26191b3d5ebd46dca66b7bb31147.png",
@@ -72,7 +74,7 @@ class MyScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
         });
-        UIPackage.loadPackage("scrollPane").then((pkg) => {
+        UIPackage.loadPackage("Bag").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
@@ -87,15 +89,24 @@ class MyScene extends Phaser.Scene {
             //     GRoot.inst.addChild(this._view);
             // });
             // ============ scroll
-            UIPackage.createObject("ScrollPane", "Main").then((obj) => {
+            // UIPackage.createObject("ScrollPane", "Main").then((obj) => {
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+
+            //     this._list = this._view.getChild("list").asList;
+            //     this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
+            //     this._list.setVirtual();
+            //     this._list.numItems = 20;
+            //     this._list.on("pointerdown", this.onClickList, this);
+            // });
+
+            // ============ Bag
+            UIPackage.createObject("Bag", "Main").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-
-                this._list = this._view.getChild("list").asList;
-                this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
-                this._list.setVirtual();
-                this._list.numItems = 20;
-                this._list.on("pointerdown", this.onClickList, this);
+                this._view.getChild("bagBtn");
+                // this._bagWindow = new BagWindow();
+                // this._view.getChild("bagBtn").onClick(() => { this._bagWindow.show() }, this);
             });
         });
 
@@ -157,6 +168,38 @@ var config = {
         forceSetTimeOut: true
     },
 };
+
+
+class BagWindow extends Window {
+    public constructor() {
+        super();
+    }
+
+    protected onInit(): void {
+        UIPackage.createObject("Bag", "Main").then((obj) => {
+            this.contentPane = obj.asCom;
+            this.center();
+        });
+    }
+
+    protected onShown(): void {
+        var list: GList = this.contentPane.getChild("list").asList;
+        list.on("pointerdown", this.onClickItem, this);
+        list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
+        list.setVirtual();
+        list.numItems = 45;
+    }
+
+    private renderListItem(index: number, obj: GObject): void {
+        obj.icon = "res/icons/i" + Math.floor(Math.random() * 10) + ".png";
+        obj.text = "" + Math.floor(Math.random() * 100);
+    }
+
+    private onClickItem(item: GObject): void {
+        this.contentPane.getChild("n11").asLoader.url = item.icon;
+        this.contentPane.getChild("n13").text = item.icon;
+    }
+}
 
 var game = new Phaser.Game(config);
 
