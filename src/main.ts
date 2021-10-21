@@ -1,21 +1,46 @@
-import { Handler, GRoot, UIPackage, Window, GButton, GComponent, GList, GObject, InteractiveEvent } from "fairygui-phaser";
+import { GTextInput, UBBParser, Handler, GRoot, UIPackage, Window, GButton, GComponent, GList, GObject, InteractiveEvent, GRichTextField } from "fairygui-phaser";
 import "phaser3";
 import { Events } from "phaser3";
-// import dat from "./dat.gui";
+class Message {
+    public sender: string;
+    public senderIcon: string;
+    public msg: string;
+    public fromMe: boolean;
+}
+export default class EmojiParser extends UBBParser {
+    private static TAGS: Array<string> = ["88", "am", "bs", "bz", "ch", "cool", "dhq", "dn", "fd", "gz", "han", "hx", "hxiao", "hxiu"];
+
+    public constructor() {
+        super();
+
+        EmojiParser.TAGS.forEach(element => {
+            this._handlers[":" + element] = this.onTag_Emoji;
+        });
+    }
+
+    private onTag_Emoji(tagName: string, end: boolean, attr: string): string {
+        return "<img src='" + UIPackage.getItemURL("Chat", tagName.substring(1).toLowerCase()) + "'/>";
+    }
+}
 class MyScene extends Phaser.Scene {
     private _view: GComponent;
     private _bagWindow: BagWindow;
     private _list: GList;
     private _btn0;
     private _btn1;
+    private _input: GTextInput;
+    private _emojiSelectUI: GComponent;
+    private _emojiParser: EmojiParser;
+    private _messages: Array<Message>;
     constructor(config) {
         super(config);
     }
 
     preload() {
+        this.load.binary("Chat", "assets/Chat.fui");
         // this.load.binary("scrollPane", "assets/ScrollPane.fui");
         // this.load.binary("Package1", "assets/Package1.fui");
-        this.load.binary("Bag", "assets/Bag.fui");
+        // this.load.binary("Bag", "assets/Bag.fui");
         // this.load.binary("Chat", "assets/Chat.fui");
         // this.load.binary("MainMenu", "assets/MainMenu.fui");
         // const resList = [
@@ -74,7 +99,7 @@ class MyScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
         });
-        UIPackage.loadPackage("Bag").then((pkg) => {
+        UIPackage.loadPackage("Chat").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
@@ -101,26 +126,125 @@ class MyScene extends Phaser.Scene {
             // });
 
             // ============ Bag
-            UIPackage.createObject("Bag", "Main").then((obj) => {
+            // UIPackage.createObject("Bag", "Main").then((obj) => {
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+            //     this._view.getChild("bagBtn");
+            //     this._bagWindow = new BagWindow();
+            //     this._view.getChild("bagBtn").onClick(() => { 
+            //         this._bagWindow.show() 
+            //     }, this);
+            // });
+            // ============= chat
+            UIPackage.createObject("Chat", "Main").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-                this._view.getChild("bagBtn");
-                // this._bagWindow = new BagWindow();
-                // this._view.getChild("bagBtn").onClick(() => { this._bagWindow.show() }, this);
+                this._messages = new Array<Message>();
+                this._emojiParser = new EmojiParser();
+
+                this._list = this._view.getChild("list").asList;
+                this._list.setVirtual();
+                this._list.itemProvider = Handler.create(this, this.getListItemResource, null, false);
+                this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
+
+                this._input = this._view.getChild("input1").asTextInput;
+                this._input.nativeInput.on("enter", this.onSubmit, this);
+
+                this._view.getChild("btnSend1").onClick(this.onClickSendBtn, this);
+                this._view.getChild("btnEmoji1").onClick(this.onClickEmojiBtn, this);
+
+                UIPackage.createObject("Chat", "EmojiSelectUI").then((obj)=>{
+                    this._emojiSelectUI = obj.asCom;
+                    this._emojiSelectUI.getChild("list").on("pointerup", this.onClickEmoji, this);
+                });
+               
             });
         });
 
     }
 
-    private renderListItem(index: number, item: GButton) {
-        item.title = "Item " + index;
-        // item.scrollPane.posX = 0; //reset scroll pos
+    private addMsg(sender: string, senderIcon: string, msg: string, fromMe: boolean) {
+        let isScrollBottom: boolean = this._list.scrollPane.isBottomMost;
 
-        this._btn0 = item.getChild("b0");
-        this._btn1 = item.getChild("b1");
-        this._btn0.onClick(this.onClickStick, this);
-        this._btn1.onClick(this.onClickDelete, this);
+        let newMessage = new Message();
+        newMessage.sender = sender;
+        newMessage.senderIcon = senderIcon;
+        newMessage.msg = msg;
+        newMessage.fromMe = fromMe;
+        this._messages.push(newMessage);
+
+        if (newMessage.fromMe) {
+            if (this._messages.length == 1 || Math.random() < 0.5) {
+                let replyMessage = new Message();
+                replyMessage.sender = "FairyGUI";
+                replyMessage.senderIcon = "r1";
+                replyMessage.msg = "Today is a good day. ";
+                replyMessage.fromMe = false;
+                this._messages.push(replyMessage);
+            }
+        }
+
+        if (this._messages.length > 100)
+            this._messages.splice(0, this._messages.length - 100);
+
+        this._list.numItems = this._messages.length;
+
+        if (isScrollBottom)
+            this._list.scrollPane.scrollBottom();
     }
+
+    private getListItemResource(index: number): string {
+        let msg = this._messages[index];
+        if (msg.fromMe)
+            return "ui://Chat/chatRight";
+        else
+            return "ui://Chat/chatLeft";
+    }
+
+    private renderListItem(index: number, item: GButton): void {
+        let msg = this._messages[index];
+        if (!msg.fromMe)
+            item.getChild("name").text = msg.sender;
+        item.icon = UIPackage.getItemURL("Chat", msg.senderIcon);
+
+        var txtObj: GRichTextField = item.getChild("msg").asRichTextField;
+        txtObj.width = txtObj.initWidth;
+        txtObj.text = this._emojiParser.parse(msg.msg);
+        if (txtObj.textWidth < txtObj.width)
+            txtObj.width = txtObj.textWidth;
+    }
+
+    private onClickSendBtn() {
+        let msg = this._input.text;
+        if (!msg)
+            return;
+
+        this.addMsg("Creator", "r0", msg, true);
+        this._input.text = "";
+    }
+
+    private onClickEmojiBtn() {
+        const btn = this._view.getChild("btnEmoji1");
+        GRoot.inst.showPopup(this._emojiSelectUI, GObject.cast(btn.displayObject), false);
+    }
+
+    private onClickEmoji(item: GObject) {
+        this._input.text += "[:" + item.text + "]";
+    }
+
+    private onSubmit() {
+        this.onClickSendBtn();
+    }
+
+    // private renderListItem(index: number, item: GButton) {
+    //     item.title = "Item " + index;
+    //     // item.scrollPane.posX = 0; //reset scroll pos
+
+    //     this._btn0 = item.getChild("b0");
+    //     this._btn1 = item.getChild("b1");
+    //     this._btn0.onClick(this.onClickStick, this);
+    //     this._btn1.onClick(this.onClickDelete, this);
+    // }
 
     private onClickList(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
         //点击列表时，查找是否有项目处于编辑状态， 如果有就归位
