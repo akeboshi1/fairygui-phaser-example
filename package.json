@@ -5,23 +5,26 @@
   "author": "gxm",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --mode development"
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack"
   },
   "dependencies": {
-    "@types/webpack-env": "^1.16.0",
     "assemblyscript": "^0.19.5",
     "expose-loader": "^0.7.5",
     "fairygui-phaser": "git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#dev",
     "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^4.5.1",
     "path": "^0.12.7",
     "phaser3": "git+ssh://git@code.apowo.com:opensource/phaser.git",
-    "ts-loader": "7.0.5",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "ts-loader": "7.0.5"
   },
   "devDependencies": {
-    "typescript": "^3.9.6"
+    "@types/webpack-env": "^1.16.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "html-webpack-plugin": "^5.4.0",
+    "typescript": "^3.9.6",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
   }
 }

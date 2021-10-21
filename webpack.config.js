@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require('path')
 const config = {
   entry: path.join(__dirname, '/src/main.ts'), // 入口文件
@@ -18,24 +20,31 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: "head",
-      title: "Phaser测试",
+      title: "Phaser example",
       template: path.join(__dirname, "./index.html"),
       chunks: ["tooqing"]
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "assets", to: "assets", toType: "dir" }
+      ]
     }),
     new webpack.DefinePlugin({
       WEBGL_RENDERER: true, // I did this to make webpack work, but I"m not really sure it should always be true
       CANVAS_RENDERER: true, // I did this to make webpack work, but I"m not really sure it should always be true
     }),
+    new CleanWebpackPlugin()
   ],
   devServer: {
-    writeToDisk: true,
-    watchOptions: {
-      poll: 1000,
+    static: {
+      directory: path.join(__dirname, 'dist'),
     },
-    contentBase: path.resolve(__dirname, "./dist"),
-    publicPath: "/dist",
-    host: "0.0.0.0",
+    compress: false,
+    allowedHosts: "auto",
     port: 8088,
+    devMiddleware: {
+      writeToDisk: true,
+    }
   }
 };
 module.exports = (env, argv) => {
