@@ -1,3 +1,4 @@
+import { Controller, GProgressBar, GTree, GTreeNode } from "fairygui-phaser";
 import { GTextInput, UBBParser, Handler, GRoot, UIPackage, Window, GButton, GComponent, GList, GObject, InteractiveEvent, GRichTextField } from "fairygui-phaser";
 import "phaser3";
 import { Events } from "phaser3";
@@ -32,15 +33,30 @@ class MyScene extends Phaser.Scene {
     private _emojiSelectUI: GComponent;
     private _emojiParser: EmojiParser;
     private _messages: Array<Message>;
+    private _tree1: GTree;
+    private _tree2: GTree;
+    private _fileURL: string;
+
+    private _backBtn: GObject;
+    private _demoContainer: GComponent;
+    private _cc: Controller;
+
+    private _timeDelta: number = 5;
+    private _progressTimeEvent: any;
+    private _progressTime: Phaser.Time.TimerEvent;
+
+    private _demoObjects: any;
     constructor(config) {
         super(config);
     }
 
     preload() {
-        this.load.binary("Chat", "assets/Chat.fui");
+        // this.load.binary("Chat", "assets/Chat.fui");
+        // this.load.binary("TreeView", "assets/TreeView.fui");
         // this.load.binary("scrollPane", "assets/ScrollPane.fui");
         // this.load.binary("Package1", "assets/Package1.fui");
-        // this.load.binary("Bag", "assets/Bag.fui");
+        //this.load.binary("Bag", "assets/Bag.fui");
+        this.load.binary("Basics", "assets/Basics.fui");
         // this.load.binary("Chat", "assets/Chat.fui");
         // this.load.binary("MainMenu", "assets/MainMenu.fui");
         // const resList = [
@@ -99,7 +115,7 @@ class MyScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
         });
-        UIPackage.loadPackage("Chat").then((pkg) => {
+        UIPackage.loadPackage("Basics").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
@@ -121,8 +137,50 @@ class MyScene extends Phaser.Scene {
             //     this._list = this._view.getChild("list").asList;
             //     this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
             //     this._list.setVirtual();
-            //     this._list.numItems = 20;
+            //     this._list.numItems = 10;
             //     this._list.on("pointerdown", this.onClickList, this);
+            // });
+
+            // ============ TreeNode
+            // UIPackage.createObject("TreeView", "Main").then((obj) => {
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+
+            //     this._fileURL = "ui://TreeView/file";
+
+            //     this._tree1 = this._view.getChild("tree").asTree;
+            //     this._tree1.on("pointerdown", this.__clickNode, this);
+            //     this._tree2 = this._view.getChild("tree2").asTree;
+            //     this._tree2.on("pointerdown", this.__clickNode, this);
+            //     this._tree2.treeNodeRender = Handler.create(this, this.renderTreeNode, null, false);
+
+            //     var topNode: GTreeNode = new GTreeNode(true);
+            //     topNode.data = "I'm a top node";
+            //     this._tree2.rootNode.addChild(topNode);
+            //     for (var i: number = 0; i < 5; i++) {
+            //         var node: GTreeNode = new GTreeNode(false);
+            //         node.data = "Hello " + i;
+            //         topNode.addChild(node);
+            //     }
+
+            //     var aFolderNode: GTreeNode = new GTreeNode(true);
+            //     aFolderNode.data = "A folder node";
+            //     topNode.addChild(aFolderNode);
+            //     for (var i: number = 0; i < 5; i++) {
+            //         var node: GTreeNode = new GTreeNode(false);
+            //         node.data = "Good " + i;
+            //         aFolderNode.addChild(node);
+            //     }
+
+            //     for (var i: number = 0; i < 3; i++) {
+            //         var node: GTreeNode = new GTreeNode(false);
+            //         node.data = "World " + i;
+            //         topNode.addChild(node);
+            //     }
+
+            //     var anotherTopNode: GTreeNode = new GTreeNode(false);
+            //     anotherTopNode.data = ["I'm a top node too", "ui://TreeView/heart"];
+            //     this._tree2.rootNode.addChild(anotherTopNode);
             // });
 
             // ============ Bag
@@ -131,36 +189,108 @@ class MyScene extends Phaser.Scene {
             //     GRoot.inst.addChild(this._view);
             //     this._view.getChild("bagBtn");
             //     this._bagWindow = new BagWindow();
-            //     this._view.getChild("bagBtn").onClick(() => { 
-            //         this._bagWindow.show() 
+            //     this._view.getChild("bagBtn").onClick(() => {
+            //         this._bagWindow.show()
             //     }, this);
             // });
-            // ============= chat
-            UIPackage.createObject("Chat", "Main").then((obj) => {
+
+            // ============= Basic
+            UIPackage.createObject("Basics", "Demo_ProgressBar").then((obj) => {
+
+                if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-                this._messages = new Array<Message>();
-                this._emojiParser = new EmojiParser();
 
-                this._list = this._view.getChild("list").asList;
-                this._list.setVirtual();
-                this._list.itemProvider = Handler.create(this, this.getListItemResource, null, false);
-                this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
-
-                this._input = this._view.getChild("input1").asTextInput;
-                this._input.nativeInput.on("enter", this.onSubmit, this);
-
-                this._view.getChild("btnSend1").onClick(this.onClickSendBtn, this);
-                this._view.getChild("btnEmoji1").onClick(this.onClickEmojiBtn, this);
-
-                UIPackage.createObject("Chat", "EmojiSelectUI").then((obj)=>{
-                    this._emojiSelectUI = obj.asCom;
-                    this._emojiSelectUI.getChild("list").on("pointerup", this.onClickEmoji, this);
-                });
-               
+                this.playProgressBar();
             });
+
+            // ============= chat
+            // UIPackage.createObject("Chat", "Main").then((obj) => {
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+            //     this._messages = new Array<Message>();
+            //     this._emojiParser = new EmojiParser();
+
+            //     this._list = this._view.getChild("list").asList;
+            //     this._list.setVirtual();
+            //     this._list.itemProvider = Handler.create(this, this.getListItemResource, null, false);
+            //     this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
+
+            //     this._input = this._view.getChild("input1").asTextInput;
+            //     this._input.nativeInput.on("enter", this.onSubmit, this);
+
+            //     this._view.getChild("btnSend1").onClick(this.onClickSendBtn, this);
+            //     this._view.getChild("btnEmoji1").onClick(this.onClickEmojiBtn, this);
+
+            //     UIPackage.createObject("Chat", "EmojiSelectUI").then((obj)=>{
+            //         this._emojiSelectUI = obj.asCom;
+            //         this._emojiSelectUI.getChild("list").on("pointerup", this.onClickEmoji, this);
+            //     });
+
+            // });
         });
 
+    }
+
+    // =============================== progressBar
+
+    private playProgressBar(): void {
+        // var obj: GComponent = this._demoObjects["ProgressBar"];
+        if (!this._progressTime) this._progressTime = this.time.addEvent(this._progressTimeEvent);
+        // Laya.timer.frameLoop(2, this, this.__playProgress);
+        // obj.on(Laya.Event.UNDISPLAY, this.__removeTimer, this);
+    }
+
+    private __removeTimer(): void {
+        // Laya.timer.clear(this, this.__playProgress);
+        if (this._progressTime) {
+            this._progressTime.remove(false);
+            this._progressTime = null;
+            //console.log("remove tweenupdate");
+        }
+    }
+
+    private __playProgress(): void {
+        var obj: GComponent = this._view;
+        var cnt: number = obj.numChildren;
+        for (var i: number = 0; i < cnt; i++) {
+            // if (i != 3 && i != 0) continue;
+            var child: GProgressBar = obj.getChildAt(i) as GProgressBar;
+            if (child != null) {
+                child.value += 1;
+                if (child.value > child.max)
+                    child.value = 0;
+            }
+        }
+    }
+
+
+
+    // ===============================
+
+    private onClickBack(evt: Event): void {
+        this._cc.selectedIndex = 0;
+        this._backBtn.visible = false;
+    }
+
+    private renderTreeNode(node: GTreeNode, obj: GComponent) {
+        if (node.isFolder) {
+            obj.text = node.data;
+        }
+        else if (node.data instanceof Array) {
+            obj.icon = (<any>node.data)[1];
+            obj.text = (<any>node.data)[0];
+        }
+        else {
+            obj.icon = this._fileURL;
+            obj.text = node.data;
+        }
+    }
+
+    private __clickNode(pointer: Phaser.Input.Pointer, itemObject: GObject) {
+        if (!itemObject) return;
+        var node: GTreeNode = itemObject["$owner"].treeNode;
+        console.log(node.text);
     }
 
     private addMsg(sender: string, senderIcon: string, msg: string, fromMe: boolean) {
@@ -201,18 +331,18 @@ class MyScene extends Phaser.Scene {
             return "ui://Chat/chatLeft";
     }
 
-    private renderListItem(index: number, item: GButton): void {
-        let msg = this._messages[index];
-        if (!msg.fromMe)
-            item.getChild("name").text = msg.sender;
-        item.icon = UIPackage.getItemURL("Chat", msg.senderIcon);
+    // private renderListItem(index: number, item: GButton): void {
+    //     let msg = this._messages[index];
+    //     if (!msg.fromMe)
+    //         item.getChild("name").text = msg.sender;
+    //     item.icon = UIPackage.getItemURL("Chat", msg.senderIcon);
 
-        var txtObj: GRichTextField = item.getChild("msg").asRichTextField;
-        txtObj.width = txtObj.initWidth;
-        txtObj.text = this._emojiParser.parse(msg.msg);
-        if (txtObj.textWidth < txtObj.width)
-            txtObj.width = txtObj.textWidth;
-    }
+    //     var txtObj: GRichTextField = item.getChild("msg").asRichTextField;
+    //     txtObj.width = txtObj.initWidth;
+    //     txtObj.text = this._emojiParser.parse(msg.msg);
+    //     if (txtObj.textWidth < txtObj.width)
+    //         txtObj.width = txtObj.textWidth;
+    // }
 
     private onClickSendBtn() {
         let msg = this._input.text;
@@ -236,15 +366,15 @@ class MyScene extends Phaser.Scene {
         this.onClickSendBtn();
     }
 
-    // private renderListItem(index: number, item: GButton) {
-    //     item.title = "Item " + index;
-    //     // item.scrollPane.posX = 0; //reset scroll pos
+    private renderListItem(index: number, item: GButton) {
+        item.title = "Item " + index;
+        // item.scrollPane.posX = 0; //reset scroll pos
 
-    //     this._btn0 = item.getChild("b0");
-    //     this._btn1 = item.getChild("b1");
-    //     this._btn0.onClick(this.onClickStick, this);
-    //     this._btn1.onClick(this.onClickDelete, this);
-    // }
+        this._btn0 = item.getChild("b0");
+        this._btn1 = item.getChild("b1");
+        this._btn0.onClick(this.onClickStick, this);
+        this._btn1.onClick(this.onClickDelete, this);
+    }
 
     private onClickList(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
         //点击列表时，查找是否有项目处于编辑状态， 如果有就归位
