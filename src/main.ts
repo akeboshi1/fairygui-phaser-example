@@ -228,11 +228,11 @@ class MyScene extends Phaser.Scene {
                 // this._list1.numItems = 1;
                 this._list1.on(DisplayObjectEvent.PULL_DOWN_RELEASE, this.onPullDownToRefresh, this);
 
-                // this._list2 = this._view.getChild("list2").asList;
-                // this._list2.itemRenderer = Handler.create(this, this.renderListItem2, null, false);
+                this._list2 = this._view.getChild("list2").asList;
+                this._list2.itemRenderer = Handler.create(this, this.renderListItem2, null, false);
                 // this._list2.setVirtual();
                 // this._list2.numItems = 1;
-                // this._list2.on(DisplayObjectEvent.PULL_UP_RELEASE, this.onPullUpToRefresh, this);
+               // this._list2.on(DisplayObjectEvent.PULL_UP_RELEASE, this.onPullUpToRefresh, this);
             });
 
             // ============= chat
@@ -304,8 +304,8 @@ class MyScene extends Phaser.Scene {
 
         //Simulate a async resquest
         setInterval(function (): void {
-            if (this._view.isDisposed)
-                return;
+            // if (this._view.isDisposed)
+            //     return;
             this._list2.numItems += 5;
 
             //Refresh completed
