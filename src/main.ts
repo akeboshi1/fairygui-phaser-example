@@ -1,7 +1,7 @@
-import { Controller, GProgressBar, GTree, GTreeNode } from "fairygui-phaser";
+import { DisplayObjectEvent, Controller, GProgressBar, GTree, GTreeNode } from "fairygui-phaser";
 import { GTextInput, UBBParser, Handler, GRoot, UIPackage, Window, GButton, GComponent, GList, GObject, InteractiveEvent, GRichTextField } from "fairygui-phaser";
 import "phaser3";
-import { Events } from "phaser3";
+import ScrollPaneHeader from "./ScrollPaneHeader";
 class Message {
     public sender: string;
     public senderIcon: string;
@@ -25,8 +25,11 @@ export default class EmojiParser extends UBBParser {
 }
 class MyScene extends Phaser.Scene {
     private _view: GComponent;
-    private _bagWindow: BagWindow;
+    // private _bagWindow: BagWindow;
     private _list: GList;
+
+    private _list1: GList;
+    private _list2: GList;
     private _btn0;
     private _btn1;
     private _input: GTextInput;
@@ -56,7 +59,8 @@ class MyScene extends Phaser.Scene {
         // this.load.binary("scrollPane", "assets/ScrollPane.fui");
         // this.load.binary("Package1", "assets/Package1.fui");
         //this.load.binary("Bag", "assets/Bag.fui");
-        this.load.binary("Basics", "assets/Basics.fui");
+        // this.load.binary("Basics", "assets/Basics.fui");
+        this.load.binary("Basic", "assets/Basic.fui");
         // this.load.binary("Chat", "assets/Chat.fui");
         // this.load.binary("MainMenu", "assets/MainMenu.fui");
         // const resList = [
@@ -115,7 +119,7 @@ class MyScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
         });
-        UIPackage.loadPackage("Basics").then((pkg) => {
+        UIPackage.loadPackage("PullToRefresh").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
@@ -195,13 +199,40 @@ class MyScene extends Phaser.Scene {
             // });
 
             // ============= Basic
-            UIPackage.createObject("Basics", "Demo_ProgressBar").then((obj) => {
+            // progressBar
+            // UIPackage.createObject("Basics", "Demo_ProgressBar").then((obj) => {
 
-                if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
+            //     if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+
+            //     this.playProgressBar();
+            // });
+
+            // ============ tooqing ui test
+            // UIPackage.createObject("Basic", "Bag").then((obj) => {
+            //     this._view = obj.asCom;
+            //     GRoot.inst.addChild(this._view);
+
+            // });
+
+            // ============= PullToRefresh
+            UIPackage.createObject("PullToRefresh", "Main").then((obj) => {
                 this._view = obj.asCom;
+                this._view.makeFullScreen();
                 GRoot.inst.addChild(this._view);
 
-                this.playProgressBar();
+                this._list1 = this._view.getChild("list1").asList;
+                this._list1.itemRenderer = Handler.create(this, this.renderListItem1, null, false);
+                //this._list1.setVirtual();
+                // this._list1.numItems = 1;
+                this._list1.on(DisplayObjectEvent.PULL_DOWN_RELEASE, this.onPullDownToRefresh, this);
+
+                // this._list2 = this._view.getChild("list2").asList;
+                // this._list2.itemRenderer = Handler.create(this, this.renderListItem2, null, false);
+                // this._list2.setVirtual();
+                // this._list2.numItems = 1;
+                // this._list2.on(DisplayObjectEvent.PULL_UP_RELEASE, this.onPullUpToRefresh, this);
             });
 
             // ============= chat
@@ -232,17 +263,68 @@ class MyScene extends Phaser.Scene {
 
     }
 
+    // =========================== pulltorefresh
+    private renderListItem1(index: number, item: GObject): void {
+        item.text = "Item " + (this._list1.numItems - index - 1);
+    }
+
+    private renderListItem2(index: number, item: GObject): void {
+        item.text = "Item " + index;
+    }
+
+    private onPullDownToRefresh(evt: DisplayObjectEvent): void {
+        var header: ScrollPaneHeader = <ScrollPaneHeader>(this._list1.scrollPane.header);
+        if (header.readyToRefresh) {
+            header.setRefreshStatus(2);
+            this._list1.scrollPane.lockHeader(header.sourceHeight);
+
+            //Simulate a async resquest
+            setInterval(function (): void {
+                if (this._view.isDisposed)
+                    return;
+                this._list1.numItems += 5;
+
+                //Refresh completed
+                header.setRefreshStatus(3);
+                this._list1.scrollPane.lockHeader(35);
+
+                setInterval(function (): void {
+                    header.setRefreshStatus(0);
+                    this._list1.scrollPane.lockHeader(0);
+                }, 2000);
+            }, 2000);
+        }
+    }
+
+    private onPullUpToRefresh(evt: DisplayObjectEvent): void {
+        var footer: GComponent = this._list2.scrollPane.footer.asCom;
+
+        footer.getController("c1").selectedIndex = 1;
+        this._list2.scrollPane.lockFooter(footer.sourceHeight);
+
+        //Simulate a async resquest
+        setInterval(function (): void {
+            if (this._view.isDisposed)
+                return;
+            this._list2.numItems += 5;
+
+            //Refresh completed
+            footer.getController("c1").selectedIndex = 0;
+            this._list2.scrollPane.lockFooter(0);
+        }, 2000);
+    }
+
     // =============================== progressBar
 
     private playProgressBar(): void {
         // var obj: GComponent = this._demoObjects["ProgressBar"];
         if (!this._progressTime) this._progressTime = this.time.addEvent(this._progressTimeEvent);
-        // Laya.timer.frameLoop(2, this, this.__playProgress);
-        // obj.on(Laya.Event.UNDISPLAY, this.__removeTimer, this);
+        // timer.frameLoop(2, this, this.__playProgress);
+        // obj.on(Event.UNDISPLAY, this.__removeTimer, this);
     }
 
     private __removeTimer(): void {
-        // Laya.timer.clear(this, this.__playProgress);
+        // timer.clear(this, this.__playProgress);
         if (this._progressTime) {
             this._progressTime.remove(false);
             this._progressTime = null;
@@ -424,36 +506,36 @@ var config = {
 };
 
 
-class BagWindow extends Window {
-    public constructor() {
-        super();
-    }
+// class BagWindow extends Window {
+//     public constructor() {
+//         super();
+//     }
 
-    protected onInit(): void {
-        UIPackage.createObject("Bag", "Main").then((obj) => {
-            this.contentPane = obj.asCom;
-            this.center();
-        });
-    }
+//     protected onInit(): void {
+//         UIPackage.createObject("Bag", "Main").then((obj) => {
+//             this.contentPane = obj.asCom;
+//             this.center();
+//         });
+//     }
 
-    protected onShown(): void {
-        var list: GList = this.contentPane.getChild("list").asList;
-        list.on("pointerdown", this.onClickItem, this);
-        list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
-        list.setVirtual();
-        list.numItems = 45;
-    }
+//     protected onShown(): void {
+//         var list: GList = this.contentPane.getChild("list").asList;
+//         list.on("pointerdown", this.onClickItem, this);
+//         list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
+//         list.setVirtual();
+//         list.numItems = 45;
+//     }
 
-    private renderListItem(index: number, obj: GObject): void {
-        obj.icon = "res/icons/i" + Math.floor(Math.random() * 10) + ".png";
-        obj.text = "" + Math.floor(Math.random() * 100);
-    }
+//     private renderListItem(index: number, obj: GObject): void {
+//         obj.icon = "res/icons/i" + Math.floor(Math.random() * 10) + ".png";
+//         obj.text = "" + Math.floor(Math.random() * 100);
+//     }
 
-    private onClickItem(item: GObject): void {
-        this.contentPane.getChild("n11").asLoader.url = item.icon;
-        this.contentPane.getChild("n13").text = item.icon;
-    }
-}
+//     private onClickItem(item: GObject): void {
+//         this.contentPane.getChild("n11").asLoader.url = item.icon;
+//         this.contentPane.getChild("n13").text = item.icon;
+//     }
+// }
 
 var game = new Phaser.Game(config);
 

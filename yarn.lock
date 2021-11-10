@@ -1014,9 +1014,10 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-"fairygui-phaser@git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#dev":
+fairygui-phaser@^0.0.2:
   version "0.0.2"
-  resolved "git+ssh://git@github.com:ApowoGames/FairyGUI-Phaser.git#8008a4fa1c7104e6e2d6c08ca135c8f9d2e2b4a6"
+  resolved "https://registry.yarnpkg.com/fairygui-phaser/-/fairygui-phaser-0.0.2.tgz#5b5e39dd5c07ee3ee19097b1e8bb87b8d0f2ecb1"
+  integrity sha512-w6YvbWYx16uHtWi5CgAF788udywyQMfn2ZoGPWXsDbwuuYjra3RXr4V8WDQoOHb56RrBMeEMXB6XOMN4eUuxqQ==
 
 fast-deep-equal@^3.1.1:
   version "3.1.3"
