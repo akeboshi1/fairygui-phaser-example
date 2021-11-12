@@ -1,6 +1,6 @@
 import { GComponent, GProgressBar, GRoot, UIPackage } from "fairygui-phaser";
 
-class MyScene extends Phaser.Scene {
+export class BasicsScene extends Phaser.Scene {
     private _view: GComponent;
  
     private _timeDelta: number = 5;
