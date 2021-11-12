@@ -6,15 +6,16 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "build": "webpack"
+    "build": "webpack",
+    "up": "yarn upgrade fairygui-phaser"
   },
   "dependencies": {
     "assemblyscript": "^0.19.5",
     "expose-loader": "^0.7.5",
-    "fairygui-phaser": "^0.0.2",
+    "fairygui-phaser": "^0.0.5",
     "file-loader": "^4.2.0",
     "path": "^0.12.7",
-    "phaser3": "git+ssh://git@code.apowo.com:opensource/phaser.git",
+    "phaser": "^3.55.2",
     "ts-loader": "7.0.5"
   },
   "devDependencies": {
