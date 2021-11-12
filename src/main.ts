@@ -6,6 +6,7 @@ import { TreeNodeScene } from "./TreeNode/TreeNodeScene";
 import { PullToRefreshScene } from './PullToRefresh/PullToRefreshScene';
 import { BasicsScene } from './Basics/BasicsScene';
 import { ButtonScene } from './Button/ButtonScene';
+import { ComBoBoxScene } from './Combobox/ComBoBoxScene';
 
 var config = {
     type: Phaser.AUTO,
@@ -24,4 +25,4 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add('uiScene', ButtonScene, true, { x: 0, y: 0 });
+game.scene.add('uiScene', ComBoBoxScene, true, { x: 0, y: 0 });

@@ -1005,10 +1005,10 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-fairygui-phaser@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/fairygui-phaser/-/fairygui-phaser-0.0.5.tgz#de7367d7954f329b707a93aa8681447d65e6d485"
-  integrity sha512-vroPO2AEioCcYiLcPNmGM4EKn3COtR4sJSJU7OyyRahQvzBg9YLURWxGxPK9re0FeAbge2xa8YLkzY6HEQ4cPQ==
+fairygui-phaser@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/fairygui-phaser/-/fairygui-phaser-0.0.6.tgz#42ef1547d3698b4a82f29aac101e84ddeefe5536"
+  integrity sha512-ScjKopazojfS1Sa4ofo4aZ8JTnvBHN0Fqg79A8zWF+dL3wqP7qF0AJCpnmynXAp0BY2dzeyN2eKtEEkn8rHyJA==
 
 fast-deep-equal@^3.1.1:
   version "3.1.3"
