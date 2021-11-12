@@ -6,7 +6,7 @@ export class ImageScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.binary("Image", "assets/Package1.fui");
+        this.load.binary("Package1", "assets/Package1.fui");
     }
 
     create(data) {
@@ -15,12 +15,12 @@ export class ImageScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
         });
-        UIPackage.loadPackage("Image").then((pkg) => {
+        UIPackage.loadPackage("Package1").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
             // ============ image
-            UIPackage.createObject("Image", "Main").then((obj) => {
+            UIPackage.createObject("Package1", "Main").then((obj) => {
                 const view = obj.asCom;
                 GRoot.inst.addChild(view);
             });
