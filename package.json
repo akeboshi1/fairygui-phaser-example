@@ -15,7 +15,7 @@
     "fairygui-phaser": "^0.0.6",
     "file-loader": "^4.2.0",
     "path": "^0.12.7",
-    "phaser": "^3.55.2",
+    "phaser3": "git+ssh://git@code.apowo.com:opensource/phaser3.git",
     "ts-loader": "7.0.5"
   },
   "devDependencies": {

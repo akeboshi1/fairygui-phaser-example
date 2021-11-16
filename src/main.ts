@@ -1,14 +1,5 @@
 import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
-import { MovieClipScene } from "./MovieClip/MovieClipScene";
-import "phaser";
-import { ImageScene } from "./Image/ImageScene";
-import { BagPanelScene } from "./TooqingUI/BagPanel/BagPanelScene";
-import { TreeNodeScene } from "./TreeNode/TreeNodeScene";
-import { PullToRefreshScene } from "./PullToRefresh/PullToRefreshScene";
-import { BasicsScene } from "./Basics/BasicsScene";
-import { ButtonScene } from "./Button/ButtonScene";
-import { ComBoBoxScene } from "./Combobox/ComBoBoxScene";
-import GrayScalePipeline from "../assets/GrayScale.js";
+import "phaser3";
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
@@ -20,8 +11,8 @@ var config = {
     fps: {
         target: 60,
         forceSetTimeOut: true
-    },
-    pipeline: { "Gray": GrayScalePipeline }
+    }
+    //pipeline: { "Color": ColorShaderPipeline }
 };
 // @ts-ignore
 var game = new Phaser.Game(config);
