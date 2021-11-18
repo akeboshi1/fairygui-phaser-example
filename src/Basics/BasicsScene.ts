@@ -2,7 +2,7 @@ import { GComponent, GProgressBar, GRoot, UIPackage } from "fairygui-phaser";
 
 export class BasicsScene extends Phaser.Scene {
     private _view: GComponent;
- 
+
     private _timeDelta: number = 5;
     private _progressTimeEvent: any;
     private _progressTime: Phaser.Time.TimerEvent;

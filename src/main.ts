@@ -1,5 +1,7 @@
 import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
 import "phaser3";
+import { GraphScene } from "./Graph/GraphScene";
+import { BasicsScene } from "./Basics/BasicsScene";
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
@@ -18,4 +20,4 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", GrayScaleScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", GraphScene, true, { x: 0, y: 0 });
