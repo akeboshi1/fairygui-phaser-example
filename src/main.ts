@@ -2,6 +2,7 @@ import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
 import "phaser3";
 import { GraphScene } from "./Graph/GraphScene";
 import { BasicsScene } from "./Basics/BasicsScene";
+import { ButtonScene } from "./Button/ButtonScene";
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
