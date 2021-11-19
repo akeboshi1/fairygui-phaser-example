@@ -8,14 +8,15 @@ export class GraphScene extends Phaser.Scene {
     }
 
     preload() {
+
         this.load.binary("Basics", "assets/Basics.fui");
-        this.load.image("start", "assets/star0.jpg");
+        // this.load.image("start", "assets/star0.jpg");
     }
 
     create(data) {
 
-        const img = this.add.image(400, 100, 'start');
-        img.setScale(.2, .2);
+        // const img = this.add.image(400, 100, 'start');
+        // img.setScale(.2, .2);
         // img.skewX = (30 * Math.PI) / 180;
         // this.tweens.add({
         //     targets: img,
@@ -28,7 +29,7 @@ export class GraphScene extends Phaser.Scene {
         const height = 1000;
         const con = this.add.container(0, 0);
         con.setSize(width, height);
-        con.skewX = (30 * Math.PI) / 180;
+        // con.skewX = (30 * Math.PI) / 180;
         con.setInteractive();
         // 初始化ui,为了不影响外部ui的逻辑，直接将container传入ui库中，不影响
         GRoot.inst.attachTo(this, {
@@ -42,10 +43,10 @@ export class GraphScene extends Phaser.Scene {
 
             // ============= Basics
             // progressBar
-            UIPackage.createObject("Basics", "Demo_Graph").then((obj) => {
+            UIPackage.createObject("Basics", "Demo_Button").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-                con.add(img);
+                // con.add(img);
             });
         });
 
