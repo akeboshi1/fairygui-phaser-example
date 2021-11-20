@@ -10,13 +10,13 @@ export class GraphScene extends Phaser.Scene {
     preload() {
 
         this.load.binary("Basics", "assets/Basics.fui");
-        // this.load.image("start", "assets/star0.jpg");
+        this.load.image("start", "assets/star0.jpg");
     }
 
     create(data) {
 
-        // const img = this.add.image(400, 100, 'start');
-        // img.setScale(.2, .2);
+        const img = this.add.image(500, 500, 'start');
+        img.setScale(.2, .2);
         // img.skewX = (30 * Math.PI) / 180;
         // this.tweens.add({
         //     targets: img,
@@ -43,10 +43,10 @@ export class GraphScene extends Phaser.Scene {
 
             // ============= Basics
             // progressBar
-            UIPackage.createObject("Basics", "Demo_Button").then((obj) => {
+            UIPackage.createObject("Basics", "Demo_Image").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-                // con.add(img);
+                con.add(img);
             });
         });
 
