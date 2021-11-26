@@ -65,50 +65,50 @@ export class BasicsScene extends Phaser.Scene {
         const owner = gameObject["$owner"];
         var type: string = owner.name.substr(4);
         var obj: GComponent = this._demoObjects[type];
-        if (obj == null) {
-            UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
-                obj = obj.asCom;
-                this._demoObjects[type] = obj;
-                this._demoContainer.removeChildren();
-                this._demoContainer.addChild(obj);
-                this._cc.selectedIndex = 1;
-                this._backBtn.visible = true;
+        // if (obj == null) {
+        UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
+            obj = obj.asCom;
+            this._demoObjects[type] = obj;
+            this._demoContainer.removeChildren();
+            this._demoContainer.addChild(obj);
+            this._cc.selectedIndex = 1;
+            this._backBtn.visible = true;
 
-                switch (type) {
-                    case "Button":
-                        this.playButton();
-                        break;
+            switch (type) {
+                case "Button":
+                    this.playButton();
+                    break;
 
-                    case "Text":
-                        this.playText();
-                        break;
+                case "Text":
+                    this.playText();
+                    break;
 
-                    case "Window":
-                        this.playWindow();
-                        break;
+                case "Window":
+                    this.playWindow();
+                    break;
 
-                    case "Popup":
-                        this.playPopup();
-                        break;
+                case "Popup":
+                    this.playPopup();
+                    break;
 
-                    case "Drag&Drop":
-                        this.playDragDrop();
-                        break;
+                case "Drag&Drop":
+                    this.playDragDrop();
+                    break;
 
-                    case "Depth":
-                        this.playDepth();
-                        break;
+                case "Depth":
+                    this.playDepth();
+                    break;
 
-                    case "Grid":
-                        this.playGrid();
-                        break;
+                case "Grid":
+                    this.playGrid();
+                    break;
 
-                    case "ProgressBar":
-                        this.playProgressBar();
-                        break;
-                }
-            });
-        }
+                case "ProgressBar":
+                    this.playProgressBar();
+                    break;
+            }
+        });
+        // }
     }
 
     //------------------------------
