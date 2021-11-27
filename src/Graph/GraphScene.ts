@@ -8,7 +8,8 @@ export class GraphScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.binary("Graph", "assets/Graph.fui");
+        this.load.binary("Basics", "assets/Basics.fui");
+        this.load.image("start", "assets/star0.jpg");
     }
 
     create(data) {
@@ -24,18 +25,28 @@ export class GraphScene extends Phaser.Scene {
             resUI: "assets/", dpr: 1, width, height,
             container: con
         });
-        UIPackage.loadPackage("Graph").then((pkg) => {
+        UIPackage.loadPackage("Basics").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
             // ============= Basics
             // progressBar
-            UIPackage.createObject("Graph", "Main").then((obj) => {
+            UIPackage.createObject("Basics", "Demo_Graph").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
-                // con.add(img);
+                const g = this.make.graphics(undefined, false);
+                g.fillStyle(0x00ffcc, 1);
+                g.fillRect(0, 0, 100, 100);
+                g.x = 100;
+                g.skewX = -30 * Math.PI / 180;
+                con.add(g);
+                const img = this.add.image(700, 500, 'start');
+                img.setScale(.2, .2);
+                img.setSkew(0.5, 0);
+                con.add(img);
             });
         });
+
 
     }
 }

@@ -114,7 +114,7 @@ export class BasicsScene extends Phaser.Scene {
     //------------------------------
     private playButton(): void {
         var obj: GComponent = this._demoObjects["Button"];
-        obj.getChild("n34").onClick(this.__clickButton, this);
+        obj.getChild("n13").onClick(this.__clickButton, this);
     }
 
     private __clickButton(): void {

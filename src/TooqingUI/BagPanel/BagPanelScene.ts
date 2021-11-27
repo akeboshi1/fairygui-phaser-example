@@ -4,7 +4,7 @@ export class BagPanelScene extends Phaser.Scene {
     private _view: GComponent;
     constructor(config) {
         super(config);
-    }
+    }]
 
     preload() {
         this.load.binary("Basic", "assets/Basic.fui");
