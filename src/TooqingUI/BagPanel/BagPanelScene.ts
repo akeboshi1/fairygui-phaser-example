@@ -4,7 +4,7 @@ export class BagPanelScene extends Phaser.Scene {
     private _view: GComponent;
     constructor(config) {
         super(config);
-    }]
+    }
 
     preload() {
         this.load.binary("Basic", "assets/Basic.fui");
@@ -14,7 +14,7 @@ export class BagPanelScene extends Phaser.Scene {
         // 初始化ui
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
-            resUI: "assets/", dpr: 1, designWidth: 2000, designHeight: 2000
+            resUI: "assets/", dpr: 1, designWidth: 800, designHeight: 640
         });
         UIPackage.loadPackage("Basic").then((pkg) => {
             // tslint:disable-next-line:no-console
@@ -23,6 +23,7 @@ export class BagPanelScene extends Phaser.Scene {
             // ============ tooqing ui test
             UIPackage.createObject("Basic", "Bag").then((obj) => {
                 this._view = obj.asCom;
+                this._view.setXY(200, 640 - this._view.height >> 1);
                 GRoot.inst.addChild(this._view);
             });
         });
