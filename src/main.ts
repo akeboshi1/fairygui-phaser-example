@@ -18,6 +18,7 @@ var config = {
     dom: {
         createContainer: true
     },
+    backgroundColor: '#4488aa',
     fps: {
         target: 60,
         forceSetTimeOut: true
