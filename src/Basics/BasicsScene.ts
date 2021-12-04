@@ -2,11 +2,23 @@ import { PopupMenu, GGraph, GButton, ObjectType, DragDropManager, GProgressBar, 
 import { WindowA, WindowB } from "./TestWin";
 
 export class BasicsScene extends Phaser.Scene {
+    /**
+     * demo主场景
+     */
     private _view: GComponent;
+    /**
+     * 选中的当前场景
+     */
+    private _curView: GComponent;
     private _backBtn: GObject;
     private _demoContainer: GComponent;
     private _cc: Controller;
     private _demoObjects: any;
+
+    private _timeDelta: number = 5;
+    private _progressTimeEvent: any;
+    private _progressTime: Phaser.Time.TimerEvent;
+
     constructor(config) {
         super(config);
     }
@@ -67,10 +79,10 @@ export class BasicsScene extends Phaser.Scene {
         var obj: GComponent = this._demoObjects[type];
         // if (obj == null) {
         UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
-            obj = obj.asCom;
-            this._demoObjects[type] = obj;
+            this._curView = obj.asCom;
+            this._demoObjects[type] = this._curView;
             this._demoContainer.removeChildren();
-            this._demoContainer.addChild(obj);
+            this._demoContainer.addChild(this._curView);
             this._cc.selectedIndex = 1;
             this._backBtn.visible = true;
 
@@ -104,6 +116,7 @@ export class BasicsScene extends Phaser.Scene {
                     break;
 
                 case "ProgressBar":
+                    if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
                     this.playProgressBar();
                     break;
             }
@@ -351,19 +364,26 @@ export class BasicsScene extends Phaser.Scene {
 
     //---------------------------------------------
     private playProgressBar(): void {
-        var obj: GComponent = this._demoObjects["ProgressBar"];
-        // Laya.timer.frameLoop(2, this, this.__playProgress);
-        // obj.on(Laya.Event.UNDISPLAY, this, this.__removeTimer);
+        this.__removeTimer();
+        if (!this._progressTime) this._progressTime = this.time.addEvent(this._progressTimeEvent);
+        // obj.on(Event.UNDISPLAY, this.__removeTimer, this);
     }
 
     private __removeTimer(): void {
-        // Laya.timer.clear(this, this.__playProgress);
+        // timer.clear(this, this.__playProgress);
+        if (this._progressTime) {
+            this._progressTime.remove(false);
+            this._progressTime = null;
+            //console.log("remove tweenupdate");
+        }
     }
 
     private __playProgress(): void {
-        var obj: GComponent = this._demoObjects["ProgressBar"];
+        if (!this._curView) return;
+        var obj: GComponent = this._curView;
         var cnt: number = obj.numChildren;
         for (var i: number = 0; i < cnt; i++) {
+            // if (i != 3 && i != 0) continue;
             var child: GProgressBar = obj.getChildAt(i) as GProgressBar;
             if (child != null) {
                 child.value += 1;
