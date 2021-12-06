@@ -25,10 +25,10 @@ export class TooqingScene extends Phaser.Scene {
             console.log("fui ===>", pkg);
 
             // ============ tooqing ui test
-            UIPackage.createObject("Tooqing", "MainBar").then((obj) => {
+            UIPackage.createObject("Tooqing", "Main").then((obj) => {
                 if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
                 this._view = obj.asCom;
-                this._view.setXY(200, 640 - this._view.height >> 1);
+                // this._view.setXY(200, 640 - this._view.height >> 1);
                 GRoot.inst.addChild(this._view);
 
                 this.playProgressBar();
