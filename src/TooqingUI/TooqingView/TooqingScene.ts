@@ -3,7 +3,7 @@ import { GComponent, GProgressBar, GRoot, UIPackage } from "fairygui-phaser";
 export class TooqingScene extends Phaser.Scene {
     private _view: GComponent;
 
-    private _timeDelta: number = 5;
+    private _timeDelta: number = 1000;
     private _progressTimeEvent: any;
     private _progressTime: Phaser.Time.TimerEvent;
     constructor(config) {
@@ -31,7 +31,7 @@ export class TooqingScene extends Phaser.Scene {
                 // this._view.setXY(200, 640 - this._view.height >> 1);
                 GRoot.inst.addChild(this._view);
 
-                this.playProgressBar();
+                // this.playProgressBar();
             });
         });
 
