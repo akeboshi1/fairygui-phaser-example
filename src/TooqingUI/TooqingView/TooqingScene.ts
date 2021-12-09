@@ -23,7 +23,6 @@ export class TooqingScene extends Phaser.Scene {
         UIPackage.loadPackage("Tooqing").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
-
             // ============ tooqing ui test
             UIPackage.createObject("Tooqing", "Main").then((obj) => {
                 if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
