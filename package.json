@@ -5,7 +5,7 @@
   "author": "gxm",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
+    "dev": "rimraf dist &&webpack-dev-server --mode development",
     "build": "webpack",
     "up": "yarn upgrade fairygui-phaser"
   },

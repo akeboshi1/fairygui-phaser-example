@@ -8,6 +8,7 @@ import { TextScene } from "./Text/TextScene";
 import { BagPanelScene } from './TooqingUI/BagPanel/BagPanelScene';
 import { TooqingScene } from './TooqingUI/TooqingView/TooqingScene';
 import { ImageScene } from './Image/ImageScene';
+import { ComBoBoxScene } from './Combobox/ComBoBoxScene';
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
