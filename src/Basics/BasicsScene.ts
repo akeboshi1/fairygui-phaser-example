@@ -119,6 +119,9 @@ export class BasicsScene extends Phaser.Scene {
                     if (!this._progressTimeEvent) this._progressTimeEvent = { delay: this._timeDelta, callback: this.__playProgress, callbackScope: this, loop: true };
                     this.playProgressBar();
                     break;
+                case "Panel":
+                    this._curView.setXY(100, 100);
+                    break;
             }
         });
         // }
