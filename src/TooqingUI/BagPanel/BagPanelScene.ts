@@ -7,7 +7,7 @@ export class BagPanelScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.binary("Basic", "assets/Basic.fui");
+        this.load.binary("Basics", "assets/Basics.fui");
     }
 
     create(data) {
@@ -16,12 +16,12 @@ export class BagPanelScene extends Phaser.Scene {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, designWidth: 800, designHeight: 640
         });
-        UIPackage.loadPackage("Basic").then((pkg) => {
+        UIPackage.loadPackage("Basics").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
             // ============ tooqing ui test
-            UIPackage.createObject("Basic", "Bag").then((obj) => {
+            UIPackage.createObject("Basics", "Demo_Panel").then((obj) => {
                 this._view = obj.asCom;
                 this._view.setXY(200, 640 - this._view.height >> 1);
                 GRoot.inst.addChild(this._view);
