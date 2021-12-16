@@ -19,6 +19,10 @@ export class BasicsScene extends Phaser.Scene {
     private _progressTimeEvent: any;
     private _progressTime: Phaser.Time.TimerEvent;
 
+    private _btnB: GButton;
+    private _btnC: GButton;
+    private _btnD: GButton;
+
     constructor(config) {
         super(config);
     }
@@ -223,40 +227,65 @@ export class BasicsScene extends Phaser.Scene {
     //------------------------------
     private playDragDrop(): void {
         var obj: GComponent = this._demoObjects["Drag&Drop"];
-        var btnA: GObject = obj.getChild("a");
-        btnA.draggable = true;
+        var btnA: GButton = obj.getChild("a").asButton;
+        const iconA = btnA.getChild("icon");
+        iconA.displayObject.removeInteractive();
+        const titleA = btnA.getChild("title");
+        titleA.displayObject.removeInteractive();
+        this.input.setDraggable(btnA.displayObject);
 
-        var btnB: GButton = obj.getChild("b").asButton;
-        btnB.draggable = true;
-        btnB.on(Phaser.Input.Events.DRAG_START, this.__onDragStart, this);
+        this._btnB = obj.getChild("b").asButton;
+        const icon = this._btnB.getChild("icon");
+        this.input.setDraggable(icon.displayObject);
 
-        var btnC: GButton = obj.getChild("c").asButton;
-        btnC.icon = null;
-        btnC.on(Phaser.Input.Events.DROP, this.__onDrop, this);
 
-        var btnD: GObject = obj.getChild("d");
-        btnD.draggable = true;
+        this._btnC = obj.getChild("c").asButton;
+        this._btnC.displayObject.input.dropZone = true;
+        this._btnC.icon = null;
+
+        this.input.on("dragstart", this.__onDragStart, this);
+        this.input.on("drag", this.__onDrag, this);
+        this.input.on("drop", this.__onDrop, this);
+
+        this._btnD = obj.getChild("d").asButton;
+        const iconD = this._btnD.getChild("icon");
+        iconD.displayObject.removeInteractive();
+        const titleD = this._btnD.getChild("title");
+        titleD.displayObject.removeInteractive();
+        this.input.setDraggable(this._btnD.displayObject);
         var bounds: GObject = obj.getChild("bounds");
-        var rect: Phaser.Geom.Rectangle = bounds.localToGlobalRect(0, 0, bounds.width, bounds.height);
-        rect = GRoot.inst.globalToLocalRect(rect.x, rect.y, rect.width, rect.height, rect);
+        const world = (<Phaser.GameObjects.Container>bounds.displayObject).getWorldTransformMatrix();
+        var rect: Phaser.Geom.Rectangle = new Phaser.Geom.Rectangle(world.tx, world.ty, bounds._width, bounds._height);
+        //rect = GRoot.inst.globalToLocalRect(rect.x, rect.y, rect.width, rect.height, rect);
 
         //因为这时候面板还在从右往左动，所以rect不准确，需要用相对位置算出最终停下来的范围
         rect.x -= obj.parent.x;
 
-        btnD.dragBounds = rect;
+        this._btnD.dragBounds = rect;
+        this._btnD.draggable = true;
+
+
     }
 
     private __onDragStart(pointer: Phaser.Input.Pointer, gameObject: any): void {
+        if (gameObject["$owner"] === this._btnD) return;
+        const parent = gameObject.parentContainer.parentContainer;
+        Phaser.Utils.Array.BringToTop(parent.list, gameObject.parentContainer);
+    }
+
+    private __onDrag(pointer, gameObject, dragX, dragY) {
         const obj = gameObject["$owner"];
-        var btn: GButton = obj;
-        btn.stopDrag();//取消对原目标的拖动，换成一个替代品
-        DragDropManager.inst.startDrag(btn, btn.icon, btn.icon);
+        if (obj === this._btnD) return;
+        gameObject.x = dragX;
+        gameObject.y = dragY;
+
     }
 
     private __onDrop(pointer: Phaser.Input.Pointer, gameObject: any): void {
-        const obj = gameObject["$owner"];
+        const obj = gameObject.parentContainer["$owner"];
         var btn: GButton = obj;
-        // btn.icon = data;
+        this._btnC.icon = btn.icon;
+        btn.icon = null;
     }
 
     //------------------------------
