@@ -84,6 +84,9 @@ export class BasicsScene extends Phaser.Scene {
         const owner = gameObject["$owner"];
         var type: string = owner.name.substr(4);
         var obj: GComponent = this._demoObjects[type];
+        if(this._curView){
+
+        }
         // if (obj == null) {
         UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
             this._curView = obj.asCom;
@@ -130,7 +133,7 @@ export class BasicsScene extends Phaser.Scene {
                     this._curView.setXY(100, 100);
                     break;
                 case "List":
-                    this.playList();
+                    // this.playList();
                     break;
             }
         });
@@ -139,16 +142,18 @@ export class BasicsScene extends Phaser.Scene {
 
     //--------------------------
     private playList() {
+        // if (!this._list) {
         this._list = this._curView.getChild("list").asList;
         this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
         this._list.setVirtual();
         this._list.numItems = 10;
         this._list.on("pointerdown", this.onClickList, this);
+        //}
     }
 
     private renderListItem(index: number, item: GButton) {
         item.title = "Item " + index;
-        item.scrollPane.posX = 0; //reset scroll pos
+        //item.scrollPane.posX = 0; //reset scroll pos
 
         item.getChild("b0").onClick(this.onClickStick, this);
         item.getChild("b1").onClick(this.onClickDelete, this);
@@ -187,7 +192,7 @@ export class BasicsScene extends Phaser.Scene {
     //------------------------------
     private playButton(): void {
         var obj: GComponent = this._demoObjects["Button"];
-        obj.getChild("n13").onClick(this.__clickButton, this);
+        obj.getChild("n14").onClick(this.__clickButton, this);
     }
 
     private __clickButton(): void {
@@ -309,7 +314,6 @@ export class BasicsScene extends Phaser.Scene {
         var bounds: GObject = obj.getChild("bounds");
         const world = (<Phaser.GameObjects.Container>bounds.displayObject).getWorldTransformMatrix();
         var rect: Phaser.Geom.Rectangle = new Phaser.Geom.Rectangle(world.tx, world.ty, bounds._width, bounds._height);
-        //rect = GRoot.inst.globalToLocalRect(rect.x, rect.y, rect.width, rect.height, rect);
 
         //因为这时候面板还在从右往左动，所以rect不准确，需要用相对位置算出最终停下来的范围
         rect.x -= obj.parent.x;
