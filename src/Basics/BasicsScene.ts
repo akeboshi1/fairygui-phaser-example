@@ -130,6 +130,8 @@ export class BasicsScene extends Phaser.Scene {
                     this.playProgressBar();
                     break;
                 case "Panel":
+                    // 由于phaser的mask遮照基于scene来定位，所以需要把父容器的坐标调整到最终位置
+                    (<GComponent>this._curView).parent.x = 0;
                     this._curView.setXY(100, 100);
                     break;
                 case "List":
