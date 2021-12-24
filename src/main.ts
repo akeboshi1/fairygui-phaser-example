@@ -11,6 +11,7 @@ import { ImageScene } from './Image/ImageScene';
 import { ComBoBoxScene } from './Combobox/ComBoBoxScene';
 import { DragScene } from './Drag&Drop/DragScene';
 import { ScrollScene } from './Scroll/ScrollScene';
+import { SliderScene } from './Slider/SliderScene';
 
 var config = {
     type: Phaser.WEBGL,
