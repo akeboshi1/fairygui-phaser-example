@@ -1,4 +1,4 @@
-import { Handler } from "fairygui-phaser";
+import { Handler, GTextInput } from "fairygui-phaser";
 import { PopupMenu, GGraph, GButton, ObjectType, DragDropManager, GProgressBar, GList, Utils, Window, GComponent, GRoot, UIPackage, GObject, Controller } from "fairygui-phaser";
 import { WindowA, WindowB } from "./TestWin";
 
@@ -30,8 +30,26 @@ export class BasicsScene extends Phaser.Scene {
         super(config);
     }
 
+    init() {
+        this.createFont();
+    }
+
+
+    private createFont() {
+        const element = document.createElement("style");
+        document.head.appendChild(element);
+        const sheet: CSSStyleSheet = <CSSStyleSheet>element.sheet;
+        // const styles = "@font-face { font-family: 'Source Han Sans'; src: this.render.url('./resources/fonts/otf/SourceHanSansTC-Regular.otf') format('opentype');font-display:swap; }\n";
+        const styles2 = "@font-face { font-family: 'testFont'; src: url('assets/webfont/04B.ttf') format('truetype');font-display:swap }";
+        const styles3 = "@font-face { font-family: 'tt0173m_'; src: url('assets/webfont/tt0173m_.ttf') format('truetype');font-display:swap }";
+        sheet.insertRule(styles2, sheet.cssRules.length);
+        sheet.insertRule(styles3, sheet.cssRules.length);
+    }
+
+
     preload() {
         this.load.binary("Basics", "assets/Basics.fui");
+        this.load.script("webfont", "assets/webfont/webfont.js");
     }
 
     create(data) {
@@ -39,6 +57,7 @@ export class BasicsScene extends Phaser.Scene {
         const height = 1000;
         const con = this.add.container(0, 0);
         con.setSize(width, height);
+
         // con.skewX = (30 * Math.PI) / 180;
         con.setInteractive();
         // 初始化ui,为了不影响外部ui的逻辑，直接将container传入ui库中，不影响
@@ -47,32 +66,48 @@ export class BasicsScene extends Phaser.Scene {
             resUI: "assets/", dpr: 1, width, height,
             container: con
         });
-        UIPackage.loadPackage("Basics").then((pkg) => {
-            // tslint:disable-next-line:no-console
-            console.log("fui ===>", pkg);
 
-            // ============= Basics
-            UIPackage.createObject("Basics", "Main").then((obj) => {
-                this._view = obj.asCom;
-                GRoot.inst.addChild(this._view);
+        try {
+            WebFont.load({
+                custom: {
+                    // families: ["Source Han Sans", "tt0173m_", "tt0503m_"]
+                    families: ["testFont", "tt0173m_"]
+                },
+                // google: {
+                //     families: [ 'Freckle Face', 'Finger Paint', 'Nosifer' ]
+                // },
+                active: () => {
+                    UIPackage.loadPackage("Basics").then((pkg) => {
+                        // tslint:disable-next-line:no-console
+                        console.log("fui ===>", pkg);
 
-                this._backBtn = this._view.getChild("btn_Back");
-                this._backBtn.visible = false;
-                this._backBtn.onClick(this.onClickBack, this);
+                        // ============= Basics
+                        UIPackage.createObject("Basics", "Main").then((obj) => {
+                            this._view = obj.asCom;
+                            GRoot.inst.addChild(this._view);
 
-                this._demoContainer = this._view.getChild("container").asCom;
-                this._cc = this._view.getController("c1");
+                            this._backBtn = this._view.getChild("btn_Back");
+                            this._backBtn.visible = false;
+                            this._backBtn.onClick(this.onClickBack, this);
 
-                var cnt: number = this._view.numChildren;
-                for (var i: number = 0; i < cnt; i++) {
-                    var obj: GObject = this._view.getChildAt(i);
-                    if (obj.group != null && obj.group.name == "btns")
-                        obj.onClick(this.runDemo, this);
+                            this._demoContainer = this._view.getChild("container").asCom;
+                            this._cc = this._view.getController("c1");
+
+                            var cnt: number = this._view.numChildren;
+                            for (var i: number = 0; i < cnt; i++) {
+                                var obj: GObject = this._view.getChildAt(i);
+                                if (obj.group != null && obj.group.name == "btns")
+                                    obj.onClick(this.runDemo, this);
+                            }
+
+                            this._demoObjects = {};
+                        });
+                    });
                 }
-
-                this._demoObjects = {};
             });
-        });
+        } catch (error) {
+            console.warn("webfont failed to load");
+        }
     }
 
     private onClickBack(evt: Event): void {
@@ -84,14 +119,11 @@ export class BasicsScene extends Phaser.Scene {
         const owner = gameObject["$owner"];
         var type: string = owner.name.substr(4);
         var obj: GComponent = this._demoObjects[type];
-        if(this._curView){
-
-        }
         // if (obj == null) {
         UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
             this._curView = obj.asCom;
             this._demoObjects[type] = this._curView;
-            this._demoContainer.removeChildren();
+            this._demoContainer.removeChildren(0, -1, true);
             this._demoContainer.addChild(this._curView);
             this._cc.selectedIndex = 1;
             this._backBtn.visible = true;
@@ -136,6 +168,13 @@ export class BasicsScene extends Phaser.Scene {
                     break;
                 case "List":
                     // this.playList();
+                    break;
+                case "InputBar":
+                    this._curView.setXY(100, 100);
+                    break;
+                case "Text":
+                    break;
+                case "InputBar":
                     break;
             }
         });
