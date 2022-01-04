@@ -292,7 +292,7 @@ export class BasicsScene extends Phaser.Scene {
             btn2.onClick(this.__clickPopup2, this);
         }
         if (this._pm == null) {
-            this._pm = new PopupMenu();
+            this._pm = new PopupMenu(this);
             this._pm.addItem("Item 1");
             this._pm.addItem("Item 2");
             this._pm.addItem("Item 3");
