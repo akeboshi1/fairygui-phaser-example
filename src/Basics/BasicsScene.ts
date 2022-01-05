@@ -178,11 +178,9 @@ export class BasicsScene extends Phaser.Scene {
                     // this.playList();
                     break;
                 case "InputBar":
-                    this._curView.setXY(100, 100);
+                    this._curView.setXY(300, 300);
                     break;
                 case "Text":
-                    break;
-                case "InputBar":
                     break;
             }
         });
