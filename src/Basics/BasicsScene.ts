@@ -126,7 +126,6 @@ export class BasicsScene extends Phaser.Scene {
         // if (obj == null) {
         UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
             if (!obj) {
-                const name = "Demo_" + type;
                 console.warn(`Basices,Demo_ ${type}is null`);
                 return
             }
