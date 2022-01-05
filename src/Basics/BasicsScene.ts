@@ -83,6 +83,10 @@ export class BasicsScene extends Phaser.Scene {
 
                         // ============= Basics
                         UIPackage.createObject("Basics", "Main").then((obj) => {
+                            if (!obj) {
+                                console.warn("Basices-Main is null");
+                                return
+                            }
                             this._view = obj.asCom;
                             GRoot.inst.addChild(this._view);
 
@@ -121,6 +125,11 @@ export class BasicsScene extends Phaser.Scene {
         var obj: GComponent = this._demoObjects[type];
         // if (obj == null) {
         UIPackage.createObject("Basics", "Demo_" + type).then((obj) => {
+            if (!obj) {
+                const name = "Demo_" + type;
+                console.warn(`Basices,Demo_ ${type}is null`);
+                return
+            }
             this._curView = obj.asCom;
             this._demoObjects[type] = this._curView;
             this._demoContainer.removeChildren(0, -1, true);
