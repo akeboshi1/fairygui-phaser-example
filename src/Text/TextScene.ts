@@ -52,4 +52,8 @@ export class TextScene extends Phaser.Scene {
             });
         });
     }
+
+    update(time: number, delta: number): void {
+        this.cameras.main.setBackgroundColor('#000000')
+    }
 }
