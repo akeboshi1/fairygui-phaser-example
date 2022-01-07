@@ -275,14 +275,16 @@ export class BasicsScene extends Phaser.Scene {
 
     private __clickWindowA(): void {
         if (this._winA == null)
-            this._winA = new WindowA();
-        this._winA.show();
+            this._winA = new WindowA(this);
+        else
+            this._winA.__onShown();
     }
 
     private __clickWindowB(): void {
         if (this._winB == null)
-            this._winB = new WindowB();
-        this._winB.show();
+            this._winB = new WindowB(this);
+        else 
+          this._winB.__onShown();
     }
 
     //------------------------------

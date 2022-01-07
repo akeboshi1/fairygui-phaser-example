@@ -1,9 +1,9 @@
-import { EaseType, GButton, GList, GTween, UIPackage, Window } from "fairygui-phaser";
+import { EaseType, GButton, GList, GTween, GTweener, UIPackage, Window } from "fairygui-phaser";
 
 export class TestWin extends Window {
 
-    public constructor() {
-        super();
+    public constructor(scene: Phaser.Scene) {
+        super(scene);
     }
 
     protected onInit(): void {
@@ -23,14 +23,18 @@ export class TestWin extends Window {
 
 
 export class WindowA extends Window {
-    public constructor() {
-        super();
+    public constructor(scene: Phaser.Scene) {
+        super(scene);
     }
 
     protected onInit(): void {
         UIPackage.createObject("Basics", "WindowA").then((obj) => {
             this.contentPane = obj.asCom;
+            // @ts-ignore
             this.center();
+            // @ts-ignore
+            this.__onShown();
+            this.show();
         })
     }
 
@@ -39,7 +43,10 @@ export class WindowA extends Window {
         list.removeChildrenToPool();
 
         const fun = (index: number) => {
-            if (index > 6) return;
+            if (index > 6) {
+                this.show();
+                return;
+            }
             list.addItemFromPool().then((obj) => {
                 var item: GButton = obj.asButton;
                 item.title = "" + index;
@@ -57,29 +64,39 @@ export class WindowA extends Window {
 }
 
 export class WindowB extends Window {
-    public constructor() {
-        super();
+    private startTween: GTweener;
+    private endTween: GTweener;
+    public constructor(scene: Phaser.Scene) {
+        super(scene);
     }
 
     protected onInit(): void {
         UIPackage.createObject("Basics", "WindowB").then((obj) => {
             this.contentPane = obj.asCom;
+            // @ts-ignore
             this.center();
             //弹出窗口的动效已中心为轴心
             this.setPivot(0.5, 0.5);
+            this.doShowAnimation();
         });
     }
 
     protected doShowAnimation(): void {
         this.setScale(0.1, 0.1);
-        GTween.to2(0.1, 0.1, 1, 1, 0.3)
+        if (this.startTween) {
+            this.startTween = null;
+        }
+        this.startTween = GTween.to2(0.1, 0.1, 1, 1, 0.3)
             .setTarget(this, this.setScale)
             .setEase(EaseType.QuadOut)
             .onComplete(this.onShown, this);
     }
 
     protected doHideAnimation(): void {
-        GTween.to2(1, 1, 0.1, 0.1, 0.3)
+        if (this.endTween) {
+            this.endTween = null;
+        }
+        this.endTween = GTween.to2(1, 1, 0.1, 0.1, 0.3)
             .setTarget(this, this.setScale)
             .setEase(EaseType.QuadOut)
             .onComplete(this.hideImmediately, this);
@@ -87,6 +104,7 @@ export class WindowB extends Window {
 
     protected onShown(): void {
         this.contentPane.getTransition("t1").play();
+        this.show();
     }
 
     protected onHide(): void {
