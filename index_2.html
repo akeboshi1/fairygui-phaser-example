@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=1280,height=720, initial-scale=1.0" />
+    <title>MuiltCanvasTest</title>
+    <div id="stage">
+        <canvas id="ui-layer" width="1280" height="720"></canvas>
+        <canvas id="game-layer" width="1280" height="720"></canvas>
+        <canvas id="background-layer" width="1280" height="720"></canvas>
+    </div>
+
+    <style>
+        #stage {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            border: 2px solid rgb(182, 246, 7);
+            background: rgba(22,46,120,1);
+        }
+
+        canvas {
+            position: absolute;
+        }
+
+        #ui-layer {
+            z-index: 3;
+        }
+
+        #game-layer {
+            z-index: 2;
+        }
+
+        #background-layer {
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./main.js"></script>
+</body>
+
+</html>

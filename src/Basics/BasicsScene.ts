@@ -1,5 +1,5 @@
 import { Handler, GTextInput } from "fairygui-phaser";
-import { PopupMenu, GGraph, GButton, ObjectType, DragDropManager, GProgressBar, GList, Utils, Window, GComponent, GRoot, UIPackage, GObject, Controller } from "fairygui-phaser";
+import { PopupMenu, GGraph, GButton, ObjectType, UIConfig, GProgressBar, GList, Utils, Window, GComponent, GRoot, UIPackage, GObject, Controller } from "fairygui-phaser";
 import { WindowA, WindowB } from "./TestWin";
 
 export class BasicsScene extends Phaser.Scene {
@@ -48,6 +48,10 @@ export class BasicsScene extends Phaser.Scene {
 
 
     preload() {
+        UIConfig.verticalScrollBar = "ui://Basics/ScrollBar_VT";
+        UIConfig.horizontalScrollBar = "ui://Basics/ScrollBar_HZ";
+        UIConfig.popupMenu = "ui://Basics/PopupMenu";
+        UIConfig.buttonSound = "ui://Basics/sound";
         this.load.binary("Basics", "assets/Basics.fui");
         this.load.script("webfont", "assets/webfont/webfont.js");
     }
@@ -177,6 +181,9 @@ export class BasicsScene extends Phaser.Scene {
                 case "List":
                     // this.playList();
                     break;
+                case "ListPanel":
+                    this.playListPanel();
+                    break;
                 case "InputBar":
                     this._curView.setXY(300, 300);
                     break;
@@ -185,6 +192,20 @@ export class BasicsScene extends Phaser.Scene {
             }
         });
         // }
+    }
+
+    private playListPanel() {
+        this._list = this._curView.getChild("list").asList;
+        let cnt = this._list.numChildren;
+        for (let i: number = 0; i < cnt; i++) {
+            let item: GButton = this._list.getChildAt(i).asButton;
+            (<GButton>item).onClick(this.onClickListPanel, this);
+        }
+    }
+
+
+    private onClickListPanel() {
+        console.log("__click");
     }
 
     //--------------------------
@@ -283,8 +304,8 @@ export class BasicsScene extends Phaser.Scene {
     private __clickWindowB(): void {
         if (this._winB == null)
             this._winB = new WindowB(this);
-        else 
-          this._winB.__onShown();
+        else
+            this._winB.__onShown();
     }
 
     //------------------------------
@@ -301,20 +322,22 @@ export class BasicsScene extends Phaser.Scene {
         }
         if (this._pm == null) {
             this._pm = new PopupMenu(this);
-            this._pm.addItem("Item 1");
-            this._pm.addItem("Item 2");
-            this._pm.addItem("Item 3");
-            this._pm.addItem("Item 4");
-
-            if (this._popupCom == null) {
-                UIPackage.createObject("Basics", "Component12").then((obj) => {
-                    this._popupCom = obj.asCom;
-                    this._popupCom.center();
-                    fun();
+            this._pm.init().then(() => {
+                const titles = [`Item 1`, `Item 2`, `Item 3`, `Item 4`, `Item 5`];
+                this._pm.addItems(titles).then(() => {
                 });
-            } else {
-                fun();
-            }
+                if (this._popupCom == null) {
+                    UIPackage.createObject("Basics", "Component12").then((obj) => {
+                        this._popupCom = obj.asCom;
+                        this._popupCom.center();
+                        fun();
+                    });
+                } else {
+                    fun();
+                }
+            });
+
+
         } else {
             fun();
         }
