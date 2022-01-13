@@ -83,7 +83,7 @@ export class BasicsScene extends Phaser.Scene {
                 active: () => {
                     UIPackage.loadPackage("Basics").then((pkg) => {
                         // tslint:disable-next-line:no-console
-                        console.log("fui ===>", pkg);
+                        // console.log("fui ===>", pkg);
 
                         // ============= Basics
                         UIPackage.createObject("Basics", "Main").then((obj) => {
@@ -182,6 +182,8 @@ export class BasicsScene extends Phaser.Scene {
                     // this.playList();
                     break;
                 case "ListPanel":
+                    (<GComponent>this._curView).parent.x = 0;
+                    this._curView.setXY(300, 0);
                     this.playListPanel();
                     break;
                 case "InputBar":
@@ -195,16 +197,21 @@ export class BasicsScene extends Phaser.Scene {
     }
 
     private playListPanel() {
-        this._list = this._curView.getChild("list").asList;
-        let cnt = this._list.numChildren;
-        for (let i: number = 0; i < cnt; i++) {
-            let item: GButton = this._list.getChildAt(i).asButton;
-            (<GButton>item).onClick(this.onClickListPanel, this);
-        }
+        this._list = (<GComponent>this._curView.getChild("n4")).getChild("list").asList;
+        this._list.itemRenderer = Handler.create(this, this.renderListPanelItem, null, false);
+        this._list.setVirtual().then(() => {
+            this._list.numItems = 100;
+        });
+    }
+
+    private renderListPanelItem(index: number, item: GButton) {
+        item.title = "Item" + index;
+        item.onClick(this.onClickListPanel, this);
     }
 
 
-    private onClickListPanel() {
+
+    private onClickListPanel(pointer: Phaser.Input.Pointer, item: Phaser.GameObjects.Container) {
         console.log("__click");
     }
 

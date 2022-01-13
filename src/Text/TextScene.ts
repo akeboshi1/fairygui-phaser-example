@@ -1,12 +1,16 @@
+import { Image } from 'fairygui-phaser';
 import { GRoot, UIPackage } from 'fairygui-phaser';
 export class TextScene extends Phaser.Scene {
     private context;
     preload() {
         this.load.binary("Basics", "assets/Basics.fui");
         this.load.image("start", "assets/star0.jpg");
+        this.load.image("webp", "assets/gif-0.webp");
     }
 
     create(data) {
+        this.add.image(100, 100, "webp");
+        return;
         const width = 1000;
         const height = 1000;
         const con = this.add.container(0, 0);
