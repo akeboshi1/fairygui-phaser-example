@@ -196,8 +196,12 @@ export class BasicsScene extends Phaser.Scene {
         // }
     }
 
+    private urllist = ["url1", "url2", "url3"];
     private playListPanel() {
         this._list = (<GComponent>this._curView.getChild("n4")).getChild("list").asList;
+        // 获取不同索引的item url
+        // this._list.itemProvider = Handler.create(this, this.listitemResource, null, false);
+        // glist的渲染方法
         this._list.itemRenderer = Handler.create(this, this.renderListPanelItem, null, false);
         this._list.setVirtual().then(() => {
             this._list.numItems = 100;
@@ -207,6 +211,10 @@ export class BasicsScene extends Phaser.Scene {
     private renderListPanelItem(index: number, item: GButton) {
         item.title = "Item" + index;
         item.onClick(this.onClickListPanel, this);
+    }
+
+    private listitemResource(index: number) {
+        return this.urllist[index];
     }
 
 
