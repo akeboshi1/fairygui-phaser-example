@@ -52,6 +52,7 @@ export class BasicsScene extends Phaser.Scene {
         UIConfig.horizontalScrollBar = "ui://Basics/ScrollBar_HZ";
         UIConfig.popupMenu = "ui://Basics/PopupMenu";
         UIConfig.buttonSound = "ui://Basics/sound";
+
         this.load.binary("Basics", "assets/Basics.fui");
         this.load.script("webfont", "assets/webfont/webfont.js");
     }
@@ -68,7 +69,6 @@ export class BasicsScene extends Phaser.Scene {
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
             resUI: "assets/", dpr: 1, width, height,
-            container: con
         });
 
         try {
@@ -92,7 +92,7 @@ export class BasicsScene extends Phaser.Scene {
                                 return
                             }
                             this._view = obj.asCom;
-                            GRoot.inst.addChild(this._view);
+                            GRoot.inst.addChild(this._view, 2);
 
                             this._backBtn = this._view.getChild("btn_Back");
                             this._backBtn.visible = false;

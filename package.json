@@ -12,7 +12,7 @@
   "dependencies": {
     "assemblyscript": "^0.19.5",
     "expose-loader": "^0.7.5",
-    "fairygui-phaser": "^0.0.13",
+    "fairygui-phaser": "0.0.26",
     "file-loader": "^4.2.0",
     "path": "^0.12.7",
     "ts-loader": "7.0.5"

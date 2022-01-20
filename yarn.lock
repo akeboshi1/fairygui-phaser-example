@@ -1014,10 +1014,10 @@ express@^4.17.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-fairygui-phaser@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/fairygui-phaser/-/fairygui-phaser-0.0.13.tgz#be53fdf97a06ba0dc9da953ba123ebd3daafb670"
-  integrity sha512-Ak5oNwbSrUSc1lIQNOu1CGPzqEUjmryUs0wcvzbRZ8DGdY0sbeMDdiBBhqNvt/xLtV32e0OPPtl8BucaMDcgKA==
+fairygui-phaser@0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/fairygui-phaser/-/fairygui-phaser-0.0.26.tgz#302f15e1a7e71b7f2197edafefc0511b048121c9"
+  integrity sha512-jcsnvlBhrwAuYYf3MFZdShTQCy+zG7KKmIpOTpYPnBMMibnuBpYNTZt0PU/dHxKHg07XCllDm98FH9mVhXtQwQ==
 
 fast-deep-equal@^3.1.1:
   version "3.1.3"
@@ -2034,9 +2034,9 @@ path@^0.12.7:
     process "^0.11.1"
     util "^0.10.3"
 
-"phaser3@git+ssh://git@code.apowo.com:opensource/phaser3.git":
-  version "0.4.22"
-  resolved "git+ssh://git@code.apowo.com:opensource/phaser3.git#25275d7be122a24d9611785458d6759871827acf"
+"phaser3@https://github.com/ApowoGames/phaser3.git":
+  version "0.4.29"
+  resolved "https://github.com/ApowoGames/phaser3.git#ca7e4d03db7c9996e44b59cd6854f96fdd2e3f3b"
   dependencies:
     eventemitter3 "^4.0.7"
     exports-loader "^1.1.1"
