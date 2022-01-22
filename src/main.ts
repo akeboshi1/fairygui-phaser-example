@@ -17,11 +17,10 @@ import { SliderScene } from './Slider/SliderScene';
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
-    width: 2000,
-    height: 2000,
-    scale: {
-        mode: Phaser.Scale.NONE,
-    },
+    width: 1136,
+    height: 640,
+    mode: Phaser.Scale.FIT,
+    // autoCenter: Phaser.Scale.CENTER_BOTH,
     dom: {
         createContainer: true
     },
@@ -36,7 +35,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", BasicsScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", ImageScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];

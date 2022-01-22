@@ -52,19 +52,19 @@ export class BasicsScene extends Phaser.Scene {
         UIConfig.horizontalScrollBar = "ui://Basics/ScrollBar_HZ";
         UIConfig.popupMenu = "ui://Basics/PopupMenu";
         UIConfig.buttonSound = "ui://Basics/sound";
-
+        this.load.image("Basics_atlas0.png","assets/Basicss_atlas0.png");
         this.load.binary("Basics", "assets/Basics.fui");
         this.load.script("webfont", "assets/webfont/webfont.js");
     }
 
     create(data) {
-        const width = 1000;
-        const height = 1000;
-        const con = this.add.container(0, 0);
-        con.setSize(width, height);
+        const width = 1136;
+        const height = 640;
+        // const con = this.add.container(0, 0);
+        // con.setSize(width, height);
 
-        // con.skewX = (30 * Math.PI) / 180;
-        con.setInteractive();
+        // // con.skewX = (30 * Math.PI) / 180;
+        // con.setInteractive();
         // 初始化ui,为了不影响外部ui的逻辑，直接将container传入ui库中，不影响
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
@@ -92,6 +92,7 @@ export class BasicsScene extends Phaser.Scene {
                                 return
                             }
                             this._view = obj.asCom;
+                            this._view.makeFullScreen();
                             GRoot.inst.addChild(this._view, 2);
 
                             this._backBtn = this._view.getChild("btn_Back");
