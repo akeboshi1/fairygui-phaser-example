@@ -13,12 +13,18 @@ import { DragScene } from './Drag&Drop/DragScene';
 import { ScrollScene } from './Scroll/ScrollScene';
 import { SliderScene } from './Slider/SliderScene';
 // var Stats = require('./Stat');
-
+const DPR = window.devicePixelRatio;
+const { width, height } = window.screen
+const roundHalf = num => Math.round(num * 2) / 2
+// Set width and height.
+const WIDTH = Math.round(Math.max(width, height) * DPR)
+const HEIGHT = Math.round(Math.min(width, height) * DPR)
+export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
-    width: 1136,
-    height: 640,
+    width: WIDTH,
+    height: HEIGHT,
     mode: Phaser.Scale.FIT,
     // autoCenter: Phaser.Scale.CENTER_BOTH,
     dom: {

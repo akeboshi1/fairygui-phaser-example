@@ -1,4 +1,4 @@
-import { GRoot, UIPackage } from "fairygui-phaser";
+import { GMovieClip, GRoot, UIPackage } from "fairygui-phaser";
 
 export class ImageScene extends Phaser.Scene {
     constructor(config) {
@@ -26,8 +26,8 @@ export class ImageScene extends Phaser.Scene {
     }
 
     create(data) {
-        const width = 640;
-        const height = 360;
+        const width = 800;
+        const height = 600;
         // const con = this.add.container(0, 0);
         // con.setSize(width, height);
         // con.setInteractive();
@@ -65,6 +65,10 @@ export class ImageScene extends Phaser.Scene {
             UIPackage.createObject("Package1", "Main").then((obj) => {
                 const view = obj.asCom;
                 view.makeFullScreen();
+                const mc = view.getChild("n7") as GMovieClip;
+                mc.playing = false;
+                view.setXY(20 * GRoot.contentScaleLevel, 20 * GRoot.contentScaleLevel);
+                view.setScale(1 / GRoot.contentScaleLevel, 1 / GRoot.contentScaleLevel);
                 GRoot.inst.addChild(view);
             });
         });
