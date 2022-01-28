@@ -26,8 +26,8 @@ export class ImageScene extends Phaser.Scene {
     }
 
     create(data) {
-        const width = 800;
-        const height = 600;
+        const width = this.game.config.width;
+        const height = this.game.config.height;
         // const con = this.add.container(0, 0);
         // con.setSize(width, height);
         // con.setInteractive();
@@ -54,8 +54,8 @@ export class ImageScene extends Phaser.Scene {
         // // 初始化ui,为了不影响外部ui的逻辑，直接将container传入ui库中，不影响
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
-            resUI: "assets/", dpr: window.devicePixelRatio
-            , width, height,
+            resUI: "assets/", dpr: Math.round(window.devicePixelRatio)
+            , width, height, desginWidth: 800, desginHeight: 600
         });
         UIPackage.loadPackage("Package1").then((pkg) => {
             // tslint:disable-next-line:no-console
@@ -64,11 +64,11 @@ export class ImageScene extends Phaser.Scene {
             // ============ image
             UIPackage.createObject("Package1", "Main").then((obj) => {
                 const view = obj.asCom;
-                view.makeFullScreen();
+                // view.makeFullScreen();
                 const mc = view.getChild("n7") as GMovieClip;
-                mc.playing = false;
-                view.setXY(20 * GRoot.contentScaleLevel, 20 * GRoot.contentScaleLevel);
-                view.setScale(1 / GRoot.contentScaleLevel, 1 / GRoot.contentScaleLevel);
+                // mc.playing = false;
+                // view.setXY(Number(this.game.config.width) - mc.width * 2, 0);
+                // mc.setScale(1 / GRoot.contentDprLevel, 1 / GRoot.contentDprLevel);
                 GRoot.inst.addChild(view);
             });
         });
