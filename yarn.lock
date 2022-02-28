@@ -2034,9 +2034,9 @@ path@^0.12.7:
     process "^0.11.1"
     util "^0.10.3"
 
-"phaser3@https://github.com/ApowoGames/phaser3.git":
+"phaser3@git+ssh://git@code.apowo.com:opensource/phaser3.git":
   version "0.4.29"
-  resolved "https://github.com/ApowoGames/phaser3.git#ca7e4d03db7c9996e44b59cd6854f96fdd2e3f3b"
+  resolved "git+ssh://git@code.apowo.com:opensource/phaser3.git#ca7e4d03db7c9996e44b59cd6854f96fdd2e3f3b"
   dependencies:
     eventemitter3 "^4.0.7"
     exports-loader "^1.1.1"

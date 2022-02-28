@@ -13,19 +13,24 @@ import { DragScene } from './Drag&Drop/DragScene';
 import { ScrollScene } from './Scroll/ScrollScene';
 import { SliderScene } from './Slider/SliderScene';
 // var Stats = require('./Stat');
-const DPR = window.devicePixelRatio;
-const { width, height } = window.screen
-const roundHalf = num => Math.round(num * 2) / 2
+export const DPR = 1;
+//Math.round(window.devicePixelRatio);
+const { width, height } = { width: 1136, height: 640 };
+//const roundHalf = num => Math.round(num * 2) / 2
 // Set width and height.
-const WIDTH = Math.round(Math.max(width, height) * DPR)
-const HEIGHT = Math.round(Math.min(width, height) * DPR)
-export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
+const WIDTH = Math.round(width * DPR)
+const HEIGHT = Math.round(height * DPR)
+// export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
 var config = {
     type: Phaser.WEBGL,
     parent: "phaser-example",
-    width: WIDTH,
-    height: HEIGHT,
-    mode: Phaser.Scale.FIT,
+    scale: {
+        mode: Phaser.Scale.NONE,
+        // autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: WIDTH,
+        height: HEIGHT,
+        zoom: 1 / DPR,
+    },
     // autoCenter: Phaser.Scale.CENTER_BOTH,
     dom: {
         createContainer: true
@@ -41,7 +46,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", ImageScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", BasicsScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];

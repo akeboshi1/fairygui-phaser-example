@@ -17,6 +17,8 @@ export class MovieClipScene extends Phaser.Scene {
     create(data) {
         const width = 800;
         const height = 600;
+        const con = this.add.container(0, 0);
+        this.sys.displayList.add(con);
         // 初始化ui,为了不影响外部ui的逻辑，直接将container传入ui库中，不影响
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
