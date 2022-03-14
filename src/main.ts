@@ -12,6 +12,7 @@ import { ComBoBoxScene } from './Combobox/ComBoBoxScene';
 import { DragScene } from './Drag&Drop/DragScene';
 import { ScrollScene } from './Scroll/ScrollScene';
 import { SliderScene } from './Slider/SliderScene';
+import { MainScene } from './Main/MainScene';
 // var Stats = require('./Stat');
 export const DPR = 1;
 //Math.round(window.devicePixelRatio);
@@ -46,7 +47,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", BasicsScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", MainScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];
