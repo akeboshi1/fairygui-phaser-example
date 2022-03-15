@@ -2,16 +2,23 @@ import { GRoot, UIPackage, ObjectType, GList, Handler, GComponent, GButton, GObj
 
 export class MainScene extends Phaser.Scene {
     private _showList: any[];
-    private _showGroup: GGroup;
+    private _showGroup0: GGroup;
+    private _showGroup1: GGroup;
     private _backBtn: GButton;
     private _loadBtn: GButton;
+    private _sizeBtn: GButton;
     private _list: GList;
-    private _intputText0: GTextInput;
-    private _intputText1: GTextInput;
+    private _moduleNameInput: GTextInput;
+    private _pathInput: GTextInput;
+    private _widthIntput: GTextInput;
+    private _heightInput: GTextInput;
     // 当前显示ui
+    private _stage: GComponent;
     private _curView: GObject;
-    private _moduleName:string;
-    private _path:string;
+    private _moduleName: string;
+    private _path: string;
+    private _width: string;
+    private _height: string;
     constructor(config) {
         super(config);
     }
@@ -38,14 +45,23 @@ export class MainScene extends Phaser.Scene {
             //     }
             // })
             UIPackage.createObject("MainPanel", "mainPanel").then((obj) => {
-                const view = obj.asCom;
-                GRoot.inst.addChild(view);
-                this._intputText0 = view.getChild("inputTF0") as GTextInput;
-                this._intputText1 = view.getChild("inputTF1") as GTextInput;
-                this._showGroup = view.getChild("showGroup") as GGroup;
-                this._backBtn = view.getChild("backBtn") as GButton;
-                this._loadBtn = view.getChild("inputBtn") as GButton;
-                this._list = view.getChild("componentList") as GList;
+                this._stage = obj.asCom;
+                GRoot.inst.addChild(this._stage);
+
+                this._showGroup0 = this._stage.getChild("showGroup0") as GGroup;
+                this._showGroup1 = this._stage.getChild("showGroup1") as GGroup;
+
+                this._moduleNameInput = this._stage.getChild("inputTF0") as GTextInput;
+                this._pathInput = this._stage.getChild("inputTF1") as GTextInput;
+
+                this._widthIntput = this._stage.getChild("inputTF2") as GTextInput;
+                this._heightInput = this._stage.getChild("inputTF3") as GTextInput;
+
+                this._backBtn = this._stage.getChild("backBtn") as GButton;
+                this._loadBtn = this._stage.getChild("inputBtn") as GButton;
+                this._sizeBtn = this._stage.getChild("sizeBtn") as GButton;
+
+                this._list = this._stage.getChild("componentList") as GList;
                 // this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
                 // this._list.setVirtual().then(() => {
                 //     this._list.numItems = this._showList.length;
@@ -53,17 +69,32 @@ export class MainScene extends Phaser.Scene {
                 // });
                 this._loadBtn.onClick(this.loadHandler, this);
                 this._backBtn.onClick(this.backHandler, this);
+                this._sizeBtn.onClick(this.sizeHandler, this);
                 this.checkViewVisible(true);
             });
         });
     }
 
     private loadHandler(pointer, gameObject) {
-        this._moduleName = this._intputText0.text;
-        this._path = "assets/" + this._intputText1.text;
+        this._moduleName = this._moduleNameInput.text;
+        this._path = "assets/" + this._pathInput.text;
         this.load.once(Phaser.Loader.Events.COMPLETE, this.loadComplete, this);
         this.load.binary(this._moduleName, this._path);
         this.load.start();
+    }
+
+    private sizeHandler(pointer, gameObject) {
+        this._width = this._widthIntput.text;
+        this._height = this._heightInput.text;
+        this._stage.setSize(Number(this._width), Number(this._height));
+    }
+
+    private backHandler(pointer, gameObject) {
+        if (this._curView) {
+            this._curView.dispose();
+            this._curView = null;
+        }
+        this.checkViewVisible(true);
     }
 
     private loadComplete() {
@@ -82,14 +113,6 @@ export class MainScene extends Phaser.Scene {
                 this._list.on("pointerdown", this.onClickList, this);
             });
         });
-    }
-
-    private backHandler(pointer, gameObject) {
-        if (this._curView) {
-            this._curView.dispose();
-            this._curView = null;
-        }
-        this.checkViewVisible(true);
     }
 
     private renderListItem(index: number, item: GComponent) {
@@ -117,7 +140,7 @@ export class MainScene extends Phaser.Scene {
     }
 
     private checkViewVisible(visible: boolean) {
-        if (this._showGroup) this._showGroup.visible = visible;
+        if (this._showGroup0) this._showGroup0.visible = visible;
         if (this._backBtn) this._backBtn.visible = !visible;
     }
 }
