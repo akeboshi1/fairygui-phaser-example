@@ -1,3 +1,4 @@
+import { LoaderScene } from './Loader/LoaderScene';
 import { MovieClipScene } from './MovieClip/MovieClipScene';
 import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
 import "phaser3";
@@ -47,7 +48,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", MainScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];
