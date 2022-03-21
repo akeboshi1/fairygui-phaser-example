@@ -15,7 +15,10 @@
     "fairygui-phaser": "0.0.26",
     "file-loader": "^4.2.0",
     "path": "^0.12.7",
-    "ts-loader": "7.0.5"
+    "ts-loader": "7.0.5",
+    "i18next": "^19.0.3",
+    "i18next-browser-languagedetector": "^4.0.1",
+    "i18next-xhr-backend": "^3.2.2"
   },
   "devDependencies": {
     "@types/webpack-env": "^1.16.3",

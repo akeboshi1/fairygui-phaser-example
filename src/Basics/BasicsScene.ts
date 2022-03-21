@@ -1,4 +1,4 @@
-import { Handler, GTextInput } from "fairygui-phaser";
+import { Handler } from "fairygui-phaser";
 import { PopupMenu, GGraph, GButton, ObjectType, UIConfig, GProgressBar, GList, Utils, Window, GComponent, GRoot, UIPackage, GObject, Controller } from "fairygui-phaser";
 import { WindowA, WindowB } from "./TestWin";
 
@@ -52,7 +52,7 @@ export class BasicsScene extends Phaser.Scene {
         UIConfig.horizontalScrollBar = "ui://Basics/ScrollBar_HZ";
         UIConfig.popupMenu = "ui://Basics/PopupMenu";
         UIConfig.buttonSound = "ui://Basics/sound";
-        this.load.image("Basics_atlas0.png","assets/Basics_atlas0.png");
+        this.load.image("Basics_atlas0.png", "assets/Basics_atlas0.png");
         this.load.binary("Basics", "assets/Basics.fui");
         this.load.script("webfont", "assets/webfont/webfont.js");
     }

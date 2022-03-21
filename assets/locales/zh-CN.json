@@ -1,0 +1,20 @@
+{
+  "common": {
+    "cancel": "取消",
+    "confirm": "确定",
+    "wait_userinfo_timeout": "获取用户信息超时"
+  },
+  "loading": {
+    "connecting": "正在建立连接...",
+    "login_error": "登录失败，请重新登录或稍后再试",
+    "loadresource": "正在加载资源 {{progress}}",
+    "enter_world": "可用空间裂缝搜寻中...",
+    "wait_enter_room": "传送门构建中...",
+    "downloading_game_config": "导管稳定性检查中...",
+    "parse_config": "光谱分析中...",
+    "downloading_json_config": "虚数矩阵展开中...",
+    "downloading_scene_config": "正在将玩家传送至目的坐标...",
+    "role_created": "角色获取成功",
+    "enter_scene": "进入虚数矩阵"
+  }
+}

@@ -1,4 +1,6 @@
 import { GRoot, UIPackage, ObjectType, GList, Handler, GComponent, GButton, GObject, GTextInput, GGroup } from "fairygui-phaser";
+import { GBasicTextField } from "fairygui-phaser/build/types/GBasicTextField";
+import { i18n, initLocales, translate } from "../i18n/i18n";
 
 export class MainScene extends Phaser.Scene {
     private _showList: any[];
@@ -7,11 +9,15 @@ export class MainScene extends Phaser.Scene {
     private _backBtn: GButton;
     private _loadBtn: GButton;
     private _sizeBtn: GButton;
+    private _langBtn: GButton;
     private _list: GList;
     private _moduleNameInput: GTextInput;
     private _pathInput: GTextInput;
     private _widthIntput: GTextInput;
     private _heightInput: GTextInput;
+    private _langInput: GTextInput;
+
+    private n8: GBasicTextField;
     // 当前显示ui
     private _stage: GComponent;
     private _curView: GObject;
@@ -30,6 +36,7 @@ export class MainScene extends Phaser.Scene {
     create(data) {
         const width = this.game.config.width;
         const height = this.game.config.height;
+        // initLocales("../../assets/locales/zh-CN.json");
         // 初始化ui
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
@@ -56,10 +63,18 @@ export class MainScene extends Phaser.Scene {
 
                 this._widthIntput = this._stage.getChild("inputTF2") as GTextInput;
                 this._heightInput = this._stage.getChild("inputTF3") as GTextInput;
-
+                this._widthIntput.text = width + "";
+                this._heightInput.text = height + "";
+                this.n8 = this._stage.getChild("n8") as GBasicTextField;
+                this._langInput = this._stage.getChild("inputTF4") as GTextInput;
+                this._langInput.text = "en";
+                this.langHandler();
+                this.n8.text = "common.confirm";
+                //initLocales("../../assets/locales/zh-CN.json");
                 this._backBtn = this._stage.getChild("backBtn") as GButton;
                 this._loadBtn = this._stage.getChild("inputBtn") as GButton;
                 this._sizeBtn = this._stage.getChild("sizeBtn") as GButton;
+                this._langBtn = this._stage.getChild("langBtn") as GButton;
 
                 this._list = this._stage.getChild("componentList") as GList;
                 // this._list.itemRenderer = Handler.create(this, this.renderListItem, null, false);
@@ -67,12 +82,19 @@ export class MainScene extends Phaser.Scene {
                 //     this._list.numItems = this._showList.length;
                 //     this._list.on("pointerdown", this.onClickList, this);
                 // });
+
+
                 this._loadBtn.onClick(this.loadHandler, this);
                 this._backBtn.onClick(this.backHandler, this);
                 this._sizeBtn.onClick(this.sizeHandler, this);
+                this._langBtn.onClick(this.langHandler, this);
                 this.checkViewVisible(true);
             });
         });
+    }
+
+    public i18nStr(val): string {
+        return i18n.t(val);
     }
 
     private loadHandler(pointer, gameObject) {
@@ -95,6 +117,13 @@ export class MainScene extends Phaser.Scene {
             this._curView = null;
         }
         this.checkViewVisible(true);
+    }
+
+    private langHandler() {
+        const lang = "../../assets/locales/" + this._langInput.text + ".json";
+        initLocales(lang).then((key) => {
+            GRoot.inst.i18n = translate;
+        });
     }
 
     private loadComplete() {

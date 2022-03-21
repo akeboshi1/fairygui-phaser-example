@@ -1,0 +1,20 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "OK",
+    "wait_userinfo_timeout": "Get user information timed out."
+  },
+  "loading": {
+    "connecting": "connecting",
+    "login_error": "Login failed, please login again or try again later",
+    "loadresource": "Loading resources {{progress}}",
+    "enter_world": "Searching for available space rift...",
+    "wait_enter_room": "Constructing warp portal...",
+    "downloading_game_config": "Checking vessel's stability...",
+    "parse_config": "Analyzing spectrum...",
+    "downloading_json_config": "Imaginary matrix expanding...",
+    "downloading_scene_config": "Transferring player to target coordinate...",
+    "role_created": "Role create success",
+    "enter_scene": "Enter Imaginary matrix"
+  }
+}
