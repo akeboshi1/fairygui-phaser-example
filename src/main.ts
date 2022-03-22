@@ -17,7 +17,7 @@ import { MainScene } from './Main/MainScene';
 // var Stats = require('./Stat');
 export const DPR = 1;
 //Math.round(window.devicePixelRatio);
-const { width, height } = { width: 1200, height: 800 };
+const { width, height } = { width: 1200, height: 1000 };
 //const roundHalf = num => Math.round(num * 2) / 2
 // Set width and height.
 const WIDTH = Math.round(width * DPR)
