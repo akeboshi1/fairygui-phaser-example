@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="17,20" extention="Button" designImageLayer="1">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="i3s65t" fileName="images/s1.png.jpg" xy="4,0" size="9,20" aspect="true">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="i3s65u" fileName="images/s2.png.jpg" xy="4,0" size="9,20" aspect="true">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3" name="n3" src="i3s65v" fileName="images/s3.png.jpg" xy="4,0" size="9,20" aspect="true">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+  </displayList>
+  <Button/>
+</component>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="607,553">
+  <displayList>
+    <image id="n0_sklj" name="n0" src="j1a39f" fileName="images/box-big.png" xy="0,16" size="591,537"/>
+    <image id="n1_sklj" name="n1" src="j1a39g" fileName="images/box-long.png" xy="99,2" size="399,127"/>
+    <text id="n2_sklj" name="n2" xy="137,20" size="328,79" font="Comic Sans MS" fontSize="60" align="center" vAlign="middle" autoSize="none" text="Panel"/>
+    <graph id="n23_d38j" name="n23" xy="70,130" size="425,339" type="rect" lineColor="#00ffffff" fillColor="#af999999" corner="20"/>
+    <list id="n22_sklj" name="n22" xy="70,131" size="493,329" layout="flow_hz" selectionMode="multiple" overflow="scroll" scrollBarMargin="8,0,9,0" scrollBarRes="ui://9leh0eyfj1a39i," lineGap="5" colGap="-2" autoItemSize="true" foldInvisibleItems="true">
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+      <item url="ui://9leh0eyfj1a39h"/>
+    </list>
+  </displayList>
+</component>

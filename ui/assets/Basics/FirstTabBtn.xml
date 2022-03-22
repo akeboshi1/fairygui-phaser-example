@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="169,97">
+  <displayList>
+    <image id="n1_h5rf" name="n1" src="dpdpbx" fileName="images/first-tab.png" xy="0,0" size="169,97">
+      <relation target="n8_h5rf" sidePair="rightext-right"/>
+    </image>
+    <text id="n8_h5rf" name="n8" xy="25,31" size="119,43" font="Comic Sans MS" fontSize="30" autoSize="none" text="Common" input="true"/>
+  </displayList>
+</component>

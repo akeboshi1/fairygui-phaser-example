@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="457,165">
+  <displayList>
+    <image id="n4_ckza" name="n4" src="mtpmc" fileName="Basic/images/info/info.png" xy="0,20"/>
+    <richtext id="n2_mtpm" name="n2" xy="186,55" size="227,85" fontSize="30" ubb="true" autoSize="none" text="[color=#0099FF]The Happy Guy[/color]&#xA;Lv.10"/>
+    <component id="n5_ckza" name="n5" src="x3021" fileName="Complex/Component1.xml" xy="24,0"/>
+  </displayList>
+</component>

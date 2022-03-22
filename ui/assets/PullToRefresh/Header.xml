@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="472,71" overflow="hidden" bgColorEnabled="true">
+  <controller name="c1" pages="0,,1,,2,,3," selected="0"/>
+  <displayList>
+    <group id="n2_n3qd" name="n2" xy="68,12" size="296,46" advanced="true">
+      <gearDisplay controller="c1" pages="0,1,2"/>
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </group>
+    <group id="n6_9sfl" name="n6" xy="0,0" size="472,36" advanced="true">
+      <gearDisplay controller="c1" pages="3"/>
+    </group>
+    <graph id="n4_9sfl" name="n4" xy="0,0" size="472,35" group="n6_9sfl" type="rect" lineSize="0" fillColor="#ff3399ff">
+      <relation target="" sidePair="width-width"/>
+    </graph>
+    <image id="n0_n3qd" name="n0" src="ca4w5" fileName="refresh.png" xy="68,14" pivot="0.5,0.5" group="n2_n3qd">
+      <gearDisplay controller="c1" pages="2"/>
+    </image>
+    <text id="n1_n3qd" name="n1" xy="123,18" size="242,33" group="n2_n3qd" fontSize="22" color="#999999" align="center" autoSize="none" bold="true" singleLine="true" text="Pull down to refresh">
+      <gearText controller="c1" pages="0,1,2" values="Pull down to refresh|Release to refresh|Loading" default="Pull down to refrsh"/>
+    </text>
+    <image id="n3_n3qd" name="n3" src="ca4w6" fileName="arrow.png" xy="70,12" pivot="0.5,0.5" group="n2_n3qd" rotation="180">
+      <gearDisplay controller="c1" pages="0,1"/>
+      <gearLook controller="c1" pages="0" values="1,180,0,0" default="1,0,0,1" tween="true"/>
+    </image>
+    <text id="n5_9sfl" name="n5" xy="140,4" size="186,32" group="n6_9sfl" fontSize="22" color="#ffffff" text="Refresh completed">
+      <relation target="" sidePair="center-center"/>
+    </text>
+  </displayList>
+  <transition name="t0" autoPlay="true" autoPlayRepeat="-1">
+    <item time="0" type="Rotation" target="n0_n3qd" tween="true" startValue="0" endValue="360" duration="24" ease="Linear"/>
+  </transition>
+</component>

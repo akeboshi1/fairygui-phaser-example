@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <component id="n5_kdll" name="n5" src="t9fj53" fileName="components/ProgressBar6.xml" xy="175,36">
+      <ProgressBar max="100"/>
+    </component>
+    <component id="n7_kdll" name="n7" src="t9fj5b" fileName="components/ProgressBar5.xml" xy="194,97">
+      <ProgressBar value="66" max="100"/>
+    </component>
+    <component id="n8_kdll" name="n8" src="t9fj57" fileName="components/ProgressBar3.xml" xy="65,210">
+      <ProgressBar value="50" max="100"/>
+    </component>
+    <component id="n10_kdll" name="n10" src="t9fj50" fileName="components/ProgressBar.xml" xy="439,214">
+      <ProgressBar value="50" max="100"/>
+    </component>
+    <component id="n11_j1a3" name="n11" src="j1a393" fileName="components/effectProgressBar.xml" xy="219,319">
+      <ProgressBar value="50" max="100"/>
+    </component>
+  </displayList>
+</component>

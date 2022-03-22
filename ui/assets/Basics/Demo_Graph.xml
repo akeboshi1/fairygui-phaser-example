@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570" bgColor="#212121">
+  <displayList>
+    <graph id="n11_espx" name="n11" xy="441,215" pivot="0.5,0.5" size="206,113" skew="30,0" type="rect" lineSize="2" lineColor="#ffff0000" fillColor="#ff006600"/>
+    <graph id="n12_j1a3" name="n12" xy="795,209" pivot="0.5,0.5" size="206,113" skew="-30,0" type="rect" lineSize="2" lineColor="#ffff0000" fillColor="#ff006600"/>
+    <graph id="n13_j1a3" name="n13" xy="104,215" pivot="0.5,0.5" size="206,113" type="rect" lineSize="2" lineColor="#ffff0000" fillColor="#ff006600"/>
+    <graph id="n14_j1a3" name="n14" xy="860,84" size="100,100" skew="30,0" type="eclipse"/>
+  </displayList>
+</component>

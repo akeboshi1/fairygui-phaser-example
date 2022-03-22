@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="319,107">
+  <displayList>
+    <image id="n0_vqor" name="n0" src="fkn4af" fileName="images/inputBar_bg.png" xy="0,0" size="319,107">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n1_vqor" name="n1" xy="21,21" size="280,63" fontSize="40" vAlign="middle" autoSize="none" singleLine="true" text="" input="true"/>
+  </displayList>
+</component>

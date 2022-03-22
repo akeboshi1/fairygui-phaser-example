@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <text id="n0" name="n0" xy="16,9" size="605,71" fontSize="22" color="#ffffff" autoSize="none" text="1. Import gif directly&#xA;2. Use builtin tool to create movieclip"/>
+    <component id="n18" name="n18" src="rpmb10" fileName="components/Button2.xml" xy="9,88" size="84,42">
+      <relation target="" sidePair="middle-middle,left-left"/>
+      <Button title="点我" icon="ui://9leh0eyfhixt1v"/>
+    </component>
+    <movieclip id="n19" name="n19" src="t9fj5f" fileName="images/pet.jta" xy="175,74">
+      <relation target="n18" sidePair="left-right,top-top"/>
+    </movieclip>
+  </displayList>
+</component>

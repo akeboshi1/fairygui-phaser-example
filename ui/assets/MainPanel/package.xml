@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ppmrhav2">
+  <resources>
+    <image id="o8sp0" name="9.png" path="/images/" exported="true" scale="9grid" scale9grid="12,10,24,20"/>
+    <component id="o8sp1" name="Button.xml" path="/components/"/>
+    <image id="o8sp2" name="0.png" path="/images/" exported="true" scale="9grid" scale9grid="40,17,80,34"/>
+    <image id="o8sp3" name="1.png" path="/images/" exported="true" scale="9grid" scale9grid="40,17,80,34"/>
+    <component id="o8sp4" name="mainPanel.xml" path="/components/" exported="true"/>
+    <component id="o8sp5" name="item.xml" path="/components/"/>
+    <image id="ke7n6" name="n18.png" path="/images/"/>
+    <component id="qo087" name="ComboBox.xml" path="/components/"/>
+    <image id="qo088" name="c1_png.png" path="/images/" scale="9grid" scale9grid="7,5,73,10"/>
+    <image id="qo089" name="c3_png.png" path="/images/" scale="9grid" scale9grid="11,5,71,10"/>
+    <image id="qo08a" name="c2_png.png" path="/images/" scale="9grid" scale9grid="8,5,73,10"/>
+    <image id="qo08b" name="b7(2)_png.png" path="/images/"/>
+    <component id="qo08c" name="ComboBoxPopup.xml" path="/components/"/>
+    <image id="qo08d" name="p1_png.png" path="/images/" scale="9grid" scale9grid="7,4,144,49"/>
+    <component id="qo08e" name="ComboBoxItem.xml" path="/components/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <image id="n11_obf9" name="n11" src="sner1h" fileName="images/pic.png" xy="496,21" pivot="0.5,0.5" size="627,510" color="#00fff1">
+      <relation target="" sidePair="left-left"/>
+    </image>
+    <component id="n13_ktz5" name="n13" src="rlyl8s" fileName="Component15.xml" xy="39,30"/>
+    <image id="n14_ktz5" name="n14" src="sner1h" fileName="images/pic.png" xy="244,251" pivot="0.5,0.5" color="#ffff00" flip="hz">
+      <relation target="" sidePair="left-left"/>
+    </image>
+  </displayList>
+</component>

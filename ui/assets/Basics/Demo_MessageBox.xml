@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="670,536">
+  <displayList>
+    <image id="n0_h5rf" name="n0" src="dpdpbc" fileName="images/MessageBox-Content.png" xy="0,27" size="670,509">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_h5rf" name="n1" src="dpdpbj" fileName="images/MessageBox-Title.png" xy="89,2" size="478,127"/>
+    <component id="n2_h5rf" name="n2" src="dpdpan" fileName="OK.xml" xy="405,418">
+      <relation target="n0_h5rf" sidePair="center-center"/>
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <component id="n3_h5rf" name="n3" src="dpdpap" fileName="Cancel.xml" xy="147,429">
+      <relation target="n0_h5rf" sidePair="center-center"/>
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <text id="n4_h5rf" name="n4" xy="202,39" size="254,60" font="Comic Sans MS" fontSize="45" text="Sample Title"/>
+    <richtext id="n5_h5rf" name="n5" xy="88,140" size="493,261" fontSize="16" autoSize="none" text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem."/>
+  </displayList>
+</component>

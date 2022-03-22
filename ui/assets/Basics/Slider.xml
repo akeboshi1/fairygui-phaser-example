@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="399,63" extention="Slider">
+  <displayList>
+    <image id="n0_wwzw" name="n0" src="xfg99w" fileName="images/slider-bar.png" xy="0,0" size="399,63">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <graph id="n1_wwzw" name="bar" xy="25,27" size="349,4" type="rect" lineSize="0" fillColor="#ff000000"/>
+    <text id="n2_wwzw" name="title" xy="0,37" size="399,42" font="ui://9leh0eyffkn4ac" fontSize="30" align="center" autoSize="none" text="">
+      <relation target="" sidePair="width-width"/>
+    </text>
+    <component id="n3_wwzw" name="grip" src="xfg99y" fileName="Slider_grip.xml" xy="356,-45">
+      <relation target="n1_wwzw" sidePair="right-right"/>
+    </component>
+  </displayList>
+  <Slider/>
+</component>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <component id="n1" name="n1" src="suiz4i" fileName="components/Slider_HZ.xml" xy="84,63">
+      <Slider value="50" max="100"/>
+    </component>
+    <component id="n2" name="n2" src="suiz4o" fileName="components/Slider_VT.xml" xy="281,50">
+      <Slider value="50" max="100"/>
+    </component>
+    <component id="n3" name="n3" src="eut94u" fileName="components/Slider1.xml" xy="57,236">
+      <Slider value="50" max="100"/>
+    </component>
+    <component id="n4" name="n4" src="srct87" fileName="components/Slider2.xml" xy="247,390">
+      <Slider value="50" max="100"/>
+    </component>
+    <component id="n5_xfg9" name="n5" src="xfg99z" fileName="Slider.xml" xy="445,103">
+      <Slider value="50" max="100"/>
+    </component>
+  </displayList>
+</component>

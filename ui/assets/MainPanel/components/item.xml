@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="443,50">
+  <displayList>
+    <text id="n0_o8sp" name="title" xy="5,4" size="314,43" fontSize="30" autoSize="none" text="导出文件名"/>
+    <component id="n1_o8sp" name="selectBtn" src="o8sp1" fileName="components/Button.xml" xy="327,0" size="163,69" aspect="true" scale="0.7,0.7">
+      <Button title="选择"/>
+    </component>
+  </displayList>
+</component>

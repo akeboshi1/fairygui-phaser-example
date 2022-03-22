@@ -1,0 +1,35 @@
+{
+  "path": "/Users/gxm/workspace/mod",
+  "branchPath": "/Users/gxm/workspace/mod",
+  "fileExtension": "fui",
+  "packageCount": 2,
+  "compressDesc": false,
+  "binaryFormat": true,
+  "jpegQuality": 80,
+  "compressPNG": false,
+  "codeGeneration": {
+    "allowGenCode": true,
+    "codePath": "",
+    "classNamePrefix": "",
+    "memberNamePrefix": "m_",
+    "packageName": "",
+    "ignoreNoname": true,
+    "getMemberByName": false,
+    "codeType": ""
+  },
+  "includeHighResolution": 7,
+  "branchProcessing": 0,
+  "seperatedAtlasForBranch": true,
+  "atlasSetting": {
+    "maxSize": 2048,
+    "paging": true,
+    "sizeOption": "pot",
+    "forceSquare": false,
+    "allowRotation": false,
+    "trimImage": false
+  },
+  "include2x": true,
+  "include3x": true,
+  "include4x": true,
+  "fileName": "Publish"
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="450,450">
+  <displayList>
+    <image id="n5_lrb6" name="bg" src="lrb6s" fileName="joystick/images/joystick_bottom.png" xy="0,7"/>
+    <image id="n6_lrb6" name="gasket" src="lrb6u" fileName="joystick/images/joystick_middle.png" xy="65,72"/>
+    <image id="n7_lrb6" name="handle" src="lrb6r" fileName="joystick/images/joystick_stick.png" xy="206,124"/>
+    <image id="n8_lrb6" name="btn" src="lrb6t" fileName="joystick/images/joystick_top.png" xy="117,115"/>
+  </displayList>
+</component>

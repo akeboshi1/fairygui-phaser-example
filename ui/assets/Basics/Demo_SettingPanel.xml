@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="800,600">
+  <displayList>
+    <image id="n0_j5yh" name="n0" src="dpdpbo" fileName="images/panel.png" xy="12,51" size="780,531">
+      <relation target="" sidePair="width-width,top-top"/>
+    </image>
+    <image id="n1_j5yh" name="n1" src="dpdpb3" fileName="images/title-box.png" xy="249,1" size="314,98">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n2_j5yh" name="n2" src="dpdpb5" fileName="images/gear-icon.png" xy="278,13" size="64,67">
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <richtext id="n3_j5yh" name="n3" xy="362,23" size="113,42" font="Comic Sans MS" fontSize="30" text="Settings"/>
+    <image id="n4_j5yh" name="n4" src="dpdpb4" fileName="images/volume-icon.png" xy="78,133" size="74,80">
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <component id="n5_j5yh" name="n5" src="xfg99z" fileName="Slider.xml" xy="196,146" size="529,58">
+      <relation target="" sidePair=""/>
+      <Slider max="100"/>
+    </component>
+    <image id="n6_j5yh" name="n6" src="dpdpc2" fileName="images/fullscreen-icon.png" xy="83,261" size="68,58">
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <text id="n8_j5yh" name="n8" xy="196,269" size="134,42" font="Comic Sans MS" fontSize="30" text="fullscreen">
+      <relation target="" sidePair="left-left,top-top"/>
+    </text>
+    <component id="n9_j5yh" name="n9" src="sdhgc7" fileName="LongButton.xml" xy="81,355" size="384,104">
+      <relation target="" sidePair="left-left,top-top"/>
+    </component>
+    <image id="n10_j5yh" name="n10" src="dpdpb9" fileName="images/account-icon.png" xy="136,381" size="64,62">
+      <relation target="n9_j5yh" sidePair="width-width,height-height,left-left,top-top"/>
+    </image>
+    <text id="n11_j5yh" name="n11" xy="245,385" size="115,42" font="Comic Sans MS" fontSize="30" text="Sign out">
+      <relation target="n9_j5yh" sidePair="width-width,height-height,left-left,top-top"/>
+    </text>
+    <component id="n12_j5yh" name="n12" src="dpdpay" fileName="OKButton.xml" xy="479,513" size="107,84">
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </component>
+    <component id="n13_j5yh" name="n13" src="dpdpau" fileName="CancelButton.xml" xy="235,513" size="106,83">
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </component>
+    <component id="n14_eqqs" name="n14" src="eqqsck" fileName="Button86.xml" xy="367,267"/>
+  </displayList>
+</component>

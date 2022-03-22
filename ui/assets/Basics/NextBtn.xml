@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="29,25" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n0_s575" name="n0" src="dpdpc3" fileName="images/enter-icon.png" xy="0,0" size="29,25">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+  </displayList>
+  <Button/>
+  <transition name="t0" autoPlay="true" autoPlayRepeat="-1">
+    <item time="0" type="Alpha" target="n0_s575" tween="true" startValue="1" endValue="0.3" duration="24"/>
+    <item time="0" type="Size" target="n0_s575" tween="true" startValue="29,25" endValue="25.745,21.75" duration="24"/>
+    <item time="24" type="Alpha" target="n0_s575" tween="true" startValue="0.3" endValue="1" duration="24"/>
+    <item time="24" type="Size" target="n0_s575" tween="true" startValue="25.745,21.75" endValue="29,25" duration="24"/>
+  </transition>
+</component>

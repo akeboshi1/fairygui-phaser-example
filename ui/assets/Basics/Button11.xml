@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="73,33" pivot="0.5,0.5" anchor="true" extention="Button">
+  <controller name="button" pages="2,up,3,down,4,over,5,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n9_lprr" name="n9" src="lprrcm" fileName="images/back_arrow.png" xy="12,16" pivot="0.5,0.5" anchor="true" size="15,27" aspect="true"/>
+    <text id="n8" name="title" xy="23,3" size="40,26" fontSize="18" color="#ffffff" vAlign="middle" bold="true" autoClearText="true" text="关闭">
+      <relation target="n9_lprr" sidePair="left-right"/>
+    </text>
+  </displayList>
+  <Button downEffect="scale" downEffectValue=".8"/>
+  <relation target="n8" sidePair="width-width,height-height"/>
+</component>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <component id="n5" name="n5" src="zd9g41" fileName="components/ComboBox2.xml" xy="550,169">
+      <ComboBox title="item 1" visibleItemCount="10">
+        <item title="Item 1"/>
+        <item title="Item 2"/>
+        <item title="Item 3"/>
+        <item title="Item 4"/>
+        <item title="Item 5"/>
+        <item title="Item 6"/>
+        <item title="Item 7"/>
+      </ComboBox>
+    </component>
+    <component id="n11_obf9" name="n11" src="zd9g41" fileName="components/ComboBox2.xml" xy="750,171">
+      <ComboBox title="item 1&#xA;" visibleItemCount="10">
+        <item title="Item 1"/>
+        <item title="Item 2"/>
+        <item title="Item 3"/>
+        <item title="Item 4"/>
+        <item title="Item 5"/>
+        <item title="Item 6"/>
+        <item title="Item 7"/>
+      </ComboBox>
+    </component>
+    <component id="n12_obf9" name="n12" src="rt103t" fileName="components/ComboBox.xml" xy="349,175">
+      <ComboBox title="item 1" visibleItemCount="10">
+        <item title="item 1"/>
+        <item title="item 2"/>
+        <item title="item 3"/>
+        <item title="item 4"/>
+        <item title="item 5"/>
+        <item title="item 6"/>
+        <item title="item 7"/>
+        <item title="item 8"/>
+        <item title="item 9"/>
+        <item title="item 10"/>
+      </ComboBox>
+    </component>
+    <component id="n13_sdhg" name="n13" src="dpdpat" fileName="Dropbox.xml" xy="196,330">
+      <ComboBox title="item 1" visibleItemCount="10">
+        <item title="item1"/>
+        <item title="item2"/>
+        <item title="item3"/>
+        <item title="item4"/>
+      </ComboBox>
+    </component>
+  </displayList>
+</component>

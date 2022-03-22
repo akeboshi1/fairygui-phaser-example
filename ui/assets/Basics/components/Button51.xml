@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="341,70" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n3_lprr" name="bg" src="rpmb1" fileName="images/VIP_png.png" xy="90,35" pivot="0.5,0.5" anchor="true" size="90,35" aspect="true"/>
+    <text id="n4_lprr" name="title" xy="212,35" pivot="0.5,0.5" anchor="true" size="157,46" fontSize="22" color="#ffff00" align="center" vAlign="middle" autoSize="none" text="scaleTest">
+      <relation target="n3_lprr" sidePair="left-right"/>
+    </text>
+  </displayList>
+  <Button downEffect="scale" downEffectValue=".8"/>
+</component>

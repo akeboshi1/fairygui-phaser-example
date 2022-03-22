@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="138,138" mask="n6_x302">
+  <displayList>
+    <image id="n7_svlh" name="n7" src="mtpmj" fileName="Basic/images/info/cat.jpg" xy="0,0" size="700,685" scale="0.195,0.2"/>
+    <graph id="n6_x302" name="n6" xy="2,1" size="134,136" type="eclipse" lineColor="#ffffffff">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+  </displayList>
+</component>

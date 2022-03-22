@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,570">
+  <displayList>
+    <graph id="n0" name="n0" xy="58,135" size="474,400" type="rect" lineSize="2" lineColor="#ff999999">
+      <relation target="" sidePair="height-height"/>
+    </graph>
+    <list id="n1" name="list" xy="58,135" size="471,400" overflow="scroll" scrollBar="hidden" defaultItem="ui://9leh0eyfl0fj9t" autoClearItems="true">
+      <relation target="" sidePair="height-height"/>
+      <item title="item0"/>
+      <item title="item1"/>
+      <item title="item2"/>
+      <item title="item3"/>
+      <item title="item4"/>
+      <item title="item5"/>
+    </list>
+    <component id="n7" name="box" src="l0fj9v" fileName="components/listBox.xml" xy="652,354"/>
+    <text id="n5" name="n5" xy="558,32" size="557,111" fontSize="24" color="#ffffff" autoSize="none" strokeColor="#000000" text="* Drag vertically to scroll the whole list.&#xA;* Drag horizontally to scroll single item."/>
+    <text id="n6" name="txt" xy="705,411" size="252,28" fontSize="24" color="#ffffff" autoSize="height" strokeColor="#000000" text=""/>
+  </displayList>
+</component>

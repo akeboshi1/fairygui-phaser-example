@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="607,553">
+  <displayList>
+    <image id="n0_sklj" name="n0" src="pch77" fileName="Basic/images/box/box-big.png" xy="0,16" size="591,537">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_sklj" name="n1" src="pch76" fileName="Basic/images/box/box-long.png" xy="99,2" size="399,127">
+      <relation target="" sidePair=""/>
+      <relation target="n0_sklj" sidePair="top-top,rightext-right,leftext-left"/>
+    </image>
+    <text id="n2_sklj" name="n2" xy="211,20" size="191,79" font="Comic Sans MS" fontSize="60" align="center" vAlign="middle" autoSize="shrink" text="Inventory">
+      <relation target="n1_sklj" sidePair="width-width%,height-height%,center-center,middle-middle"/>
+    </text>
+    <graph id="n23_d38j" name="n23" xy="70,141" size="425,329" type="rect" lineColor="#00ffffff" fillColor="#af999999" corner="20">
+      <relation target="n0_sklj" sidePair="width-width,height-height,left-left,top-top"/>
+    </graph>
+    <list id="n22_sklj" name="n22" xy="70,137" size="493,328" layout="flow_hz" selectionMode="multiple" overflow="scroll" scrollBarMargin="8,0,9,0" scrollBarRes="ui://x1eh63zud38jg," lineGap="5" colGap="-2" autoItemSize="true" foldInvisibleItems="true">
+      <relation target="n23_d38j" sidePair="width-width,height-height,left-left,top-top"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+      <item url="ui://x1eh63zusklje"/>
+    </list>
+  </displayList>
+</component>

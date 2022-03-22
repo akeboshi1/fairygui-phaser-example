@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="147,194">
+  <displayList>
+    <image id="n0_vqor" name="n0" src="dpdpb6" fileName="images/dropbox_list.png" xy="-2,-5" size="150,200">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <list id="n1_vqor" name="list" xy="6,6" size="134,182" overflow="scroll" defaultItem="ui://9leh0eyfdpdpaz">
+      <relation target="" sidePair="width-width"/>
+    </list>
+  </displayList>
+  <relation target="n1_vqor" sidePair="height-height"/>
+</component>

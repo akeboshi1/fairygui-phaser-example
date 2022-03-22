@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="8rugjhhl">
+  <resources>
+    <component id="n38w0" name="Main.xml" path="/" exported="true"/>
+    <component id="qujq2" name="listitem.xml" path="/" exported="true"/>
+    <component id="qujq5" name="listBtn1.xml" path="/"/>
+    <component id="qujq7" name="listBtn2.xml" path="/" exported="true"/>
+    <image id="dliz8" name="logo.jpg" path="/" exported="true" scale9grid="21,21,42,42"/>
+    <component id="c5529" name="listBox.xml" path="/"/>
+  </resources>
+  <publish name="ScrollPane" maxAtlasSize="2048" sizeOption="npot"/>
+</packageDescription>

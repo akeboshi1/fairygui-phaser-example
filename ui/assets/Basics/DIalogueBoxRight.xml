@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="470,430">
+  <displayList>
+    <loader id="n2_s575" name="n2" xy="10,0" size="249,249" url="ui://9leh0eyfdpdpbl" fill="scaleNoBorder" clearOnPublish="true"/>
+    <image id="n0_s575" name="n0" src="dpdpb8" fileName="images/dialogue-box.png" xy="0,225" size="470,205"/>
+    <image id="n1_s575" name="n1" src="dpdpbm" fileName="images/name-right.png" xy="262,192"/>
+    <richtext id="n3_s575" name="n3" xy="274,207" size="160,32" fontSize="22" autoSize="none" autoClearText="true" text="Sample Name"/>
+    <richtext id="n4_s575" name="n4" xy="22,258" size="430,122" fontSize="22" autoSize="none" autoClearText="true" text="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit"/>
+    <image id="n5_s575" name="n5" src="dpdpc3" fileName="images/enter-icon.png" xy="409,383" size="29,25"/>
+  </displayList>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="88,386" extention="ScrollBar">
+  <displayList>
+    <image id="n0_d38j" name="n0" src="pch79" fileName="images/scrollBar/box-slim.png" xy="0,1" size="88,384">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <graph id="n1_d38j" name="bar" xy="0,9" size="88,372">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n2_d38j" name="grip" src="d38jf" fileName="ScrollBar_grip.xml" xy="0,15">
+      <relation target="" sidePair="width-width"/>
+    </component>
+  </displayList>
+  <ScrollBar fixedGripSize="true"/>
+</component>

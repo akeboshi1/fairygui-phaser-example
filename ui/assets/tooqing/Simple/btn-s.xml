@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="134,105" restrictSize="77,268,52,210" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver,5,locked" selected="0"/>
+  <displayList>
+    <image id="n0_sklj" name="n0" src="pch74" fileName="images/btn-s/btn-s-normal.png" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_sklj" name="n1" src="pch71" fileName="images/btn-s/btn-s-click.png" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2_sklj" name="n2" src="pch72" fileName="images/btn-s/btn-s-hover.png" xy="0,0">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3_sklj" name="n3" src="pch71" fileName="images/btn-s/btn-s-click.png" xy="0,0">
+      <gearDisplay controller="button" pages="3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n4_sklj" name="n4" src="pch73" fileName="images/btn-s/btn-s-locked.png" xy="0,0">
+      <gearDisplay controller="button" pages="5"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n5_sklj" name="n5" xy="32,19" size="63,63" fill="scaleMatchHeight" clearOnPublish="true">
+      <gearDisplay controller="button" pages=""/>
+      <gearColor controller="button" pages="0,1,2,3" values="#ffffff|#ffffff|#ffffff|#ffffff" default="#666666"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+  <Button mode="Radio"/>
+</component>

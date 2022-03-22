@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="145,12" extention="ProgressBar">
+  <displayList>
+    <image id="n0" name="n0" src="t9fj51" fileName="images/p2_png.png" xy="0,0" aspect="true">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n1" name="bar" src="t9fj52" fileName="images/p3_png.png" xy="2,3" size="53,6" scale="2.65,1"/>
+  </displayList>
+  <ProgressBar/>
+</component>
