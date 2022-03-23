@@ -1,4 +1,4 @@
-import { GRoot, UIPackage, ObjectType, GList, Handler, GComponent, GButton, GObject, GTextInput, GGroup } from "fairygui-phaser";
+import { GRoot, UIPackage, ObjectType, GList, Handler, GComponent, GButton, GObject, GTextInput, GGroup, GRichTextField } from "fairygui-phaser";
 import { i18n, initLocales, translate } from "../i18n/i18n";
 export interface IHttpLoaderConfig {
     path: string;
@@ -22,7 +22,7 @@ export class MainScene extends Phaser.Scene {
     private _commonModuleInput: GTextInput;
     private _commonPathInput: GTextInput;
     private _langInput: GTextInput;
-
+    private n8: GRichTextField;
     // 舞台
     private _stage: GComponent;
     // 当前fairygui
@@ -61,6 +61,7 @@ export class MainScene extends Phaser.Scene {
                 this._stage = obj.asCom;
                 GRoot.inst.addChild(this._stage);
 
+                this.n8 = this._stage.getChild("n8") as GRichTextField;
                 this._showGroup0 = this._stage.getChild("showGroup0") as GGroup;
                 this._showGroup1 = this._stage.getChild("showGroup1") as GGroup;
 
@@ -108,7 +109,7 @@ export class MainScene extends Phaser.Scene {
     }
 
     private sizeHandler() {
-
+        
     }
 
     private clearModule() {
@@ -129,9 +130,16 @@ export class MainScene extends Phaser.Scene {
 
     private langHandler() {
         const lang = "http://172.18.0.100/game/resource/5e719a0a68196e416ecf7aad/" + this._version + "/client_resource/i18n_" + this._langInput.text + ".json";
-        initLocales(lang).then((key) => {
-            GRoot.inst.i18n = translate;
-        });
+        const jsonKey = this._version + this._langInput.text;
+        if (!this.cache.json.get(jsonKey)) {
+            this.load.once(Phaser.Loader.Events.COMPLETE, () => {
+                initLocales(lang).then((key) => {
+                    GRoot.inst.i18n = translate;
+                    // this.n8.text = "PKT_FLOOR000021";
+                });
+            }, this);
+            this.load.start();
+        }
     }
 
     private loadComplete() {
