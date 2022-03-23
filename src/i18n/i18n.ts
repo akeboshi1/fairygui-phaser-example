@@ -20,9 +20,10 @@ export function initLocales(path: string, options?: InitOptions): Promise<any> {
     }, options));
 }
 
-export function translate(string: string, options?: any, namespaces?: string) {
-  if (namespaces) string += `${namespaces}:`;
-  return i18n.t(string, options);
+export function translate(str: string, options?: any, namespaces?: string) {
+  if (!i18n.exists(str)) return str
+  if (namespaces) str += `${namespaces}:`;
+  return i18n.t(str, options);
 }
 
 export function isZh() {
