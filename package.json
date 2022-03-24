@@ -12,7 +12,7 @@
   "dependencies": {
     "assemblyscript": "^0.19.5",
     "expose-loader": "^0.7.5",
-    "fairygui-phaser": "^0.0.45",
+    "fairygui-phaser": "^0.0.48",
     "file-loader": "^4.2.0",
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",

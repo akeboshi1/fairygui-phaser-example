@@ -1,4 +1,4 @@
-import { GLoader, GRoot, UIPackage } from "fairygui-phaser";
+import { GLoader, GRoot, UIPackage, GRichTextField } from "fairygui-phaser";
 
 export class LoaderScene extends Phaser.Scene {
     private _loader: GLoader;
@@ -8,7 +8,7 @@ export class LoaderScene extends Phaser.Scene {
 
     preload() {
         this.load.binary("Loader", "assets/Loader.fui");
-        this.load.image("star","assets/star0.jpg");
+        this.load.image("star", "assets/star0.jpg");
     }
 
     create() {
@@ -24,7 +24,9 @@ export class LoaderScene extends Phaser.Scene {
             UIPackage.createObject("Loader", "loaderView").then((obj) => {
                 const main = obj.asCom;
                 this._loader = main.getChild("loader") as GLoader;
-                this._loader.url = "ui://ec9yscuhthi7j";//"assets/star0.jpg";
+                const txt = main.getChild("text") as GRichTextField;
+                txt.text = "test code";
+                // this._loader.url = "assets/star0.jpg";//"ui://ec9yscuhthi7j";//"assets/star0.jpg";
                 GRoot.inst.addChild(main);
             });
         });
