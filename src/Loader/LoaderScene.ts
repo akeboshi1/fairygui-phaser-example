@@ -29,7 +29,7 @@ export class LoaderScene extends Phaser.Scene {
                 const view = main.getChild("view") as GComponent;
                 this._loader = view.getChild("loader") as GLoader;
                 const txt = view.getChild("text") as GRichTextField;
-                txt.setScale(dpr, dpr);
+                // txt.setScale(dpr, dpr);
                 txt.text = "中文 测试";
                 // this._loader.url = "assets/star0.jpg";//"ui://ec9yscuhthi7j";//"assets/star0.jpg";
                 GRoot.inst.addChild(main);

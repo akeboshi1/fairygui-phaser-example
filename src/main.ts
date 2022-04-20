@@ -33,6 +33,10 @@ var config = {
         height: HEIGHT,
         zoom: 1 / DPR,
     },
+    render: {
+        pixelArt: true,
+        roundPixels: true,
+    },
     // autoCenter: Phaser.Scale.CENTER_BOTH,
     dom: {
         createContainer: true
