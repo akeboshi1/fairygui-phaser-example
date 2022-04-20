@@ -43,13 +43,13 @@ export class MainScene extends Phaser.Scene {
 
     preload() {
         this.load.binary("MainPanel", "assets/MainPanel.fui");
-        this.load.json("versionJson", this._remoteUrl, "json");
+        // this.load.json("versionJson", this._remoteUrl, "json");
     }
 
     create(data) {
         const width = this.game.config.width;
         const height = this.game.config.height;
-        this._version = this.cache.json.get("versionJson").version;
+        // this._version = this.cache.json.get("versionJson").version;
         // 初始化ui
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
@@ -129,17 +129,17 @@ export class MainScene extends Phaser.Scene {
     }
 
     private langHandler() {
-        const lang = "http://172.18.0.100/game/resource/5e719a0a68196e416ecf7aad/" + this._version + "/client_resource/i18n_" + this._langInput.text + ".json";
-        const jsonKey = this._version + this._langInput.text;
-        if (!this.cache.json.get(jsonKey)) {
-            this.load.once(Phaser.Loader.Events.COMPLETE, () => {
-                initLocales(lang).then((key) => {
-                    GRoot.inst.i18n = translate;
-                    // this.n8.text = "PKT_FLOOR000021";
-                });
-            }, this);
-            this.load.start();
-        }
+        // const lang = "http://172.18.0.100/game/resource/5e719a0a68196e416ecf7aad/" + this._version + "/client_resource/i18n_" + this._langInput.text + ".json";
+        // const jsonKey = this._version + this._langInput.text;
+        // if (!this.cache.json.get(jsonKey)) {
+        //     this.load.once(Phaser.Loader.Events.COMPLETE, () => {
+        //         initLocales(lang).then((key) => {
+        //             GRoot.inst.i18n = translate;
+        //             // this.n8.text = "PKT_FLOOR000021";
+        //         });
+        //     }, this);
+        //     this.load.start();
+        // }
     }
 
     private loadComplete() {

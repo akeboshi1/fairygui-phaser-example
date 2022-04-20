@@ -7,7 +7,9 @@ export class MovieClipScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.binary("Basics", "assets/Basics.fui");
+        // this.load.binary("Basics", "assets/Basics.fui");
+        // this.load.image("Package1_atlas0.png", "assets/Package1_atlas0.png");
+        this.load.binary("Package1", "assets/Package1.fui");
     }
 
     addImage(key, file) {
@@ -25,12 +27,12 @@ export class MovieClipScene extends Phaser.Scene {
             resUI: "assets/", dpr: Math.round(window.devicePixelRatio)
             , width, height, desginWidth: 800, desginHeight: 600
         });
-        UIPackage.loadPackage("Basics").then((pkg) => {
+        UIPackage.loadPackage("Package1").then((pkg) => {
             // tslint:disable-next-line:no-console
             console.log("fui ===>", pkg);
 
             // ============ Bag
-            UIPackage.createObject("Basics", "Demo_MovieClip").then((obj) => {
+            UIPackage.createObject("Package1", "Component1").then((obj) => {
                 this._view = obj.asCom;
                 GRoot.inst.addChild(this._view);
                 // this._view.getChild("bagBtn");

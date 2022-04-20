@@ -15,13 +15,13 @@ import { ScrollScene } from './Scroll/ScrollScene';
 import { SliderScene } from './Slider/SliderScene';
 import { MainScene } from './Main/MainScene';
 // var Stats = require('./Stat');
-export const DPR = 1;
+export const DPR = window.devicePixelRatio;
 //Math.round(window.devicePixelRatio);
-const { width, height } = { width: 1200, height: 1000 };
+// const { width, height } = { width: 1200, height: 1000};
 //const roundHalf = num => Math.round(num * 2) / 2
 // Set width and height.
-const WIDTH = Math.round(width * DPR)
-const HEIGHT = Math.round(height * DPR)
+const WIDTH = Math.round(window.innerWidth * DPR)
+const HEIGHT = Math.round(window.innerHeight * DPR)
 // export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
 var config = {
     type: Phaser.WEBGL,
@@ -48,7 +48,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", MainScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];
