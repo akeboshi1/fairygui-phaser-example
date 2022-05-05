@@ -1,5 +1,5 @@
-import { DPR } from './../main';
-import { GLoader, GRoot, UIPackage, GRichTextField, GComponent } from "fairygui-phaser";
+
+import { GLoader, GRoot, UIPackage, GObject, GComponent } from "fairygui-phaser";
 
 export class LoaderScene extends Phaser.Scene {
     private _loader: GLoader;
@@ -28,19 +28,27 @@ export class LoaderScene extends Phaser.Scene {
         });
         UIPackage.loadPackage("7login").then((pkg) => {
             console.log(pkg);
-            UIPackage.createObject("7login", "Component1").then((obj) => {
+            UIPackage.createObject("7login", "test").then((obj) => {
                 const main = obj.asCom;
 
-                main.setSize(pixelWid, pixelHei);
-                main.externalSetScale(GRoot.dpr, GRoot.dpr, 0, true);
+
+                // main.externalSetScale(GRoot.dpr, GRoot.dpr, 0, true);
+                main.makeFullScreen();
                 // // const view = main.getChild("view") as GComponent;
                 // this._loader = main.getChild("loader") as GLoader;
                 // const txt = main.getChild("text") as GRichTextField;
                 // // txt.setScale(dpr, dpr);
                 // txt.text = "中文 测试";
                 // this._loader.url = "assets/star0.jpg";//"ui://ec9yscuhthi7j";//"assets/star0.jpg";
+                // main.setXY(100,100);
                 GRoot.inst.addChild(main);
+                // const clsBtn: GObject = main.getChild("n32") as GObject;
+                // clsBtn.onClick(this.closeEventHandler, this);
             });
         });
+    }
+
+    private closeEventHandler() {
+        console.log("click close");
     }
 }
