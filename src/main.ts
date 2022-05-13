@@ -15,7 +15,7 @@ import { ScrollScene } from './Scroll/ScrollScene';
 import { SliderScene } from './Slider/SliderScene';
 import { MainScene } from './Main/MainScene';
 // var Stats = require('./Stat');
-export const DPR = window.devicePixelRatio;
+export const DPR = Number(window.devicePixelRatio.toFixed(1));
 //Math.round(window.devicePixelRatio);
 // const { width, height } = { width: 1200, height: 1000};
 //const roundHalf = num => Math.round(num * 2) / 2
