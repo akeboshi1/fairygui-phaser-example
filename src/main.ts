@@ -1,20 +1,23 @@
-import { LoaderScene } from './Loader/LoaderScene';
-import { MovieClipScene } from './MovieClip/MovieClipScene';
+import { PhaserRaycaster } from "phaser-raycaster";
+import { LoaderScene } from "./Loader/LoaderScene";
+import { MovieClipScene } from "./MovieClip/MovieClipScene";
 import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
 import "phaser3";
 import { GraphScene } from "./Graph/GraphScene";
 import { BasicsScene } from "./Basics/BasicsScene";
 import { ButtonScene } from "./Button/ButtonScene";
 import { TextScene } from "./Text/TextScene";
-import { BagPanelScene } from './TooqingUI/BagPanel/BagPanelScene';
-import { TooqingScene } from './TooqingUI/TooqingView/TooqingScene';
-import { ImageScene } from './Image/ImageScene';
-import { ComBoBoxScene } from './Combobox/ComBoBoxScene';
-import { DragScene } from './Drag&Drop/DragScene';
-import { ScrollScene } from './Scroll/ScrollScene';
-import { SliderScene } from './Slider/SliderScene';
-import { MainScene } from './Main/MainScene';
-// var Stats = require('./Stat');
+import { BagPanelScene } from "./TooqingUI/BagPanel/BagPanelScene";
+import { TooqingScene } from "./TooqingUI/TooqingView/TooqingScene";
+import { ImageScene } from "./Image/ImageScene";
+import { ComBoBoxScene } from "./Combobox/ComBoBoxScene";
+import { DragScene } from "./Drag&Drop/DragScene";
+import { ScrollScene } from "./Scroll/ScrollScene";
+import { SliderScene } from "./Slider/SliderScene";
+import { MainScene } from "./Main/MainScene";
+import { RaycasterScene } from "./raycaster/Raycaster.scene";
+
+// var Stats = require("./Stat");
 export const DPR = Number(window.devicePixelRatio.toFixed(1));
 //Math.round(window.devicePixelRatio);
 // const { width, height } = { width: 1200, height: 1000};
@@ -24,14 +27,14 @@ const WIDTH = Math.round(window.innerWidth * DPR)
 const HEIGHT = Math.round(window.innerHeight * DPR)
 // export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
 var config = {
-    type: Phaser.WEBGL,
+    type: Phaser.AUTO,
     parent: "phaser-example",
     scale: {
         mode: Phaser.Scale.NONE,
         // autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: WIDTH,
-        height: HEIGHT,
-        zoom: 1 / DPR,
+        width: 800,
+        height: 600,
+        // zoom: 1 / DPR,
     },
     render: {
         pixelArt: true,
@@ -41,27 +44,27 @@ var config = {
     dom: {
         createContainer: true
     },
-    backgroundColor: '#4488aa',
-    fps: {
-        target: 60,
-        forceSetTimeOut: true
-    }
+    backgroundColor: "#4488aa",
+    // fps: {
+    //     target: 60,
+    //     forceSetTimeOut: true
+    // }
     //pipeline: { "Color": ColorShaderPipeline }
 };
 // @ts-ignore
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", RaycasterScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];
 // for (let i = 0; i < len; i++) {
 //     const stats = new Stats();
 //     stats.setMode(0);
-//     stats.domElement.style.position = 'absolute';
-//     stats.domElement.style.right = '0px';
-//     stats.domElement.style.top = '0px';
+//     stats.domElement.style.position = "absolute";
+//     stats.domElement.style.right = "0px";
+//     stats.domElement.style.top = "0px";
 //     document.body.appendChild(stats.domElement);
 //     statList.push(stats);
 // }
@@ -87,23 +90,23 @@ game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
 // }
 
 // preloadImg([
-//     '../assets/snow_(1).png',
-//     '../assets/snow_(2).png',
-//     '../assets/snow_(3).png',
-//     '../assets/snow_(4).png',
-//     '../assets/snow_(5).png',
-//     '../assets/snow_(6).png',
-//     '../assets/snow_(7).png',
-//     '../assets/snow_(8).png',
-//     '../assets/snow_(9).png',
-//     '../assets/snow_(10).png'
+//     "../assets/snow_(1).png",
+//     "../assets/snow_(2).png",
+//     "../assets/snow_(3).png",
+//     "../assets/snow_(4).png",
+//     "../assets/snow_(5).png",
+//     "../assets/snow_(6).png",
+//     "../assets/snow_(7).png",
+//     "../assets/snow_(8).png",
+//     "../assets/snow_(9).png",
+//     "../assets/snow_(10).png"
 // ]);
 
 
 // let snowBox = function () {
 //     let canvasEl = document.getElementById("game-layer");
 //     // @ts-ignore
-//     let ctx = canvasEl.getContext('2d');
+//     let ctx = canvasEl.getContext("2d");
 //     // @ts-ignore
 //     canvasEl.width = 1280;
 //     // @ts-ignore
@@ -190,7 +193,7 @@ game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
 // let snowBox1 = function () {
 //     let canvasEl = document.getElementById("ui-layer");
 //     // @ts-ignore
-//     let ctx = canvasEl.getContext('2d');
+//     let ctx = canvasEl.getContext("2d");
 //     // @ts-ignore
 //     canvasEl.width = 1280;
 //     // @ts-ignore
@@ -277,7 +280,7 @@ game.scene.add("uiScene", LoaderScene, true, { x: 0, y: 0 });
 // let snowBox2 = function () {
 //     let canvasEl = document.getElementById("background-layer");
 //     // @ts-ignore
-//     let ctx = canvasEl.getContext('2d');
+//     let ctx = canvasEl.getContext("2d");
 //     // @ts-ignore
 //     canvasEl.width = 1280;
 //     // @ts-ignore

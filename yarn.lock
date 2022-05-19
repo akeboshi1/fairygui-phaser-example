@@ -2062,6 +2062,11 @@ path@^0.12.7:
     process "^0.11.1"
     util "^0.10.3"
 
+phaser-raycaster@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/phaser-raycaster/-/phaser-raycaster-0.10.2.tgz#0c3003d62be28c9f086a03654b3322ccdf2cfcc1"
+  integrity sha512-u79Y5ms8xVpmsYKLw3d2MNjFUWd2mFD6fRtSBVPpwZne796yrihE+iPSDJKRxd3z+0Ip56KjIJwQu05yyIf0BA==
+
 "phaser3@git+ssh://git@code.apowo.com:opensource/phaser3.git":
   version "0.4.29"
   resolved "git+ssh://git@code.apowo.com:opensource/phaser3.git#ca7e4d03db7c9996e44b59cd6854f96fdd2e3f3b"
