@@ -55,7 +55,7 @@ export class RaycasterScene extends Phaser.Scene {
         this.raycaster.mapGameObjects(img);
 
         //cast ray
-        let intersection = this.ray.cast();
+        let intersection = this.ray.castCircle();
 
         this.graphics = this.add.graphics({ lineStyle: { width: 1, color: 0x00ff00 }, fillStyle: { color: 0xff00ff } });
         let line = new Phaser.Geom.Line(this.ray.origin.x, this.ray.origin.y, intersection.x, intersection.y);
