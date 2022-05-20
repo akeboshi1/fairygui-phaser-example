@@ -42,7 +42,7 @@ export class RaycasterScene extends Phaser.Scene {
                 x: 400,
                 y: 300
             },
-            ignoreNotIntersectedRays:false
+            ignoreNotIntersectedRays: false
         });
 
         const img = this.add.image(500, 100, "snow");
@@ -63,14 +63,21 @@ export class RaycasterScene extends Phaser.Scene {
         this.graphics.strokeLineShape(line);
     }
 
+    private _obj;
     update() {
         //rotate ray
         this.ray.setAngle(this.ray.angle + 0.01);
-        
+
         //cast ray
         let intersection = this.ray.cast();
-        if(!intersection)return;
-        console.log(intersection.x,intersection.y);
+        if (!intersection) return;
+        console.log(intersection.x, intersection.y);
+        if (this._obj){
+            this._obj.setTint();
+            this._obj = null;
+        } 
+        this._obj = intersection.object;
+        if (this._obj) this._obj.setTint(0xff0000);
         //draw ray
         this.graphics.clear();
         let line = new Phaser.Geom.Line(this.ray.origin.x, this.ray.origin.y, intersection.x, intersection.y);

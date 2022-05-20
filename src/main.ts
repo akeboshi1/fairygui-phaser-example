@@ -56,7 +56,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 // 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", Raycaster1Scene, true, { x: 0, y: 0 });
+game.scene.add("uiScene", RaycasterScene, true, { x: 0, y: 0 });
 
 // const len = 3;
 // const statList = [];
