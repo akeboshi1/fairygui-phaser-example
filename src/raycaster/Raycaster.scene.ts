@@ -46,13 +46,19 @@ export class RaycasterScene extends Phaser.Scene {
         });
 
         const img = this.add.image(500, 100, "snow");
+
+        const img1 = this.add.image(200, 400, "snow");
+
+        const img2 = this.add.image(60, 130, "snow");
+
+        const img3 = this.add.image(10, 500, "snow");
         // img.setScale(0.3,0.3);
 
         // const rectangle = this.add.rectangle(200, 100, 200, 100)
         // .setStrokeStyle(1, 0xff0000);
 
         //map rectangle
-        this.raycaster.mapGameObjects(img);
+        this.raycaster.mapGameObjects([img,img1,img2,img3]);
 
         //cast ray
         let intersection = this.ray.castCircle();
