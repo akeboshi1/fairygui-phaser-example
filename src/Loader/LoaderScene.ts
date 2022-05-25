@@ -16,6 +16,16 @@ export class LoaderScene extends Phaser.Scene {
         this.load.binary("7login", "assets/7login.fui");
         this.load.image("Basics_atlas0.png", "assets/Basics_atlas0.png");
         this.load.binary("Basics", "assets/Basics.fui");
+        this.load.image("001", "assets/001.jpg");
+        this.load.image("毛峰", "assets/毛峰.jpg");
+        this.load.image("毛峰1", "assets/毛峰1.jpg");
+        this.load.image("毛峰2", "assets/毛峰2.jpg");
+        this.load.image("code", "assets/code.jpeg");
+        this.load.image("space", "assets/space.jpeg");
+        this.load.image("space1", "assets/space1.jpg");
+        this.load.image("space2", "assets/space2.jpeg");
+        this.load.image("wow", "assets/wow.jpg");
+        this.load.image("yld", "assets/yld.png");
     }
 
     init() {
@@ -46,11 +56,20 @@ export class LoaderScene extends Phaser.Scene {
 
     create() {
 
-        for (let i = 0; i < 100; i++) {
-            const img = this.add.image(500, 100, "star");
-            const img1 = this.add.image(500, 100, "snow");
-            const img2 = this.add.image(500, 100, "Basics_atlas0.png");
-        }
+        //for (let i = 0; i < 100; i++) {
+        const img = this.add.image(500, 100, "star");
+        const img1 = this.add.image(500, 100, "snow");
+        const img2 = this.add.image(500, 100, "Basics_atlas0.png");
+        const img3 = this.add.image(500, 100, "001");
+        const img4 = this.add.image(500, 100, "wow");
+        const img5 = this.add.image(500, 100, "yld");
+        const img6 = this.add.image(500, 100, "毛峰");
+        const img7 = this.add.image(500, 100, "毛峰1");
+        const img8 = this.add.image(500, 100, "毛峰2");
+        const img9 = this.add.image(500, 100, "space");
+        const img10 = this.add.image(500, 100, "space1");
+        const img11 = this.add.image(500, 100, "space2");
+        //}
 
         return;
         const width = Number(this.game.config.width);
