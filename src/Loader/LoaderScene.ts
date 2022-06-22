@@ -1,4 +1,5 @@
 
+import { Handler } from "fairygui-phaser";
 import { GLoader, GRoot, UIPackage, GObject, GComponent, GList, GProgressBar, GButton } from "fairygui-phaser";
 
 export class LoaderScene extends Phaser.Scene {
@@ -57,21 +58,21 @@ export class LoaderScene extends Phaser.Scene {
     create() {
 
         //for (let i = 0; i < 100; i++) {
-        const img = this.add.image(500, 100, "star");
-        const img1 = this.add.image(500, 100, "snow");
-        const img2 = this.add.image(500, 100, "Basics_atlas0.png");
-        const img3 = this.add.image(500, 100, "001");
-        const img4 = this.add.image(500, 100, "wow");
-        const img5 = this.add.image(500, 100, "yld");
-        const img6 = this.add.image(500, 100, "毛峰");
-        const img7 = this.add.image(500, 100, "毛峰1");
-        const img8 = this.add.image(500, 100, "毛峰2");
-        const img9 = this.add.image(500, 100, "space");
-        const img10 = this.add.image(500, 100, "space1");
-        const img11 = this.add.image(500, 100, "space2");
-        //}
+        // const img = this.add.image(500, 100, "star");
+        // const img1 = this.add.image(500, 100, "snow");
+        // const img2 = this.add.image(500, 100, "Basics_atlas0.png");
+        // const img3 = this.add.image(500, 100, "001");
+        // const img4 = this.add.image(500, 100, "wow");
+        // const img5 = this.add.image(500, 100, "yld");
+        // const img6 = this.add.image(500, 100, "毛峰");
+        // const img7 = this.add.image(500, 100, "毛峰1");
+        // const img8 = this.add.image(500, 100, "毛峰2");
+        // const img9 = this.add.image(500, 100, "space");
+        // const img10 = this.add.image(500, 100, "space1");
+        // const img11 = this.add.image(500, 100, "space2");
+        // //}
 
-        return;
+        // return;
         const width = Number(this.game.config.width);
         const height = Number(this.game.config.height);
         const dpr = window.devicePixelRatio;
@@ -95,11 +96,13 @@ export class LoaderScene extends Phaser.Scene {
 
                 // const bar:GProgressBar = (<GComponent>main.getChild("n8")).asProgress;
                 // bar.tweenValue(100, 2);
-                // this._list = (<GComponent>main.getChild("n35")).asList;
+                this._list = (<GComponent>main.getChild("list")).asList;
 
                 // // glist的渲染方法
-                // this._list.itemRenderer = Handler.create(this, this.renderListPanelItem, null, false);
-
+                this._list.itemRenderer = Handler.create(this, this.renderListPanelItem, null, false);
+                this._list.setVirtual().then(() => {
+                    this._list.numItems = 10;
+                });
                 // const clsBtn: GObject = main.getChild("n36") as GObject;
                 // clsBtn.onClick(this.closeEventHandler, this);
             });

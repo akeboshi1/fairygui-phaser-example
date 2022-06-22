@@ -11,10 +11,13 @@ export class BagPanelScene extends Phaser.Scene {
     }
 
     create(data) {
+        const width = 1136;
+        const height = 640;
         // 初始化ui
         GRoot.inst.attachTo(this, {
             osd: "", res: "assets/",
-            resUI: "assets/", dpr: 1, designWidth: 800, designHeight: 640
+            resUI: "assets/", dpr: 1, designWidth: 800, designHeight: 640,
+            width, height,
         });
         UIPackage.loadPackage("Basics").then((pkg) => {
             // tslint:disable-next-line:no-console
@@ -23,7 +26,7 @@ export class BagPanelScene extends Phaser.Scene {
             // ============ tooqing ui test
             UIPackage.createObject("Basics", "Demo_Panel").then((obj) => {
                 this._view = obj.asCom;
-                this._view.setXY(200, 640 - this._view.height >> 1);
+                //this._view.setXY(200, 640 - this._view.height >> 1);
                 GRoot.inst.addChild(this._view);
             });
         });

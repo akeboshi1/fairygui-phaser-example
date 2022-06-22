@@ -17,6 +17,7 @@ import { SliderScene } from "./Slider/SliderScene";
 import { MainScene } from "./Main/MainScene";
 import { RaycasterScene } from "./raycaster/Raycaster.scene";
 import { Raycaster1Scene } from "./raycaster/Raycaster1.scene";
+import { ThreeDScene } from "./3d/3DScene";
 
 // var Stats = require("./Stat");
 export const DPR = Number(window.devicePixelRatio.toFixed(1));
@@ -33,9 +34,9 @@ var config = {
     scale: {
         mode: Phaser.Scale.NONE,
         // autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 800,
-        height: 600,
-        // zoom: 1 / DPR,
+        width: WIDTH,
+        height: HEIGHT,
+        zoom: 1 / DPR,
     },
     render: {
         pixelArt: true,
@@ -46,10 +47,10 @@ var config = {
         createContainer: true
     },
     backgroundColor: "#4488aa",
-    // fps: {
-    //     target: 60,
-    //     forceSetTimeOut: true
-    // }
+    fps: {
+        target: 60,
+        forceSetTimeOut: true
+    }
     //pipeline: { "Color": ColorShaderPipeline }
 };
 // @ts-ignore
