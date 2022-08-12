@@ -23,7 +23,6 @@ Create the ui object in the corresponding package，you can adjust the view posi
 
 Run the project, you can see that the ui has been displayed in the scene
 
-You can use the [editor on GitHub](https://github.com/akeboshi1/fairygui-phaser-test/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
 
 
