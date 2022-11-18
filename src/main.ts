@@ -2,7 +2,7 @@ import { PhaserRaycaster } from "phaser-raycaster";
 import { LoaderScene } from "./Loader/LoaderScene";
 import { MovieClipScene } from "./MovieClip/MovieClipScene";
 import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
-import "phaser3";
+import "phaser";
 import { GraphScene } from "./Graph/GraphScene";
 import { BasicsScene } from "./Basics/BasicsScene";
 import { ButtonScene } from "./Button/ButtonScene";
@@ -31,6 +31,9 @@ const HEIGHT = Math.round(window.innerHeight * DPR)
 var config = {
     type: Phaser.AUTO,
     parent: "phaser-example",
+    audio: {
+        disableWebAudio: true
+      },
     scale: {
         mode: Phaser.Scale.NONE,
         // autoCenter: Phaser.Scale.CENTER_BOTH,

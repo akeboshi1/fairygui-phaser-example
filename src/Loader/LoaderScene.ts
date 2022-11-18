@@ -27,6 +27,7 @@ export class LoaderScene extends Phaser.Scene {
         this.load.image("space2", "assets/space2.jpeg");
         this.load.image("wow", "assets/wow.jpg");
         this.load.image("yld", "assets/yld.png");
+        this.load.audio('bgSound', 'assets/bgm.mp3');
     }
 
     init() {
@@ -46,7 +47,7 @@ export class LoaderScene extends Phaser.Scene {
     }
 
     private resetDrawCalls() {
-        console.log(this._drawCalls);
+        // console.log(this._drawCalls);
         this._drawCalls = 0;
 
     }
@@ -56,7 +57,8 @@ export class LoaderScene extends Phaser.Scene {
     }
 
     create() {
-
+        const sfx = this.sound.add('bgSound');
+        sfx.play();
         //for (let i = 0; i < 100; i++) {
         // const img = this.add.image(500, 100, "star");
         // const img1 = this.add.image(500, 100, "snow");
@@ -80,6 +82,20 @@ export class LoaderScene extends Phaser.Scene {
         const pixelHei = height / dpr;
         const designWidth = 360;
         const designHeight = 640;
+        this.input.keyboard.on('keyup', function (event) {
+
+            console.dir("up"+event);
+    
+        });
+
+        this.input.keyboard.on('keydown', function (event) {
+
+            console.dir(event);
+    
+        });
+
+        
+        return;
         // const img = this.add.image(0,0,"star");
         // 初始化ui
         GRoot.inst.attachTo(this, {
