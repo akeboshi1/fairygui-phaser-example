@@ -20,22 +20,21 @@
     "i18next-browser-languagedetector": "^4.0.1",
     "i18next-xhr-backend": "^3.2.2",
     "path": "^0.12.7",
-    "phaser": "^3.55.2",
     "ts-loader": "7.0.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
     "@types/webpack-env": "^1.16.3",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "html-webpack-plugin": "^5.4.0",
     "phaser-raycaster": "^0.10.2",
+    "terser-webpack-plugin": "^2.2.1",
     "typescript": "^3.9.6",
     "webpack": "^5.59.1",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.3.1",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "babel-loader": "^8.0.6",
-    "terser-webpack-plugin": "^2.2.1"
+    "webpack-dev-server": "^4.3.1"
   }
 }

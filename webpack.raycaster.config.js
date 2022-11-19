@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   entry: path.join(__dirname, '/raycaster/index.js'), // 入口文件
   output: {
     path: path.join(__dirname, '/dist'), //打包后的文件存放的地方

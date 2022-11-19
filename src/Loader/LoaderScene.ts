@@ -1,149 +1,141 @@
 
-import { Handler } from "fairygui-phaser";
-import { GLoader, GRoot, UIPackage, GObject, GComponent, GList, GProgressBar, GButton } from "fairygui-phaser";
-
+import * as THREE from "../three.min";
+import "./OrbitControls.js";
+import {Phaser3D} from './Phaser3D.js';
 export class LoaderScene extends Phaser.Scene {
-    private _loader: GLoader;
-    private _list: GList;
-    private _drawCalls: number = 0;
+    private phaser3d: Phaser3D;
+    private redThreeBall;
+    private blueThreeBall;
+    private redBall;
+    private blueBall;
+    private gameOptions = {
+        gameScale: 0.1,
+        ballRadius: 25
+    }
     constructor(config) {
         super(config);
     }
 
     preload() {
-        this.load.binary("Loader", "assets/Loader.fui");
-        this.load.image("star", "assets/star0.jpg");
-        this.load.image("snow", "assets/snow_(10).png");
-        this.load.binary("7login", "assets/7login.fui");
-        this.load.image("Basics_atlas0.png", "assets/Basics_atlas0.png");
-        this.load.binary("Basics", "assets/Basics.fui");
-        this.load.image("001", "assets/001.jpg");
-        this.load.image("毛峰", "assets/毛峰.jpg");
-        this.load.image("毛峰1", "assets/毛峰1.jpg");
-        this.load.image("毛峰2", "assets/毛峰2.jpg");
-        this.load.image("code", "assets/code.jpeg");
-        this.load.image("space", "assets/space.jpeg");
-        this.load.image("space1", "assets/space1.jpg");
-        this.load.image("space2", "assets/space2.jpeg");
-        this.load.image("wow", "assets/wow.jpg");
-        this.load.image("yld", "assets/yld.png");
-        this.load.audio('bgSound', 'assets/bgm.mp3');
-    }
-
-    init() {
-        let renderer = this.sys.renderer
-        if (renderer instanceof Phaser.Renderer.WebGL.WebGLRenderer) {
-            this.game.events.on(Phaser.Core.Events.POST_STEP, this.resetDrawCalls, this)
-            let gl = WebGLRenderingContext.prototype;
-            //@ts-ignore
-            gl.updateDrawCallsNum = this.incrementDrawCalls.bind(this);
-            //@ts-ignore
-            gl.realDrawArrays = WebGLRenderingContext.prototype.drawArrays;
-            gl.drawArrays = function (mode: GLenum, first: GLint, count: GLsizei) {
-                this.updateDrawCallsNum()
-                this.realDrawArrays(mode, first, count)
-            }
-        }
-    }
-
-    private resetDrawCalls() {
-        // console.log(this._drawCalls);
-        this._drawCalls = 0;
-
-    }
-
-    private incrementDrawCalls() {
-        this._drawCalls++;
+        this.load.image("redball", "assets/redball.png");
+        this.load.image("blueball", "assets/blueball.png");
     }
 
     create() {
-        const sfx = this.sound.add('bgSound');
-        sfx.play();
-        //for (let i = 0; i < 100; i++) {
-        // const img = this.add.image(500, 100, "star");
-        // const img1 = this.add.image(500, 100, "snow");
-        // const img2 = this.add.image(500, 100, "Basics_atlas0.png");
-        // const img3 = this.add.image(500, 100, "001");
-        // const img4 = this.add.image(500, 100, "wow");
-        // const img5 = this.add.image(500, 100, "yld");
-        // const img6 = this.add.image(500, 100, "毛峰");
-        // const img7 = this.add.image(500, 100, "毛峰1");
-        // const img8 = this.add.image(500, 100, "毛峰2");
-        // const img9 = this.add.image(500, 100, "space");
-        // const img10 = this.add.image(500, 100, "space1");
-        // const img11 = this.add.image(500, 100, "space2");
-        // //}
 
-        // return;
-        const width = Number(this.game.config.width);
-        const height = Number(this.game.config.height);
-        const dpr = window.devicePixelRatio;
-        const pixelWid = width / dpr;
-        const pixelHei = height / dpr;
-        const designWidth = 360;
-        const designHeight = 640;
-        this.input.keyboard.on('keyup', function (event) {
-
-            console.dir("up"+event);
-    
+        this.phaser3d = new Phaser3D(this, {
+            fov: 45,
+            near: 1,
+            far: 1000,
+            x: 0,
+            y: 95,
+            z: 0
         });
 
-        this.input.keyboard.on('keydown', function (event) {
+        this.phaser3d.camera.lookAt(0, 10, 20);
 
-            console.dir(event);
-    
+        this.phaser3d.enableShadows();
+        this.phaser3d.enableGamma();
+
+        this.phaser3d.add.ambientLight({
+            color: 0xffffff,
+            intensity: 0.1
         });
 
-        
-        return;
-        // const img = this.add.image(0,0,"star");
-        // 初始化ui
-        GRoot.inst.attachTo(this, {
-            osd: "", res: "assets/",
-            resUI: "assets/", dpr, width, height, designWidth, designHeight
+        new THREE.OrbitControls(this.phaser3d.camera, this.scale.parent);
+
+        let spotlight = this.phaser3d.add.spotLight({
+            intensity: 0.5,
+            angle: 0.4,
+            decay: 0.1,
+            distance: 250,
+            x: 0,
+            y: 220,
+            z: 0
         });
-        UIPackage.loadPackage("Basics").then((pkg) => {
-            console.log(pkg);
-            UIPackage.createObject("Basics", "Panel").then((obj) => {
-                const main = obj.asCom;
-                main.makeFullScreen();
 
-                GRoot.inst.addChild(main);
+        this.addThreeBound(10, Number(this.game.config.height) + 20, Number(this.game.config.width) / 2 + 5, 0);
+        this.addThreeBound(10, Number(this.game.config.height) + 20, - this.game.config.width / 2 - 5, 0);
+        this.addThreeBound(this.game.config.width, 10, 0, Number(this.game.config.height) / 2 + 5);
+        this.addThreeBound(this.game.config.width, 10, 0, - Number(this.game.config.height) / 2 - 5);
 
-                // const bar:GProgressBar = (<GComponent>main.getChild("n8")).asProgress;
-                // bar.tweenValue(100, 2);
-                this._list = (<GComponent>main.getChild("list")).asList;
+        let ground = this.phaser3d.add.box({
+            width: (Number(this.game.config.width) + 20) * this.gameOptions.gameScale,
+            height: 10 * this.gameOptions.gameScale,
+            depth: (Number(this.game.config.height) + 20) * this.gameOptions.gameScale,
+            color: 0xffff00,
+            x: 0,
+            y: -5 * this.gameOptions.gameScale,
+            z: 0,
+            material: {
+                dithering: true,
+                phong: true
+            }
+        });
 
-                // // glist的渲染方法
-                this._list.itemRenderer = Handler.create(this, this.renderListPanelItem, null, false);
-                this._list.setVirtual().then(() => {
-                    this._list.numItems = 10;
-                });
-                // const clsBtn: GObject = main.getChild("n36") as GObject;
-                // clsBtn.onClick(this.closeEventHandler, this);
-            });
+        this.redThreeBall = this.addThreeBall(0xff0000);
+        this.blueThreeBall = this.addThreeBall(0x0000ff);
+
+        this.phaser3d.castShadow(this.redThreeBall, this.blueThreeBall);
+        this.phaser3d.receiveShadow(ground);
+
+        this.phaser3d.setShadow(spotlight, 512, 512);
+
+        this.redBall = this.addArcadeBall("redball");
+        this.blueBall = this.addArcadeBall("blueball");
+        //@ts-ignore
+        this.physics.add.collider(this.redBall, this.blueBall);
+    }
+
+    addThreeBound(width, depth, posX, posZ) {
+        this.phaser3d.add.box({
+            width: width * this.gameOptions.gameScale,
+            height: this.gameOptions.ballRadius * this.gameOptions.gameScale,
+            depth: depth * this.gameOptions.gameScale,
+            color: 0x00ff00,
+            x: posX * this.gameOptions.gameScale,
+            y: this.gameOptions.ballRadius / 2 * this.gameOptions.gameScale,
+            z: posZ * this.gameOptions.gameScale,
+            material: {
+                dithering: true,
+                phong: true
+            }
         });
     }
 
-    // update(time: number, delta: number): void {
-    //     console.log(this._drawCalls);
-    //     this._drawCalls = 0;
-    // }
-
-    private renderListPanelItem(index: number, item: GButton) {
-        item.title = "Item" + index;
-        item.onClick(this.onClickListPanel, this);
-    }
-    private onClickListPanel(pointer: Phaser.Input.Pointer, item: Phaser.GameObjects.Container) {
-        console.log("__click");
-    }
-
-
-
-    private closeEventHandler() {
-        this._list.setVirtual().then(() => {
-            this._list.numItems = 12;
+    addThreeBall(color) {
+        return this.phaser3d.add.sphere({
+            radius: this.gameOptions.ballRadius * this.gameOptions.gameScale,
+            widthSegments: 32,
+            heightSegments: 32,
+            color: color,
+            x: 0,
+            y: 25 * this.gameOptions.gameScale,
+            z: 0,
+            material: {
+                dithering: true,
+                phong: true
+            }
         });
-        console.log("click close");
+    }
+
+    addArcadeBall(key) {
+        let posX = Phaser.Math.Between(this.gameOptions.ballRadius, Number(this.game.config.width) - this.gameOptions.ballRadius);
+        let posY = Phaser.Math.Between(this.gameOptions.ballRadius, Number(this.game.config.height) - this.gameOptions.ballRadius);
+        //@ts-ignore
+        let ball = this.physics.add.sprite(posX, posY, key);
+        ball.setCircle(this.gameOptions.ballRadius);
+        ball.setCollideWorldBounds(true);
+        ball.setBounce(1);
+        let angle = Phaser.Math.RND.rotation();
+        ball.setVelocity(400 * Math.cos(angle), 400 * Math.sin(angle));
+        return ball
+    }
+
+    update() {
+        this.redThreeBall.position.x = (this.redBall.x - Number(this.game.config.width) / 2) * this.gameOptions.gameScale;
+        this.redThreeBall.position.z = (this.redBall.y - Number(this.game.config.height) / 2) * this.gameOptions.gameScale;
+        this.blueThreeBall.position.x = (this.blueBall.x - Number(this.game.config.width) / 2) * this.gameOptions.gameScale;
+        this.blueThreeBall.position.z = (this.blueBall.y - Number(this.game.config.height) / 2) * this.gameOptions.gameScale;
     }
 }

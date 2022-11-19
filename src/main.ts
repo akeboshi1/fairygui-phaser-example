@@ -1,23 +1,5 @@
-import { PhaserRaycaster } from "phaser-raycaster";
 import { LoaderScene } from "./Loader/LoaderScene";
-import { MovieClipScene } from "./MovieClip/MovieClipScene";
-import { GrayScaleScene } from "./ColorFilter/GrayScaleScene";
-import "phaser";
-import { GraphScene } from "./Graph/GraphScene";
-import { BasicsScene } from "./Basics/BasicsScene";
-import { ButtonScene } from "./Button/ButtonScene";
-import { TextScene } from "./Text/TextScene";
-import { BagPanelScene } from "./TooqingUI/BagPanel/BagPanelScene";
-import { TooqingScene } from "./TooqingUI/TooqingView/TooqingScene";
-import { ImageScene } from "./Image/ImageScene";
-import { ComBoBoxScene } from "./Combobox/ComBoBoxScene";
-import { DragScene } from "./Drag&Drop/DragScene";
-import { ScrollScene } from "./Scroll/ScrollScene";
-import { SliderScene } from "./Slider/SliderScene";
-import { MainScene } from "./Main/MainScene";
-import { RaycasterScene } from "./raycaster/Raycaster.scene";
-import { Raycaster1Scene } from "./raycaster/Raycaster1.scene";
-import { ThreeDScene } from "./3d/3DScene";
+import "./phaser.min";
 
 // var Stats = require("./Stat");
 export const DPR = Number(window.devicePixelRatio.toFixed(1));
@@ -45,10 +27,13 @@ var config = {
         pixelArt: true,
         roundPixels: true,
     },
-    // autoCenter: Phaser.Scale.CENTER_BOTH,
-    dom: {
-        createContainer: true
+    physics: {
+        default: "arcade"
     },
+    // autoCenter: Phaser.Scale.CENTER_BOTH,
+    // dom: {
+    //     createContainer: true
+    // },
     backgroundColor: "#4488aa",
     fps: {
         target: 60,
