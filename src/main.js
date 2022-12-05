@@ -1,6 +1,7 @@
 import "phaser";
-import { P3dScene } from "./test3D/P3DScene";
-
+import { Test3DScene } from './test3D/Test3DScene';
+import { enable3d, Canvas } from '@enable3d/phaser-extension'
+import { Test3DScene1 } from './test3D/Test3DScene1';
 // var Stats = require("./Stat");
 export const DPR = Number(window.devicePixelRatio.toFixed(1));
 //Math.round(window.devicePixelRatio);
@@ -11,42 +12,48 @@ const WIDTH = Math.round(window.innerWidth * DPR)
 const HEIGHT = Math.round(window.innerHeight * DPR)
 // export const assetsDPR = roundHalf(Math.min(Math.max(HEIGHT / 360, 1), 4))
 var config = {
-    type: Phaser.AUTO,
-    parent: "phaser-example",
-    audio: {
-        disableWebAudio: true
-      },
+    type: Phaser.WEBGL,
+    transparent: true,
+    // parent: "phaser-example",
+    // audio: {
+    //     disableWebAudio: true
+    // },
     scale: {
-        mode: Phaser.Scale.NONE,
-        // autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: WIDTH,
-        height: HEIGHT,
-        zoom: 1 / DPR,
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: window.innerWidth * Math.max(1, window.devicePixelRatio / 2),
+        height: window.innerHeight * Math.max(1, window.devicePixelRatio / 2)
     },
-    render: {
-        pixelArt: true,
-        roundPixels: true,
-    },
-    physics: {
-        default: "arcade"
-    },
+    //render: {
+        // pixelArt: true,
+        // roundPixels: true,
+    //},
+    // physics: {
+    //     default: "arcade"
+    // },
     // autoCenter: Phaser.Scale.CENTER_BOTH,
     // dom: {
     //     createContainer: true
     // },
-    backgroundColor: "#4488aa",
-    fps: {
-        target: 60,
-        forceSetTimeOut: true
-    }
+    // backgroundColor: "#4488aa",
+    // fps: {
+    //     target: 60,
+    //     forceSetTimeOut: true
+    // },
+    scene: [Test3DScene1],
+    ...Canvas()
     //pipeline: { "Color": ColorShaderPipeline }
 };
-// @ts-ignore
-var game = new Phaser.Game(config);
+new Phaser.Game(config);
 
-// 切换不同的scene演示不同的ui组件 
-game.scene.add("uiScene", P3dScene, true, { x: 0, y: 0 });
 
+// window.addEventListener('load', () => {
+//     enable3d(() =>
+//         // @ts-ignore
+//         new Phaser.Game(config)).withPhysics('/assets/ammo');
+
+//     // new Phaser.Game(config)).withPhysics('/assets/ammo')
+// })
 // const len = 3;
 // const statList = [];
 // for (let i = 0; i < len; i++) {

@@ -11,6 +11,7 @@
     "raycaster": "rimraf dist &&webpack --config webpack.raycaster.config.js"
   },
   "dependencies": {
+    "@enable3d/phaser-extension": "^0.25.3",
     "assemblyscript": "^0.19.5",
     "browserfs": "^1.4.3",
     "expose-loader": "^0.7.5",
@@ -19,8 +20,10 @@
     "i18next": "^19.0.3",
     "i18next-browser-languagedetector": "^4.0.1",
     "i18next-xhr-backend": "^3.2.2",
+    "matter-js": "^0.18.0",
     "path": "^0.12.7",
     "phaser": "^3.55.2",
+    "raw-loader": "^3.1.0",
     "three": "^0.147.0",
     "ts-loader": "7.0.5"
   },

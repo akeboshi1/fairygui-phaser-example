@@ -982,6 +982,51 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.5.tgz#9283c9ce5b289a3c4f61c12757469e59377f81f3"
   integrity sha512-6nFkfkmSeV/rqSaS4oWHgmpnYw194f6hmWF5is6b0J1naJZoiD0NTc9AiUwPHvWsowkjuHErCZT1wa0jg+BLIA==
 
+"@enable3d/ammo-physics@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@enable3d/ammo-physics/-/ammo-physics-0.25.3.tgz#512501011d684d4a7d528e4cc515bb57c343f0b5"
+  integrity sha512-MQvbGnfAa5e2zkAEkepkMxD6ZjmUfJRklu3X0hxgE4Z/s5VZUacw+1VAFG4iNL2DfqqgoDbvnE5uaXFc+ZgAcw==
+  dependencies:
+    "@enable3d/common" "^0.25.3"
+    "@enable3d/three-wrapper" "^0.25.3"
+    "@yandeu/events" "0.0.5"
+
+"@enable3d/common@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@enable3d/common/-/common-0.25.3.tgz#bf9e983fccddb91d91fe2b06312025390064a8d3"
+  integrity sha512-Q6U6mUIqzxbfKD6sr7mWI38/2vcM7TaUeeDT24js3j5bp8kU3NcQJ2vGqG2f3gvmTWLydnvcekcDRB1Z6FuVHg==
+  dependencies:
+    "@enable3d/three-wrapper" "^0.25.3"
+    "@yandeu/events" "0.0.5"
+
+"@enable3d/phaser-extension@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@enable3d/phaser-extension/-/phaser-extension-0.25.3.tgz#2d396f3daaf58466d061cca572e423a592d42dce"
+  integrity sha512-ON8bTrUoo514BUT6Q9jX6fad7EQzrLlWmkc+1eZA01yb0bptUDaXocKDZDW770niYLAhDnNCSvX6VLz1wN4urg==
+  dependencies:
+    "@enable3d/ammo-physics" "^0.25.3"
+    "@enable3d/common" "^0.25.3"
+    "@enable3d/three-graphics" "^0.25.3"
+    "@enable3d/three-wrapper" "^0.25.3"
+    "@yandeu/events" "0.0.5"
+
+"@enable3d/three-graphics@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@enable3d/three-graphics/-/three-graphics-0.25.3.tgz#df38b1dbf4c688c452c271d739a2cfabebbb085b"
+  integrity sha512-WdELHHYyD6XyGOA2pOOTOyBmymIashHDPI6HDC97aiaH4XJDYfhc6HMbdGzKBD3ETSVQt6hzIPiyEaU2gLtY9Q==
+  dependencies:
+    "@enable3d/ammo-physics" "^0.25.3"
+    "@enable3d/common" "^0.25.3"
+    "@enable3d/three-wrapper" "^0.25.3"
+    "@yandeu/events" "0.0.5"
+    "@yandeu/tap" "0.0.3"
+    three-csg-ts "^3.1.10"
+
+"@enable3d/three-wrapper@^0.25.3":
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/@enable3d/three-wrapper/-/three-wrapper-0.25.3.tgz#94878b03d3778192530cb1968d275f5b0d681039"
+  integrity sha512-Vl1kTZnC8fLLdi8t3NP+rqAqHmu/wPET0vRI2McYigkDysqmNm9syo4eO3SG/bsvo01QYSQFf/5dV/AqDQ4ndg==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -1261,6 +1306,18 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@yandeu/events@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@yandeu/events/-/events-0.0.5.tgz#f8fb41cf4222186eca6a0a5d36f5393805484f19"
+  integrity sha512-TUkghSGu0ThcEyAP50WHU/vdQkpt9EZyotjZzG8KirR+VI5o7Rp5wabcGru62JNy+awMR8Voy+kFzhNkC/1E6A==
+
+"@yandeu/tap@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@yandeu/tap/-/tap-0.0.3.tgz#36109cb23a02a4808407fb7f9811fcb6cfec8521"
+  integrity sha512-GIStEHmboHVbs6ghcRxkO5NVdZtRCsf1mkKI0gvzc21uj5qGlGSCD/Eaax98/c6Mu9+n2lkTYbTwuBbg2vzuQw==
+  dependencies:
+    "@yandeu/events" "0.0.5"
 
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
@@ -3113,6 +3170,15 @@ loader-utils@^1.0.2, loader-utils@^1.2.3:
     emojis-list "^3.0.0"
     json5 "^1.0.1"
 
+loader-utils@^1.1.0:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.4.2.tgz#29a957f3a63973883eb684f10ffd3d151fec01a3"
+  integrity sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==
+  dependencies:
+    big.js "^5.2.2"
+    emojis-list "^3.0.0"
+    json5 "^1.0.1"
+
 loader-utils@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.4.tgz#8b5cb38b5c34a9a018ee1fc0e6a066d1dfcc528c"
@@ -3180,6 +3246,11 @@ make-dir@^3.0.2, make-dir@^3.1.0:
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   dependencies:
     semver "^6.0.0"
+
+matter-js@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/matter-js/-/matter-js-0.18.0.tgz#083ced04eb6768f7664dc7ca8948a10e46ad3ed6"
+  integrity sha512-/ZVem4WygUnbmo/iE4oHZpZS97btfBtYy5Iwn1396vUZU7YhgVEN8J4UWwfZwY1ZqoTYlPgjvSw9WXauuXL0mg==
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -3837,6 +3908,14 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+raw-loader@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-3.1.0.tgz#5e9d399a5a222cc0de18f42c3bc5e49677532b3f"
+  integrity sha512-lzUVMuJ06HF4rYveaz9Tv0WRlUMxJ0Y1hgSkkgg+50iEdaI0TthyEDe08KIHb0XsF6rn8WYTqPCaGTZg3sX+qA==
+  dependencies:
+    loader-utils "^1.1.0"
+    schema-utils "^2.0.1"
+
 "readable-stream@1 || 2", readable-stream@^2.0.1:
   version "2.3.7"
   resolved "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.7.tgz#1eca1cf711aef814c04f62252a36a62f6cb23b57"
@@ -4055,7 +4134,7 @@ safe-regex-test@^1.0.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-schema-utils@^2.5.0, schema-utils@^2.6.5, schema-utils@^2.6.6:
+schema-utils@^2.0.1, schema-utils@^2.5.0, schema-utils@^2.6.5, schema-utils@^2.6.6:
   version "2.7.1"
   resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-2.7.1.tgz#1ca4f32d1b24c590c203b8e7a50bf0ea4cd394d7"
   integrity sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
@@ -4406,6 +4485,11 @@ terser@^5.7.2:
     commander "^2.20.0"
     source-map "~0.7.2"
     source-map-support "~0.5.20"
+
+three-csg-ts@^3.1.10:
+  version "3.1.11"
+  resolved "https://registry.yarnpkg.com/three-csg-ts/-/three-csg-ts-3.1.11.tgz#7378d3bd750c2f894f21bf792320f11bac592ead"
+  integrity sha512-cR0b/u2wQRkQBooL1fZgsWPxjXBKfXlvAld+KItWWh3Qehxm/Jw5WyoCVdOD9PKZJj2RrAKvCFW6sZvYPik95w==
 
 three@^0.147.0:
   version "0.147.0"

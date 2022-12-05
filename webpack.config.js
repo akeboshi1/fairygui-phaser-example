@@ -20,6 +20,7 @@ const config = {
     rules: [
       // { test: /\.ts$/, loader: "ts-loader", options: { allowTsInNodeModules: false }, exclude: "/node_modules/" },
       { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
+      { test: [/\.vert$/, /\.frag$/, /\.glsl$/], use: 'raw-loader' }
     ],
   },
   resolve: {
