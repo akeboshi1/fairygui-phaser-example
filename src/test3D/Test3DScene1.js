@@ -5,11 +5,12 @@ import Phaser3D from "../loader/phaser3D"
 
 export class Test3DScene1 extends Phaser.Scene {
     preload() {
-       this.load.binary("man","assets/glb/Boy.glb");
+        this.load.binary("man", "assets/glb/Boy.glb");
     }
 
     create() {
-        this.skyboxName = "Library"
+        const self = this;
+        this.skyboxName = "Library";
         this.phaser3d = new Phaser3D(this, {
             fov: 70,
             near: 2,
@@ -22,11 +23,14 @@ export class Test3DScene1 extends Phaser.Scene {
             "py.jpg", "ny.jpg",
             "pz.jpg", "nz.jpg"
         );
-
+        this.phaser3d.enableFogExp2(0xffcc00, 0.002);
         this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
-            const scale = 30;
-            robot.scene.children[0].scale.set(scale, scale, scale);
-            robot.scene.children[0].position.setY(0);
+            const scale = 200;
+            robot.setScale(scale);
+            // const object3D = robot.scene.children[0];
+            // const mesh = robot.scene.children[1];
+            // object3D.scale.set(scale, scale, scale);
+            // object3D.position.setY(0);
 
             // this.robot.traverse(child => {
             //     if (child.isMesh) {
@@ -36,15 +40,22 @@ export class Test3DScene1 extends Phaser.Scene {
 
             // // animations
             // this.third.animationMixers.add(this.robot.animation.mixer);
-            // gltf.animations.forEach(animation => {
-            //     this.robot.anims.add(animation.name, animation);
-            // })
-            // this.robot.anims.play('Idle');
+            self.animationPlay(robot);
+
         });
 
         this.controls = new OrbitControls(this.phaser3d.camera, this.scale.parent);
         // this.controls.enableZoom = false
         // this.controls.enablePan = false
 
+    }
+
+    animationPlay(robot) {
+        this.robot = robot;
+        this.robot.animate(3);
+    }
+
+    update() {
+        if (this.robot) this.robot.mixer.update(0.005);
     }
 }

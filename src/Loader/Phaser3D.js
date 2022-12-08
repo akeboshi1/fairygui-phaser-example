@@ -1,5 +1,6 @@
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader"
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer'
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer';
+import { Model } from "./animation/model";
 export default class Phaser3D extends Phaser.Events.EventEmitter {
     constructor(phaserScene, { ortho = false, fov = 75, aspect = null, near = 0.1, far = 1000, left = -1, right = 1, top = 1, bottom = -1, x = 0, y = 0, z = 0, anisotropy = 1 } = {}) {
         super();
@@ -208,28 +209,17 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
     addGLTFModel(key, resourcePath, onLoad) {
         const data = this.root.cache.binary.get(key);
-
         const loader = new GLTFLoader();
-
         loader.parse(data, resourcePath, (gltf) => {
+            const model = new Model(gltf);
 
-            const model = gltf.scene;
-            const box = new THREE.Box3().setFromObject(model);
-            const center = box.getCenter(new THREE.Vector3());
-            model.position.x += model.position.x - center.x;
-            model.position.y += model.position.y - center.y;
-            model.position.z += model.position.z - center.z;
-            model.traverse(child => {
-                if (child.isMesh) {
-                    child.castShadow = child.receiveShadow = true;
-                }
-            });
-            this.scene.add(model);
+            this.scene.add(model.display);
 
-            this.emit('loadgltf', gltf, model);
+            this.emit('loadgltf', model);
 
             if (onLoad) {
-                onLoad(gltf, model);
+
+                onLoad(model);
             }
 
         });

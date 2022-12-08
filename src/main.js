@@ -1,6 +1,4 @@
 import "phaser";
-import { Test3DScene } from './test3D/Test3DScene';
-import { enable3d, Canvas } from '@enable3d/phaser-extension'
 import { Test3DScene1 } from './test3D/Test3DScene1';
 // var Stats = require("./Stat");
 export const DPR = Number(window.devicePixelRatio.toFixed(1));
@@ -41,7 +39,6 @@ var config = {
     //     forceSetTimeOut: true
     // },
     scene: [Test3DScene1],
-    ...Canvas()
     //pipeline: { "Color": ColorShaderPipeline }
 };
 new Phaser.Game(config);
