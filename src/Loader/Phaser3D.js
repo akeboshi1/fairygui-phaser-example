@@ -1,5 +1,6 @@
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer';
+import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
 import { Model } from "./animation/model";
 export default class Phaser3D extends Phaser.Events.EventEmitter {
     constructor(phaserScene, { ortho = false, fov = 75, aspect = null, near = 0.1, far = 1000, left = -1, right = 1, top = 1, bottom = -1, x = 0, y = 0, z = 0, anisotropy = 1 } = {}) {
@@ -9,7 +10,11 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         this.view = phaserScene.add.extern();
 
-        this.view.setSize(phaserScene.game.config.width, phaserScene.game.config.height);
+        this.width = phaserScene.game.config.width;
+
+        this.height = phaserScene.game.config.height;
+
+        this.view.setSize(this.width, this.height);
 
         this.view.setInteractive();
 
@@ -46,6 +51,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         this.composer = null;
 
+        this.anaglyphEffect = null;
+
         //  We don't want three.js to wipe our gl context!
         this.renderer.autoClear = false;
 
@@ -70,6 +77,7 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
             spotLight: (config) => this.addSpotLight(config),
 
             effectComposer: () => this.addEffectComposer(),
+            anaglyphEffect: () => this.addAnglyphEffect(),
             mesh: (mesh) => this.addMesh(mesh),
             group: (...children) => this.addGroup(children),
 
@@ -135,6 +143,19 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         };
 
         return this.composer;
+    }
+
+    addAnglyphEffect() {
+        this.anaglyphEffect = new AnaglyphEffect(this.renderer);
+        this.anaglyphEffect.setSize(this.width, this.height);
+        this.view.render = () => {
+
+            //  This is important to retain GL state between renders
+            this.renderer.state.reset();
+
+            this.anaglyphEffect.render(this.scene, this.camera);
+
+        };
     }
 
     enableFog(color = 0x000000, near = 1, far = 1000) {

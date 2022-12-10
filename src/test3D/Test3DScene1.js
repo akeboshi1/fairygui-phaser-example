@@ -24,6 +24,7 @@ export class Test3DScene1 extends Phaser.Scene {
             "pz.jpg", "nz.jpg"
         );
         this.phaser3d.enableFogExp2(0xffcc00, 0.002);
+        const pointLight = this.phaser3d.addPointLight({ color: 0x404040, intensity: 2, x: 100, y: 100, z: 10 });
         this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
             const scale = 200;
             robot.setScale(scale);
@@ -41,9 +42,10 @@ export class Test3DScene1 extends Phaser.Scene {
             // // animations
             // this.third.animationMixers.add(this.robot.animation.mixer);
             self.animationPlay(robot);
-
+            pointLight.add(new THREE.Mesh(robot.display, new THREE.MeshBasicMaterial({ color: 0xff0040 })));
         });
 
+        // this.phaser3d.addAnglyphEffect();
         this.controls = new OrbitControls(this.phaser3d.camera, this.scale.parent);
         // this.controls.enableZoom = false
         // this.controls.enablePan = false
