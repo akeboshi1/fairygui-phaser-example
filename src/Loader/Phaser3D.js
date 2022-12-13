@@ -300,10 +300,12 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return light;
     }
 
-    addPointLight({ color = 0xffffff, intensity = 1, distance = 0, decay = 1, x = 0, y = 0, z = 0 } = {}) {
+    addPointLight({ mesh, color = 0xffffff, intensity = 1, distance = 0, decay = 1, x = 0, y = 0, z = 0 } = {}) {
         const light = new THREE.PointLight(color, intensity, distance, decay);
 
         light.position.set(x, y, z);
+
+        light.add(mesh);
 
         this.scene.add(light);
 

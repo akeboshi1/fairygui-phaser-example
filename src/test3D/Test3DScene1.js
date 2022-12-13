@@ -23,8 +23,9 @@ export class Test3DScene1 extends Phaser.Scene {
             "py.jpg", "ny.jpg",
             "pz.jpg", "nz.jpg"
         );
-        this.phaser3d.enableFogExp2(0xffcc00, 0.002);
-        const pointLight = this.phaser3d.addPointLight({ color: 0x404040, intensity: 2, x: 100, y: 100, z: 10 });
+        //this.phaser3d.enableFogExp2(0xffcc00, 0.002);
+        const sphere = new THREE.SphereGeometry( 0.5, 16, 16 );
+        const pointLight = this.phaser3d.addPointLight({mesh:new THREE.Mesh(sphere),  color: 0x404080, intensity: 200, x: 10, y: 200, z: 70 });
         this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
             const scale = 200;
             robot.setScale(scale);
@@ -42,8 +43,15 @@ export class Test3DScene1 extends Phaser.Scene {
             // // animations
             // this.third.animationMixers.add(this.robot.animation.mixer);
             self.animationPlay(robot);
-            pointLight.add(new THREE.Mesh(robot.display, new THREE.MeshBasicMaterial({ color: 0xff0040 })));
         });
+
+        // //lights
+
+        // light1 = new THREE.PointLight( 0xff0040, 2, 50 );
+        // light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
+        // scene.add( light1 );
+        
+        // pointLight.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0x404040 })));
 
         // this.phaser3d.addAnglyphEffect();
         this.controls = new OrbitControls(this.phaser3d.camera, this.scale.parent);
