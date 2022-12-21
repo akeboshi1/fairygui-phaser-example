@@ -8,7 +8,7 @@ export class Model {
     }
 
     setShadow() {
-        this.model.traverse(child => {
+        this.object3D.traverse(child => {
             if (child.isMesh) {
                 child.castShadow = child.receiveShadow = true;
             }

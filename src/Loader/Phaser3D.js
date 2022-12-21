@@ -177,10 +177,9 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return this;
     }
 
-    enableShadows(type = THREE.PCFShadowMap) {
+    enableShadows(type = THREE.PCFSoftShadowMap) {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = type;
-
         return this;
     }
 
@@ -234,6 +233,7 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         loader.parse(data, resourcePath, (gltf) => {
             const model = new Model(gltf);
 
+            model.setShadow();
             this.scene.add(model.display);
 
             this.emit('loadgltf', model);
@@ -300,23 +300,40 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return light;
     }
 
-    addPointLight({ mesh, color = 0xffffff, intensity = 1, distance = 0, decay = 1, x = 0, y = 0, z = 0 } = {}) {
+    /**
+     * 点光源不产生阴影
+     * @param {*} param0 
+     * @returns 
+     */
+    addPointLight({ color = 0xffffff, intensity = 1, distance = 0, decay = 1, x = 0, y = 0, z = 0 } = {}) {
         const light = new THREE.PointLight(color, intensity, distance, decay);
 
-        light.position.set(x, y, z);
+        light.castShadow = castShadow;
 
-        light.add(mesh);
+        light.position.set(x, y, z);
 
         this.scene.add(light);
 
         return light;
     }
 
-    addSpotLight({ color = 0xffffff, intensity = 1, distance = 0, angle = Math.PI / 4, penumbra = 0.05, decay = 1, x = 0, y = 0, z = 0 } = {}) {
+    /**
+     * 聚光灯产生阴影
+     * @param {*} param0 
+     * @returns 
+     */
+    addSpotLight({ color = 0xffffff, intensity = 1, distance = 0, angle = Math.PI / 4, penumbra = 0.05, decay = 1, x = 0, y = 0, z = 0, castShadow = true } = {}) {
         const light = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
+
+        light.castShadow = castShadow;
 
         light.position.set(x, y, z);
 
+        // light.shadow.mapSize.width = 2048;
+        // light.shadow.mapSize.height = 2048;
+        // light.shadow.camera.near = 1
+        // light.shadow.camera.far = 300
+        // light.shadow.camera.fov = 20
         this.scene.add(light);
 
         return light;
@@ -673,12 +690,16 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return obj;
     }
 
-    addGround({ receiveShadow = false, texture = null, color = 0xffffff, material = null } = {}) {
-        const plane = this.makePlane({ width: 100, height: 100, texture, color, material });
+
+
+    addGround({ width = 1, height = 1, receiveShadow = false, castShadow = false, texture = null, color = 0xffffff, material = null } = {}) {
+        const plane = this.makePlane({ width, height, texture, color, material });
 
         plane.rotation.x = -Math.PI * 0.5;
 
         plane.receiveShadow = receiveShadow;
+
+        plane.castShadow = castShadow;
 
         this.scene.add(plane);
 
