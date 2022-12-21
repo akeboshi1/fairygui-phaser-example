@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="2000,2000">
-  <displayList>
-    <component id="n4_lrb6" name="joystick" src="lrb6v" fileName="joystick/joystick.xml" xy="749,557"/>
-  </displayList>
-</component>

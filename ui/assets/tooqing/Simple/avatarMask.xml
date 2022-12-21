@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="111,111">
-  <displayList>
-    <image id="n2_x302" name="n2" src="mtpmj" fileName="Basic/images/info/cat.jpg" xy="0,0" size="111,111">
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-  </displayList>
-</component>

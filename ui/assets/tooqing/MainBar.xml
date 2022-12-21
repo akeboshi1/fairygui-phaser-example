@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="282,111">
-  <displayList>
-    <component id="n0_svlh" name="n0" src="sz31i" fileName="Complex/progressBar.xml" xy="0,0" size="282,111">
-      <ProgressBar value="20" max="100"/>
-    </component>
-  </displayList>
-</component>

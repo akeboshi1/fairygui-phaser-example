@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="50,73" extention="Button">
-  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
-  <displayList>
-    <image id="n0_wwzw" name="n0" src="xfg99x" fileName="images/slider-pin.png" xy="0,0"/>
-  </displayList>
-  <Button/>
-</component>

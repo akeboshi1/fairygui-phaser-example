@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="1136,570">
-  <displayList>
-    <richtext id="n12" name="n12" xy="48,75" size="471,211" font="Courier" fontSize="22" color="#ccff00" ubb="true" autoSize="none" text="[url=event:xx]I am link, click me[/url]"/>
-  </displayList>
-</component>

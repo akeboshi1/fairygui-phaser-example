@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="209,256">
-  <displayList>
-    <image id="n8_cyck" name="n8" src="sner1h" fileName="images/pic.png" xy="0,0" pivot="0.5,0.5" color="#00ff00" flip="both">
-      <relation target="" sidePair="left-left"/>
-    </image>
-    <image id="n10_rlyl" name="n10" src="rt103o" fileName="images/10_png.png" xy="11,30"/>
-  </displayList>
-</component>

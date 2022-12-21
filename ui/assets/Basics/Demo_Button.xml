@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="360,640" bgColor="#ff0000">
-  <displayList>
-    <component id="n33_d0wh" name="n33" src="d0whcq" fileName="components/CommonBackground.xml" xy="0,0">
-      <relation target="" sidePair="width-width,height-height"/>
-    </component>
-  </displayList>
-</component>
