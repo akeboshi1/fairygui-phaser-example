@@ -61,7 +61,7 @@ export class Test3DScene1 extends Phaser.Scene {
 
         // scene.add( ground );
         this.phaser3d.enableShadows();
-        this.phaser3d.addGround({ width: 1000, height: 1000, castShadow: false, receiveShadow: true, color: 0xffffff, material: { side: THREE.DoubleSide } });
+        this.phaser3d.addGround({ width: 1000, height: 1000, castShadow: false, receiveShadow: true, color: 0xffcc00, material: { side: THREE.DoubleSide } });
         // //lights
 
         // light1 = new THREE.PointLight( 0xff0040, 2, 50 );

@@ -20,6 +20,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         this.scene = new THREE.Scene();
 
+        this.clock = new THREE.Clock();
+
         this.textureAnisotropy = anisotropy;
 
         if (!aspect) {
@@ -322,18 +324,18 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
      * @param {*} param0 
      * @returns 
      */
-    addSpotLight({ color = 0xffffff, intensity = 1, distance = 0, angle = Math.PI / 4, penumbra = 0.05, decay = 1, x = 0, y = 0, z = 0, castShadow = true } = {}) {
+    addSpotLight({ color = 0xffffff, intensity = 1, distance = 0, angle = Math.PI / 4, penumbra = 1, decay = 1, x = 0, y = 0, z = 0, castShadow = true } = {}) {
         const light = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
 
         light.castShadow = castShadow;
 
         light.position.set(x, y, z);
 
-        // light.shadow.mapSize.width = 2048;
-        // light.shadow.mapSize.height = 2048;
-        // light.shadow.camera.near = 1
-        // light.shadow.camera.far = 300
-        // light.shadow.camera.fov = 20
+        light.shadow.mapSize.width = 1024;
+        light.shadow.mapSize.height = 1024;
+        // light.shadow.camera.near = 10;
+        // light.shadow.camera.far = 200;
+        light.shadow.focus = 1;
         this.scene.add(light);
 
         return light;
