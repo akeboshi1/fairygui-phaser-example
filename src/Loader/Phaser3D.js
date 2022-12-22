@@ -60,7 +60,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         //  Create our Extern render callback
         this.view.render = () => {
-
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -136,7 +137,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         this.composer = new EffectComposer(this.renderer);
 
         this.view.render = () => {
-
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -151,7 +153,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         this.anaglyphEffect = new AnaglyphEffect(this.renderer);
         this.anaglyphEffect.setSize(this.width, this.height);
         this.view.render = () => {
-
+            const delta = clock.getDelta();
+            const time = clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -337,6 +340,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         // light.shadow.camera.far = 200;
         light.shadow.focus = 1;
         this.scene.add(light);
+
+        
 
         return light;
     }
