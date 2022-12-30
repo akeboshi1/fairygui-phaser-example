@@ -27,7 +27,7 @@ export class Test3DScene1 extends Phaser.Scene {
         // const sphere = new THREE.SphereGeometry(0.5, 16, 16);
         // const pointLight = this.phaser3d.addPointLight({ mesh: new THREE.Mesh(sphere), color: 0x404040, intensity: 200, x: 10, y: 200, z: 70 });
         
-        const pointLight = this.phaser3d.addSpotLight({ color: 0x404040, intensity: 50, x: 40, y: 350, z: 80,castShadow:true });
+        const pointLight = this.phaser3d.addSpotLight({ color: 0x404040, intensity: 100, x: 40, y: 350, z: 80,castShadow:true });
         this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
             const scale = 200;
             robot.setScale(scale);
@@ -60,6 +60,7 @@ export class Test3DScene1 extends Phaser.Scene {
         // ground.receiveShadow = true;
 
         // scene.add( ground );
+        this.phaser3d.addTest();
         this.phaser3d.enableShadows();
         this.phaser3d.addGround({ width: 1000, height: 1000, castShadow: false, receiveShadow: true, color: 0xffcc00, material: { side: THREE.DoubleSide } });
         // //lights

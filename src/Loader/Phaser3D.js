@@ -1,6 +1,7 @@
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer';
 import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
+import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 import { Model } from "./animation/model";
 export default class Phaser3D extends Phaser.Events.EventEmitter {
     constructor(phaserScene, { ortho = false, fov = 75, aspect = null, near = 0.1, far = 1000, left = -1, right = 1, top = 1, bottom = -1, x = 0, y = 0, z = 0, anisotropy = 1 } = {}) {
@@ -60,8 +61,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         //  Create our Extern render callback
         this.view.render = () => {
-            const delta = clock.getDelta();
-            const time = clock.getElapsedTime() * 10;
+            const delta = this.clock.getDelta();
+            const time = this.clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -133,12 +134,61 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         };
     }
 
+    addTest() {
+        let offset = 0;
+        const points = GeometryUtils.gosper(8);
+        const color = new THREE.Color();
+        const geometry = new THREE.BufferGeometry();
+        const positionAttribute = new THREE.Float32BufferAttribute(points, 3);
+        geometry.setAttribute('position', positionAttribute);
+        geometry.center();
+        geometry.scale(5, 5, 5);
+
+        const colorAttribute = new THREE.BufferAttribute(new Float32Array(positionAttribute.array.length), 3);
+        colorAttribute.setUsage(THREE.DynamicDrawUsage);
+        geometry.setAttribute('color', colorAttribute);
+
+        const material = new THREE.LineBasicMaterial({ vertexColors: true });
+
+        const line = new THREE.Line(geometry, material);
+        line.scale.setScalar(0.05);
+        this.scene.add(line);
+
+
+        this.view.render = () => {
+            const delta = this.clock.getDelta();
+            const time = this.clock.getElapsedTime() * 10;
+            //  This is important to retain GL state between renders
+            this.renderer.state.reset();
+
+            const colorAttribute = line.geometry.getAttribute('color');
+            const l = colorAttribute.count;
+
+            for (let i = 0; i < l; i++) {
+
+                const h = ((offset + i) % l) / l;
+
+                color.setHSL(h, 1, 0.5);
+                colorAttribute.setX(i, color.r);
+                colorAttribute.setY(i, color.g);
+                colorAttribute.setZ(i, color.b);
+
+            }
+
+            colorAttribute.needsUpdate = true;
+
+            offset -= 25;
+
+            this.renderer.render(this.scene, this.camera);
+        };
+    }
+
     addEffectComposer() {
         this.composer = new EffectComposer(this.renderer);
 
         this.view.render = () => {
-            const delta = clock.getDelta();
-            const time = clock.getElapsedTime() * 10;
+            const delta = this.clock.getDelta();
+            const time = this.clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -153,8 +203,8 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         this.anaglyphEffect = new AnaglyphEffect(this.renderer);
         this.anaglyphEffect.setSize(this.width, this.height);
         this.view.render = () => {
-            const delta = clock.getDelta();
-            const time = clock.getElapsedTime() * 10;
+            const delta = this.clock.getDelta();
+            const time = this.clock.getElapsedTime() * 10;
             //  This is important to retain GL state between renders
             this.renderer.state.reset();
 
@@ -341,7 +391,7 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         light.shadow.focus = 1;
         this.scene.add(light);
 
-        
+
 
         return light;
     }
