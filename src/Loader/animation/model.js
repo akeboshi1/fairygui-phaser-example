@@ -28,6 +28,7 @@ export class Model {
     }
 
     animate(animationNumber) {
+        if(this.animationMixer)this.animationMixer.stopAllAction();
         const animation = this.model.animations[animationNumber];
         if (!animation) return;
         const animationName = animation.name;

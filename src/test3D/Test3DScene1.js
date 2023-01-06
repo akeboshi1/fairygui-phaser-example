@@ -26,8 +26,8 @@ export class Test3DScene1 extends Phaser.Scene {
         //this.phaser3d.enableFogExp2(0xffcc00, 0.002);
         // const sphere = new THREE.SphereGeometry(0.5, 16, 16);
         // const pointLight = this.phaser3d.addPointLight({ mesh: new THREE.Mesh(sphere), color: 0x404040, intensity: 200, x: 10, y: 200, z: 70 });
-        
-        const pointLight = this.phaser3d.addSpotLight({ color: 0x404040, intensity: 100, x: 40, y: 350, z: 80,castShadow:true });
+
+        const pointLight = this.phaser3d.addSpotLight({ color: 0x404040, intensity: 100, x: 40, y: 350, z: 80, castShadow: true });
         this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
             const scale = 200;
             robot.setScale(scale);
@@ -36,15 +36,16 @@ export class Test3DScene1 extends Phaser.Scene {
             // object3D.scale.set(scale, scale, scale);
             // object3D.position.setY(0);
 
-            // this.robot.traverse(child => {
+            // self.robot.traverse(child => {
             //     if (child.isMesh) {
             //         child.castShadow = child.receiveShadow = true;
             //     }
             // });
 
             // // animations
-            // this.third.animationMixers.add(this.robot.animation.mixer);
-            self.animationPlay(robot);
+            // self.third.animationMixers.add(self.robot.animation.mixer);
+            self.robot = robot;
+            self.animationPlay();
         });
 
 
@@ -60,7 +61,6 @@ export class Test3DScene1 extends Phaser.Scene {
         // ground.receiveShadow = true;
 
         // scene.add( ground );
-        this.phaser3d.addTest();
         this.phaser3d.enableShadows();
         this.phaser3d.addGround({ width: 1000, height: 1000, castShadow: false, receiveShadow: true, color: 0xffcc00, material: { side: THREE.DoubleSide } });
         // //lights
@@ -73,17 +73,38 @@ export class Test3DScene1 extends Phaser.Scene {
 
         // this.phaser3d.addAnglyphEffect();
         this.controls = new OrbitControls(this.phaser3d.camera, this.scale.parent);
+
+        this.input.keyboard.on("keydown", this.keyDownHandler, this);
         // this.controls.enableZoom = false
         // this.controls.enablePan = false
 
     }
 
-    animationPlay(robot) {
-        this.robot = robot;
-        this.robot.animate(3);
+    keyDownHandler(event) {
+        console.log(event);
+        const key = event.key;
+        if(!this.robot)return;
+        switch (key) {
+            case "a":
+                this.animationPlay(1);
+                break;
+            case "d":
+                this.animationPlay(2);
+                break;
+            case "w":
+                this.animationPlay(3);
+                break;
+            case "s":
+                this.animationPlay(4);
+                break;
+        }
+    }
+
+    animationPlay(action=3) {
+        this.robot.animate(action);
     }
 
     update() {
-        if (this.robot) this.robot.mixer.update(0.005);
+        if (this.robot) this.robot.mixer.update(0.05);
     }
 }
