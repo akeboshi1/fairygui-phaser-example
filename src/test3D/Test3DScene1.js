@@ -83,28 +83,37 @@ export class Test3DScene1 extends Phaser.Scene {
     keyDownHandler(event) {
         console.log(event);
         const key = event.key;
-        if(!this.robot)return;
+        if (!this.robot) return;
         switch (key) {
             case "a":
                 this.animationPlay(1);
+                this.state = 1;
                 break;
             case "d":
                 this.animationPlay(2);
+                this.state = 2;
                 break;
             case "w":
                 this.animationPlay(3);
+                this.state = 3;
                 break;
             case "s":
                 this.animationPlay(4);
+                this.state = 4;
                 break;
         }
     }
 
-    animationPlay(action=3) {
+    animationPlay(action = 3) {
         this.robot.animate(action);
     }
 
     update() {
-        if (this.robot) this.robot.mixer.update(0.05);
+        if (this.robot) {
+            this.robot.mixer.update(0.01);
+            if (this.state === 2) {
+                this.robot.display.position.z += 1;
+            }
+        }
     }
 }
