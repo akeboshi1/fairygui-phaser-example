@@ -183,6 +183,7 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
     //     };
     // }
     // todo add texture three code
+    // todo add map
     // todo add usdz res
     // todo add raycaster code
     // todo add shader
@@ -240,6 +241,15 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = type;
         return this;
+    }
+
+    createTexture(path) {
+        if (path.substr(-1) !== '/') {
+            path = path.concat('/');
+        }
+
+        // todo filters
+        return new THREE.TextureLoader().load(path);
     }
 
     setCubeBackground(...files) {
