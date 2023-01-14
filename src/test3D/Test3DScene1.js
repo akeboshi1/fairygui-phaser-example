@@ -1,7 +1,12 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import Phaser3D from "../loader/phaser3D"
-
+import {
+    BoxBufferGeometry,
+    MathUtils,
+    Mesh,
+    MeshStandardMaterial,
+} from 'three';
 
 export class Test3DScene1 extends Phaser.Scene {
     preload() {
@@ -49,6 +54,8 @@ export class Test3DScene1 extends Phaser.Scene {
         });
 
 
+
+
         // const geometry = new THREE.PlaneGeometry( 100, 100 );
         // 			const planeMaterial = new THREE.MeshPhongMaterial( { color: 0xffb851 } );
         // const ground = new THREE.Mesh( geometry, planeMaterial );
@@ -77,8 +84,10 @@ export class Test3DScene1 extends Phaser.Scene {
         this.input.keyboard.on("keydown", this.keyDownHandler, this);
         // this.controls.enableZoom = false
         // this.controls.enablePan = false
-
+        this.phaser3d.addCube({ x: -0.5, y: -0.1, z: 0.8, width: 2, height: 2, depth: 2, color: "purple" });
     }
+
+
 
     keyDownHandler(event) {
         console.log(event);

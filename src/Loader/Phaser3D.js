@@ -1,7 +1,7 @@
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer';
 import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
-// import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
+import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 import { Model } from "./animation/model";
 export default class Phaser3D extends Phaser.Events.EventEmitter {
     constructor(phaserScene, { ortho = false, fov = 75, aspect = null, near = 0.1, far = 1000, left = -1, right = 1, top = 1, bottom = -1, x = 0, y = 0, z = 0, anisotropy = 1 } = {}) {
@@ -88,6 +88,7 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
             //  Geometry
             ground: (config) => this.addGround(config),
             box: (config) => this.addBox(config),
+            cube: (config) => this.addCube(config),
             cone: (config) => this.addCone(config),
             circle: (config) => this.addCircle(config),
             cylinder: (config) => this.addCylinder(config),
@@ -243,19 +244,31 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return this;
     }
 
-    createTexture(path) {
-        if (path.substr(-1) !== '/') {
-            path = path.concat('/');
-        }
-
-        // todo filters
-        return new THREE.TextureLoader().load(path);
-    }
-
     setCubeBackground(...files) {
         this.scene.background = this.createCubeTexture(...files)
 
         return this;
+    }
+
+
+    createCube(x, y, z, width = 2, height = 2, depth = 2, color = "purple") {
+        const geometry = new THREE.BoxGeometry(width, height, depth);
+        const material = new THREE.MeshStandardMaterial({ color });
+        const cube = new THREE.Mesh(geometry, material);
+
+        cube.rotation.set(x, y, z);//(-0.5, -0.1, 0.8);
+
+        const radiansPerSecond = THREE.MathUtils.degToRad(30);
+
+        // this method will be called once per frame
+        cube.tick = (delta) => {
+            // increase the cube's rotation each frame
+            cube.rotation.z += radiansPerSecond * delta;
+            cube.rotation.x += radiansPerSecond * delta;
+            cube.rotation.y += radiansPerSecond * delta;
+        };
+
+        return cube;
     }
 
     //  three.js uses a right-handed coordinate system!
@@ -535,6 +548,13 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         obj.position.set(x, y, z);
 
         return obj;
+    }
+
+
+    addCube(config) {
+        const cube = this.createCube(config.x, config.y, config.z, config.width, config.height, config.depth, config.color);
+        this.scene.add(cube);
+        return cube;
     }
 
     makeText({ text = '', font = '', size = 100, height = 50, curveSegments = 12, bevelEnabled = false, bevelThickness = 10, bevelSize = 8, bevelSegments = 3, texture = null, color = 0xffffff, material = null, x = 0, y = 0, z = 0 } = {}) {
