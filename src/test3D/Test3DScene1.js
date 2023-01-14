@@ -1,12 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import Phaser3D from "../loader/phaser3D"
-import {
-    BoxBufferGeometry,
-    MathUtils,
-    Mesh,
-    MeshStandardMaterial,
-} from 'three';
 
 export class Test3DScene1 extends Phaser.Scene {
     preload() {
@@ -84,7 +78,9 @@ export class Test3DScene1 extends Phaser.Scene {
         this.input.keyboard.on("keydown", this.keyDownHandler, this);
         // this.controls.enableZoom = false
         // this.controls.enablePan = false
-        this.phaser3d.addCube({ x: -0.5, y: -0.1, z: 0.8, width: 2, height: 2, depth: 2, color: "purple" });
+        this.cube = this.phaser3d.addCube({ x: -0.5, y: -0.1, z: 0.8, width: 2, height: 2, depth: 2, color: "purple" });
+        const scale = 50;
+        this.cube.scale.set(scale, scale, scale);
     }
 
 
@@ -123,6 +119,12 @@ export class Test3DScene1 extends Phaser.Scene {
             if (this.state === 2) {
                 this.robot.display.position.z += 1;
             }
+        }
+
+        if(this.cube){
+            this.cube.rotation.z+=0.01;
+            this.cube.rotation.y+=0.01;
+            this.cube.rotation.x+=0.01;
         }
     }
 }
