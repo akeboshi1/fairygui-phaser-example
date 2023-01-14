@@ -1,7 +1,6 @@
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer';
 import { AnaglyphEffect } from 'three/addons/effects/AnaglyphEffect.js';
-import * as GeometryUtils from 'three/addons/utils/GeometryUtils.js';
 import { Model } from "./animation/model";
 export default class Phaser3D extends Phaser.Events.EventEmitter {
     constructor(phaserScene, { ortho = false, fov = 75, aspect = null, near = 0.1, far = 1000, left = -1, right = 1, top = 1, bottom = -1, x = 0, y = 0, z = 0, anisotropy = 1 } = {}) {
