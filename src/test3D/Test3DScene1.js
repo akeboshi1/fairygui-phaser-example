@@ -3,8 +3,12 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import Phaser3D from "../loader/phaser3D"
 
 export class Test3DScene1 extends Phaser.Scene {
+    constructor() {
+        super();
+        this.modelPath = "assets/glb/Boy.glb";
+    }
     preload() {
-        this.load.binary("man", "assets/glb/Boy.glb");
+        this.load.binary("man", this.modelPath);
     }
 
     create() {
@@ -27,7 +31,7 @@ export class Test3DScene1 extends Phaser.Scene {
         // const pointLight = this.phaser3d.addPointLight({ mesh: new THREE.Mesh(sphere), color: 0x404040, intensity: 200, x: 10, y: 200, z: 70 });
 
         const pointLight = this.phaser3d.addSpotLight({ color: 0x404040, intensity: 100, x: 40, y: 350, z: 80, castShadow: true });
-        this.phaser3d.addGLTFModel("man", 'assets/glb/Boy.glb', (robot) => {
+        this.phaser3d.addGLTFModelByArrayBuf("man", this.modelPath, (robot) => {
             const scale = 200;
             robot.setScale(scale);
             // const object3D = robot.scene.children[0];
@@ -121,10 +125,10 @@ export class Test3DScene1 extends Phaser.Scene {
             }
         }
 
-        if(this.cube){
-            this.cube.rotation.z+=0.01;
-            this.cube.rotation.y+=0.01;
-            this.cube.rotation.x+=0.01;
+        if (this.cube) {
+            this.cube.rotation.z += 0.01;
+            this.cube.rotation.y += 0.01;
+            this.cube.rotation.x += 0.01;
         }
     }
 }

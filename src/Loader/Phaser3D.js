@@ -182,7 +182,6 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
     //         this.renderer.render(this.scene, this.camera);
     //     };
     // }
-    // todo add texture three code
     // todo add map
     // todo add usdz res
     // todo add raycaster code
@@ -257,15 +256,15 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
 
         cube.rotation.set(x, y, z);//(-0.5, -0.1, 0.8);
 
-        const radiansPerSecond = THREE.MathUtils.degToRad(30);
+        // const radiansPerSecond = THREE.MathUtils.degToRad(30);
 
-        // this method will be called once per frame
-        cube.tick = (delta) => {
-            // increase the cube's rotation each frame
-            cube.rotation.z += radiansPerSecond * delta;
-            cube.rotation.x += radiansPerSecond * delta;
-            cube.rotation.y += radiansPerSecond * delta;
-        };
+        // // this method will be called once per frame
+        // cube.tick = (delta) => {
+        //     // increase the cube's rotation each frame
+        //     cube.rotation.z += radiansPerSecond * delta;
+        //     cube.rotation.x += radiansPerSecond * delta;
+        //     cube.rotation.y += radiansPerSecond * delta;
+        // };
 
         return cube;
     }
@@ -308,7 +307,24 @@ export default class Phaser3D extends Phaser.Events.EventEmitter {
         return light;
     }
 
-    addGLTFModel(key, resourcePath, onLoad) {
+    addGLTFModelByPath(resourcePath, onLoad) {
+        const loader = new GLTFLoader();
+        loader.load(resourcePath, (gltf) => {
+            const model = new Model(gltf);
+
+            model.setShadow();
+            this.scene.add(model.display);
+
+            this.emit('loadgltf', model);
+
+            if (onLoad) {
+
+                onLoad(model);
+            }
+        });
+    }
+
+    addGLTFModelByArrayBuf(key, resourcePath, onLoad) {
         const data = this.root.cache.binary.get(key);
         const loader = new GLTFLoader();
         loader.parse(data, resourcePath, (gltf) => {
